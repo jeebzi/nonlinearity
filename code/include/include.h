@@ -8,6 +8,7 @@ typedef unsigned char uchar;
 #include <stdlib.h>
 #include <stdint.h>
 #include <ctype.h>
+#include <assert.h>
 
 #include "../src/boole.h"
 
