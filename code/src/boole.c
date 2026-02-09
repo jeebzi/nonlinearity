@@ -87,4 +87,26 @@ void print_anf(unsigned char *boole, int ffdimen, int ffsize) {
 	anf(boole,ffsize);
 }
 
+int weight_boole(unsigned char *boole, int ffsize) {
+	/*
+	 * retourne le poid binaire d'une fonction booléenne représenté par un tableau
+	 */
+	int res = 0, i = 0;
+	while (i < ffsize) {
+		res += boole[i];
+		i += 1;
+	}
+	return res;
+}
+
+void add_boole(unsigned char *boole1, unsigned char *boole2, int ffsize) {
+	/* in place, calcule l'addition dans F2 de deux fonctions booléeenne représenté part tab de uchar
+	 */
+	int i = 0;
+	while (i < ffsize) {
+		boole1[i] ^= boole2[i];
+		i += 1;
+	}
+}
+
 

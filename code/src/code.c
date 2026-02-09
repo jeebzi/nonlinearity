@@ -75,3 +75,42 @@ int rmdimen(int k, int m){
 	}
 	return somme;
 }
+
+unsigned char* extraire_ligne(code c, int num_ligne) {
+	/*
+	 * renvoie une ligne de la matrice génératrice du code
+	 */
+	unsigned char *res;
+	res = (unsigned char*) calloc(c.longueur, sizeof(unsigned char));
+	int i = 0;
+	while (i < c.longueur) {
+		res[i] = c.G[num_ligne*c.longueur + i];
+		i += 1;
+	}
+	return res;
+}
+
+int calcule_distance_mot_code(code c, unsigned char *boole, int ffsize) {
+	/*
+	 * calcule la distance d'une fonctin booléenne à un code
+	 * change ce qu'il y a dans boole !
+	 */
+	int dist = ffsize;
+	int b, w;
+	uint64_t limite, cpt = 1;
+	limite = ((uint64_t) 1) << (c.dim);
+	unsigned char *ligne;
+
+	while (cpt < limite) {
+		b = __builtin_ctzl(cpt);
+		ligne = extraire_ligne(c, b);
+		add_boole(boole, ligne, ffsize);
+		free(ligne);
+		w = weight_boole(boole, ffsize);
+
+		if (w < dist) dist = w;
+		cpt += 1;
+	}
+	return dist;
+}
+

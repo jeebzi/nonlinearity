@@ -11,5 +11,6 @@ typedef unsigned char uchar;
 #include <assert.h>
 
 #include "../src/boole.h"
+#include "../src/code.h"
 
 #endif
