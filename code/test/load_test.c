@@ -8,6 +8,7 @@ int main(int argc, char** argv) {
 		switch(opt) {
 			case 'f':
 				src = fopen(optarg, "r");
+				break;
 			case 'n':
 				ffdimen = atoi(optarg);
 				ffsize = 1 << ffdimen;
@@ -15,7 +16,7 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	printf("test\n");
 	boole = load_boole(src, &num, ffsize);
+	print_anf(boole, ffdimen, ffsize);
 	return 0;
 }

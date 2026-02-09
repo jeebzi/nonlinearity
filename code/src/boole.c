@@ -48,3 +48,43 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	}
 	return NULL;
 }
+
+void anf(unsigned char *f, int q) {
+	/*
+	 * tranforme un tableau de uchar représentant la table de vérité de la fontion en représentation anf et vice versa
+	 * in place
+	 */
+	if(q==1) return;
+	anf(f, q/2);
+	anf(&f[q/2], q/2);
+	for(int x=0; x<q/2; x++){
+		f[x+q/2] ^= f[x];
+	}
+}
+
+void print_anf(unsigned char *boole, int ffdimen, int ffsize) {
+	/*
+	 * prend une fonction booléenne uchar* et affiche sa représentation anf sur la sortie standard
+	 */
+	int flag = 0;
+	anf(boole,ffsize);
+	printf("anf=");
+	for(int u=0; u<ffsize; u++){
+		if(boole[u] ){
+			if(flag==0){flag=1;}
+			else{
+				printf("+");
+			}
+			for(int i=0; i<ffdimen; i++){
+				if(u&(1<<i)){
+					printf("%c",'a'+i);
+				}
+			}
+		}
+
+	}
+	printf("\n");
+	anf(boole,ffsize);
+}
+
+
