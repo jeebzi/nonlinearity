@@ -16,5 +16,6 @@ int binomial(int k, int m);
 int rmdimen(int k, int m);
 unsigned char* extraire_ligne(code c, int num_ligne);
 int calcule_distance_mot_code(code c, unsigned char *boole, int ffsize);
+uint64_t* code_to_int(code c);
 
 #endif

@@ -1,12 +1,15 @@
 CFLAGS = -Wall -g
 LIB = -L../src/ -lmylib
 
-all: load_test.exe code_test.exe distance_test.exe boole_to_int_test.exe
+all: load_test.exe code_test.exe distance_test.exe boole_to_int_test.exe code_zip_test.exe
 
 load_test.exe: load_test.c
 	gcc $(CLFAGS) $< $(LIB) -o $@
 
 code_test.exe: code_test.c
+	gcc $(CLFAGS) $< $(LIB) -o $@
+
+code_zip_test.exe: code_zip_test.c
 	gcc $(CLFAGS) $< $(LIB) -o $@
 
 distance_test.exe: distance_test.c

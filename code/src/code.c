@@ -114,3 +114,24 @@ int calcule_distance_mot_code(code c, unsigned char *boole, int ffsize) {
 	return dist;
 }
 
+uint64_t* code_to_int(code c) {
+	/*
+	 * prend un code et renvoie ça matrice génératrice représenté par un tableau de uint64
+	 */
+	uint64_t *res;
+	int int_par_ligne = (c.longueur+63) / 64;
+	int i = 0, k = 0, j;
+	res = (uint64_t*) calloc(c.dim*int_par_ligne, sizeof(uint64_t*));
+	printf("dim %d long %d\n", c.dim, c.longueur);
+	while (i < c.dim) {
+		j = 0;
+		while (j < c.longueur) {
+			if (c.G[k] == 1)
+				res[i*int_par_ligne + (j/64)] |= (uint64_t)1 << (j%64);
+			k += 1;
+			j += 1;
+		}
+		i += 1;
+	}
+	return res;
+}
