@@ -109,4 +109,20 @@ void add_boole(unsigned char *boole1, unsigned char *boole2, int ffsize) {
 	}
 }
 
+uint64_t* boole_to_int(unsigned char *boole, int ffsize) {
+	/*
+	 * tranforme une fonction boléenne (TT) représenté par un tableau de uchar par un pointeur sur uint64
+	 * avec le premier indice du tableau représenté par le bit de poid faible du premier entier pointé
+	 */
+	uint64_t *res;
+	int int_par_ligne = (ffsize + 63) / 64;
+	res = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
+	int i = 0;
+	while (i < ffsize) {
+		if (boole[i] == 1)
+			res[i/64] |= (uint64_t)1 << (i%64);
+		i += 1;
+	}
+	return res;
+}
 
