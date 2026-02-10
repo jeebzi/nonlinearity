@@ -17,12 +17,10 @@ int distance_mot_code_zip(uint64_t *mot, uint64_t *base, int ffsize, int nb_lign
 		j = 0;
 		wt = 0;
 		while (j < int_par_ligne) {
-			printf("%lu + %lu\n", mot[j],base[i*int_par_ligne + j]); 
 			mot[j] ^= base[i*int_par_ligne + j];
-			wt += __builtin_popcountl(mot[i]);
+			wt += __builtin_popcountl(mot[j]);
 			j += 1;
 		}
-		printf("wt %d\n", wt);
 		if (wt < score) score = wt;
 		cpt += 1;
 	}
