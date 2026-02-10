@@ -13,5 +13,6 @@ typedef unsigned char uchar;
 #include "../src/boole.h"
 #include "../src/code.h"
 #include "../src/affichage.h"
+#include "../src/distance.h"
 
 #endif

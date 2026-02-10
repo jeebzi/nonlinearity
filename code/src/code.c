@@ -122,7 +122,6 @@ uint64_t* code_to_int(code c) {
 	int int_par_ligne = (c.longueur+63) / 64;
 	int i = 0, k = 0, j;
 	res = (uint64_t*) calloc(c.dim*int_par_ligne, sizeof(uint64_t*));
-	printf("dim %d long %d\n", c.dim, c.longueur);
 	while (i < c.dim) {
 		j = 0;
 		while (j < c.longueur) {
