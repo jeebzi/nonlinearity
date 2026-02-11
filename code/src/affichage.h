@@ -5,5 +5,6 @@
 
 void print_tab_uint64(uint64_t *tab, int n);
 void print_tab_int(int *tab, int n);
+void print_distribution(int *distribution, int n);
 
 #endif
