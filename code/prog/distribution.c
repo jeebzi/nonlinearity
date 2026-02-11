@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 	code c = RM(k, ffdimen);
 	uint64_t *words = code_to_int(c), *mot;
 	uchar *f;
+	printf("dim %d long %d\n", c.dim, c.longueur);
 	while ((f = load_boole(src, &num, ffsize))) {
 		print_anf(f, ffdimen, ffsize);
 		mot = boole_to_int(f, ffsize);
