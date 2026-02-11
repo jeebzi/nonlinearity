@@ -1,5 +1,5 @@
 CFLAGS = -g -Wall
-OBJECTS = boole.o code.o affichage.o distance.o
+OBJECTS = boole.o code.o affichage.o distance.o util.o
 
 .PHONY: clean
 
@@ -17,6 +17,9 @@ affichage.o: affichage.c affichage.h
 
 distance.o: distance.c distance.h
 	gcc $(CFLAGS) -mpopcnt -c $< -o $@
+
+util.o: util.c util.h
+	gcc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm $(OBJECTS) libmylib.a

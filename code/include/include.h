@@ -14,5 +14,6 @@ typedef unsigned char uchar;
 #include "../src/code.h"
 #include "../src/affichage.h"
 #include "../src/distance.h"
+#include "../src/util.h"
 
 #endif
