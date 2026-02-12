@@ -8,5 +8,6 @@ void anf(unsigned char *f, int q);
 int weight_boole(unsigned char *boole, int ffsize);
 void add_boole(unsigned char *boole1, unsigned char *boole2, int ffsize);
 uint64_t* boole_to_int(unsigned char *boole, int ffsize);
+unsigned char* int_to_boole(uint64_t *mot, int ffsize);
 
 #endif

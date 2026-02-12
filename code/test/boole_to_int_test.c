@@ -23,8 +23,13 @@ int main(int argc, char *argv[]) {
 
 	n = (ffsize+63) / 64;
 	boole = load_boole(src, &num, ffsize);
+	print_anf(boole, ffdimen, ffsize);
 	ptr_boole = boole_to_int(boole, ffsize);
 	print_tab_uint64(ptr_boole, n);
+	boole = int_to_boole(ptr_boole, ffsize);
+	print_anf(boole, ffdimen, ffsize);
+	free(boole);
+	free(ptr_boole);
 	return 0;
 }
 
