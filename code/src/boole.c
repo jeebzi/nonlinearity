@@ -133,10 +133,65 @@ unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 	 */
 	unsigned char *res;
 	res = (unsigned char*) calloc(ffsize, sizeof(unsigned char));
-	int i = 0, j;
+	int i = 0;
 	while (i < ffsize) {
 		res[i] = (mot[i/64] >> i%64) & 1;
 		i += 1;
 	}
 	return res;
+}
+
+uint64_t* add_boole_int(uint64_t *b1, uint64_t *b2, int n) {
+	/*
+	 * prend de fonction rerépsenté par des tableaux de uint de longueur n
+	 * et renvoie leur somme
+	 */
+	uint64_t *res;
+	res = (uint64_t*) calloc(n, sizeof(uint64_t));
+	int i = 0;
+	while (i < n) {
+		res[i] = b1[i] ^ b2[i];
+		i += 1;
+	}
+	return res;
+}
+
+void liste_approximation(uint64_t *mot, code c, int target) {
+	/*
+	 * affiche les tous les mots du code à distance égale du mot
+	 */
+	int int_par_ligne = (c.longueur+63)/64, i, j, wt;
+	uint64_t limite = (uint64_t)1 << c.dim, *words, cpt = 1, *tmp;
+	words = code_to_int(c);
+	uint64_t *mot_code;
+	mot_code = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
+	unsigned char *boole;
+
+	while (cpt < limite) {
+		i = __builtin_ctzl(cpt);
+		//génère le mot du code
+		j = 0;
+		while (j < int_par_ligne) {
+			mot_code[j] ^= words[i*int_par_ligne + j];
+			j += 1;
+		}
+		tmp = copy_uint64(mot_code, int_par_ligne);
+		//add
+		j = 0;
+		wt = 0;
+		while (j < int_par_ligne) {
+			tmp[j] ^= mot[j];
+			wt += __builtin_popcountl(tmp[j]);
+			j += 1;
+		}
+		if  (wt == target) {
+			boole = int_to_boole(mot_code, c.longueur);
+			print_tab_uchar(boole, c.longueur);
+			print_anf(boole, c.dim, c.longueur);
+		}
+		cpt += 1;
+	}
+	free(words);
+	free(tmp);
+	free(mot_code);
 }

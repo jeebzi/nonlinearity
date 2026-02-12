@@ -2,6 +2,12 @@
 #define INCLUDE_H
 
 typedef unsigned char uchar;
+typedef struct code {
+	int longueur;
+	int dim;
+	unsigned char *G;
+	int* pivot;
+}code;
 
 #include <unistd.h>
 #include <stdio.h>
