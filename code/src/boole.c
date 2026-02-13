@@ -2,7 +2,7 @@
 
 uchar* str_to_boole(char *s, int ffsize) {
 	/*
-	 * tranforem une chaine de charactère en fonvtion boléeenne représenter par tableau de uchar
+	 * transforme une chaine de charactère en fonvtion boléeenne représenter par tableau de uchar
 	 */
 	uchar *res;
 	res = (uchar*) calloc(ffsize, sizeof(uchar));
@@ -15,6 +15,7 @@ uchar* str_to_boole(char *s, int ffsize) {
 			u |= 1 << (*s - 'a'); // on récuprer l'entier qui corespond au monôme
 			s += 1;
 		}
+		if (*s == '1') s+= 1;
 		// opération anf vers table de vérité
 		x = 0;
 		while (x < ffsize) {
@@ -75,6 +76,8 @@ void print_anf(unsigned char *boole, int ffdimen, int ffsize) {
 			else{
 				printf("+");
 			}
+			if (u==0) printf("1");
+			else
 			for(int i=0; i<ffdimen; i++){
 				if(u&(1<<i)){
 					printf("%c",'a'+i);
@@ -186,7 +189,6 @@ void liste_approximation(uint64_t *mot, code c, int target) {
 		}
 		if  (wt == target) {
 			boole = int_to_boole(mot_code, c.longueur);
-			print_tab_uchar(boole, c.longueur);
 			print_anf(boole, c.dim, c.longueur);
 		}
 		cpt += 1;
@@ -194,4 +196,5 @@ void liste_approximation(uint64_t *mot, code c, int target) {
 	free(words);
 	free(tmp);
 	free(mot_code);
+	free(boole);
 }
