@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
 		free(boole);
 		num += 1;
 	}
+	fclose(src);
 	free_code(c);
 	return 0;
 }
