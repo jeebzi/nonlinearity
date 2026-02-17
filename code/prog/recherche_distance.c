@@ -1,10 +1,10 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, target;
+	int ffdimen, ffsize, num, opt, k, dist, target, version_min;
 	FILE *src;
 
-	while ((opt = getopt(argc, argv, "k:n:f:t:")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:t:m")) != -1) {
 		switch(opt) {
 			case 'k':
 				k = atoi(optarg);
@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
 			case 't':
 				target = atoi(optarg);
 				break;
+			case 'm':
+				version_min = 1;
+				break;
 		}
 	}
 
@@ -27,7 +30,14 @@ int main(int argc, char *argv[]) {
 	uchar *f;
 	while ((f = load_boole(src, &num, ffsize))) {
 		mot = boole_to_int(f, ffsize);
-		dist = distance_mot_code_zip(mot, words, ffsize, c.dim);
+		dist = distance_mot_code_min(mot, words, ffsize, c.dim, target);
+		if (version_min == 1) {
+			if (dist >= target) {
+				printf("%d ", dist);
+			       	print_anf(f, ffdimen, ffsize);
+			}
+		}
+		else
 		if (dist == target) print_anf(f, ffdimen, ffsize);
 	}
 	free_code(c);

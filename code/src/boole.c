@@ -146,7 +146,7 @@ unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 
 uint64_t* add_boole_int(uint64_t *b1, uint64_t *b2, int n) {
 	/*
-	 * prend de fonction rerépsenté par des tableaux de uint de longueur n
+	 * prend de fonction représenté par des tableaux de uint de longueur n
 	 * et renvoie leur somme
 	 */
 	uint64_t *res;
@@ -190,11 +190,11 @@ void liste_approximation(uint64_t *mot, code c, int target) {
 		if  (wt == target) {
 			boole = int_to_boole(mot_code, c.longueur);
 			print_anf(boole, c.dim, c.longueur);
+			free(boole);
 		}
 		cpt += 1;
 	}
 	free(words);
 	free(tmp);
 	free(mot_code);
-	free(boole);
 }

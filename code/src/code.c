@@ -134,3 +134,20 @@ uint64_t* code_to_int(code c) {
 	}
 	return res;
 }
+
+void pivotage(uint64_t *words, uint64_t *mot, int ffsize, int nb_ligne, int int_par_ligne) {
+	/*
+	 * effectue le pivot de gauss en mettant des 0 et en bas en choisissant le pivot de façon aléatoire
+	 * renvoie le tableau des indices de pivot utilisé
+	 */
+	int pivot;
+	int i, j;
+	for (i = 0; i < nb_ligne; i++) {
+		do {
+			pivot = rand() % ffsize;
+		}
+		while ((words[i*int_par_ligne + (pivot/64)] >> (pivot%64)) & 1 != 1);
+
+		for (j = 0; j < c.dim; j++) {
+			if (c.G[j*c.longueur + pivot] == 1) {
+
