@@ -141,13 +141,46 @@ void pivotage(uint64_t *words, uint64_t *mot, int ffsize, int nb_ligne, int int_
 	 * renvoie le tableau des indices de pivot utilisé
 	 */
 	int pivot;
-	int i, j;
+	int i, j, k, add_mot;
 	for (i = 0; i < nb_ligne; i++) {
 		do {
 			pivot = rand() % ffsize;
 		}
-		while ((words[i*int_par_ligne + (pivot/64)] >> (pivot%64)) & 1 != 1);
+		while (((words[i*int_par_ligne + (pivot/64)] >> (pivot%64)) & 1) != 1);
 
-		for (j = 0; j < c.dim; j++) {
-			if (c.G[j*c.longueur + pivot] == 1) {
+		// savoir si on fait l'addition entre la ligne pivot et le mot
+		if (((mot[pivot/64] >> pivot%64) & 1) == 1) add_mot = 1;
+
+		for (j = 0; j < nb_ligne; j++) {
+			if (((words[j*int_par_ligne + (pivot/64)] >> (pivot%64)) & 1) == 1 && j != i) {
+				// ajoute les lignes
+				k = 0;
+				// si on doit additionner le mot on le fait pendant la boucle d'addition de ligne
+				if (add_mot == 1) {
+					while (k < int_par_ligne) {
+						words[j*int_par_ligne + k] ^= words[i*int_par_ligne + k];
+						mot[k] ^= words[i*int_par_ligne + k];
+						k += 1;
+					}
+					add_mot = 0;
+				}
+				// sinon on ajoute juste deux lignes entre elles
+				else {
+					while (k < int_par_ligne) {
+						words[j*int_par_ligne + k] ^= words[i*int_par_ligne + k];
+						k += 1;
+					}
+				}
+			}
+		}
+		// si on doit additioner le mot mais que aucune ligne ne ne l'a été on fait l'addition maintenant
+		if (add_mot == 1) {
+			while (k < int_par_ligne) {
+				mot[k] ^= words[i*int_par_ligne + k];
+				k += 1;
+			}
+			add_mot = 0;
+		}
+	}
+}
 

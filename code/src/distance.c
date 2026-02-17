@@ -82,3 +82,37 @@ int *distribution_distance(uint64_t *mot, uint64_t *base, int ffsize, int nb_lig
 	return res;
 }
 
+int distance_probabiliste(code c, uchar *boole, int ffsize, int nb_tour, int target) {
+	/*
+	 * estime de manière probabiliste en utilisant la technique du pivot de Gauss la distance entre une
+	 * fonction et un code, renvoie une distance min au code possible si elle est supérieur ou égale à
+	 * la target -1 sinon
+	 */
+	uint64_t *mot, *words, *mot_cpy, *words_cpy;
+	int int_par_ligne = (c.longueur+63)/64, nb_int_mat = c.dim*int_par_ligne, j;
+	mot = boole_to_int(boole, ffsize);
+	words = code_to_int(c);
+
+	int cpt = 0, score = ffsize, wt;
+	while (cpt < nb_tour) {
+		mot_cpy = copy_uint64(mot, int_par_ligne);
+		words_cpy = copy_uint64(words, nb_int_mat);
+
+		pivotage(words_cpy, mot_cpy, ffsize, c.dim, int_par_ligne);
+		//calcul poid du mot obtenu
+		j = 0;
+		wt = 0;
+		while (j < int_par_ligne) {
+			wt += __builtin_popcountl(mot_cpy[j]);
+			j += 1;
+		}
+		if (wt < target) return -1;
+		if (wt < score) score = wt;
+		cpt += 1;
+	}
+	free(mot);
+	free(words);
+	free(mot_cpy);
+	free(words_cpy);
+	return score;
+}

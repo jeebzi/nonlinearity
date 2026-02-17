@@ -12,5 +12,6 @@ int rmdimen(int k, int m);
 unsigned char* extraire_ligne(code c, int num_ligne);
 int calcule_distance_mot_code(code c, unsigned char *boole, int ffsize);
 uint64_t* code_to_int(code c);
+void pivotage(uint64_t *words, uint64_t *mot, int ffsize, int nb_ligne, int int_par_ligne);
 
 #endif
