@@ -1,7 +1,7 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, target, job, module, val;
+	int ffdimen, ffsize, num, opt, k, target, job=0, module=1, val;
 	FILE *src;
 
 	while ((opt = getopt(argc, argv, "k:n:f:j:m:t:")) != -1) {
@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 		if (num % module == job) {
 			mot = boole_to_int(boole, ffsize);
 			liste_approximation(mot, c, target);
+			free(mot);
 		}
 		free(boole);
 		num += 1;

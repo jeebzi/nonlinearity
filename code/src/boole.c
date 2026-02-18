@@ -192,9 +192,9 @@ void liste_approximation(uint64_t *mot, code c, int target) {
 			print_anf(boole, c.dim, c.longueur);
 			free(boole);
 		}
+		free(tmp);
 		cpt += 1;
 	}
 	free(words);
-	free(tmp);
 	free(mot_code);
 }
