@@ -141,7 +141,7 @@ void pivotage(uint64_t *words, uint64_t *mot, int ffsize, int nb_ligne, int int_
 	 * renvoie le tableau des indices de pivot utilisé
 	 */
 	int pivot;
-	int i, j, k, add_mot;
+	int i, j, k, add_mot=0;
 	for (i = 0; i < nb_ligne; i++) {
 		do {
 			pivot = rand() % ffsize;

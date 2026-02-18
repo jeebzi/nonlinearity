@@ -3,3 +3,5 @@
 *.a
 .nfs*
 code/prog/data/bent_8/
+code/prog/resultat/
+code/prog/data

@@ -1,0 +1,1 @@
+96 anf=ab+ac+bc+ad+cd+ce+de+bcde+af+acf+df+abdf+aef+cef+acef+def+abg+acg+adg+aeg+ceg+deg+fg+cfg+bdfg+cdfg+befg+h+abh+bch+dh+adh+cdh+eh+aeh+deh+adeh+afh+bfh+abfh+bgh+abgh+cgh+cdgh+aegh

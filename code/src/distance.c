@@ -106,13 +106,19 @@ int distance_probabiliste(code c, uchar *boole, int ffsize, int nb_tour, int tar
 			wt += __builtin_popcountl(mot_cpy[j]);
 			j += 1;
 		}
-		if (wt < target) return -1;
+		if (wt < target) {
+			free(mot_cpy);
+			free(words_cpy);
+			free(mot);
+			free(words);
+		       	return -1;
+		}
 		if (wt < score) score = wt;
 		cpt += 1;
+		free(mot_cpy);
+		free(words_cpy);
 	}
 	free(mot);
 	free(words);
-	free(mot_cpy);
-	free(words_cpy);
 	return score;
 }
