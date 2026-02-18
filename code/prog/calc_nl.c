@@ -28,11 +28,12 @@ int main(int argc, char *argv[]) {
 		mot = boole_to_int(f, ffsize);
 		dist = distance_mot_code_zip(mot, words, ffsize, c.dim);
 		printf("distance = %d\n", dist);
+		free(f);
+		free(mot);
 	}
 	free_code(c);
 	free(words);
-	free(mot);
-	free(f);
+	fclose(src);
 	return 0;
 }
 

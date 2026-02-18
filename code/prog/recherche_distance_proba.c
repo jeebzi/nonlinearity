@@ -26,6 +26,7 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	srandom(time(NULL));
 	code c = RM(k, ffdimen);
 	uchar *f;
 	while ((f = load_boole(src, &num, ffsize))) {
