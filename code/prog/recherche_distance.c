@@ -39,11 +39,12 @@ int main(int argc, char *argv[]) {
 		}
 		else
 		if (dist == target) print_anf(f, ffdimen, ffsize);
+		free(f);
+		free(mot);
 	}
 	free_code(c);
 	free(words);
-	free(mot);
-	free(f);
+	fclose(src);
 	return 0;
 }
 

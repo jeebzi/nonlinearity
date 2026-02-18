@@ -1,23 +1,24 @@
 CFLAGS = -Wall -g
 LIB = -L../src -lmylib
+VPATH = ../src
 
-.PHONY: clean
+.PHONY: clean all
 
 all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe
 
-calc_nl.exe: calc_nl.c
+calc_nl.exe: calc_nl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
-distribution.exe: distribution.c
+distribution.exe: distribution.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
-approximation.exe: approximation.c
+approximation.exe: approximation.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
-recherche_distance.exe: recherche_distance.c
+recherche_distance.exe: recherche_distance.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
-recherche_distance_proba.exe: recherche_distance_proba.c
+recherche_distance_proba.exe: recherche_distance_proba.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 clean:
