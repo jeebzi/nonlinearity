@@ -48,6 +48,8 @@ code RM(int k, int m) {
 	return res;
 }
 
+#warning "bug sévère dans binomial"
+
 int binomial(int k, int m){
 	/*
 	 * renvoie k parmi m
