@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall
+CFLAGS ?= -g -Wall
 OBJECTS = boole.o code.o affichage.o distance.o util.o
 
 .PHONY: clean

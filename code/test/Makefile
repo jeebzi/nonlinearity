@@ -1,4 +1,4 @@
-CFLAGS = -Wall -g
+CFLAGS ?= -Wall -g
 LIB = -L../src/ -lmylib
 
 .PHONY: clean

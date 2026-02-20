@@ -1,0 +1,3 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {1}Runtime}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Algo probabiliste}{1}{}%
