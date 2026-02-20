@@ -24,6 +24,29 @@ void free_code(code c) {
 	c.pivot = NULL;
 }
 
+code RMH(int k, int m) {
+	/*
+	 * initialse un code de Reed-Muller homogène de degrée k et à m variable
+	 */
+	code res;
+	int nb_col = 1 << m;
+	res = init_code(  binomial(k, m), nb_col );
+	int u = 0, x;
+	int num_ligne = 0;
+	while (u < nb_col) {
+		if (__builtin_popcount(u) == k ) {
+			x = 0;
+			while (x < nb_col) {
+				res.G[num_ligne*nb_col + x] = (u&x) == u;
+				x += 1;
+			}
+			num_ligne += 1;
+		}
+		u += 1;
+	}
+	assert(num_ligne == res.dim);
+	return res;
+}
 code RM(int k, int m) {
 	/*
 	 * initialse un code de Reed-Muller de degrée k et à m variable
