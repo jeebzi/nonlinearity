@@ -3,6 +3,7 @@
 NL=${2:-88}
 ITER=${3:-1000}
 SRC=${1}
+DST=${4:-../resultat/filtre_2-8/filtre_2-8-$NL-$ITER.txt}
 start=$(date +%s)
 
 for j in {0..13}; do
@@ -12,8 +13,8 @@ wait
 
 end=$(date +%s)
 
-cat /tmp/filtre_2-8-$NL-$ITER*.txt > ../resultat/filtre_2-8/filtre_2-8-$NL-$ITER.txt
+cat /tmp/filtre_2-8-$NL-$ITER-*.txt > $DST
 
 echo runtime: $((end - start))
-wc -l ../resultat/filtre_2-8/filtre_2-8-$NL-$ITER.txt
+wc -l $DST
 

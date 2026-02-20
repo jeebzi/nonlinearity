@@ -48,7 +48,32 @@ code RM(int k, int m) {
 	return res;
 }
 
-#warning "bug sévère dans binomial"
+code B(int s, int t, int m) {
+	/*
+	 * renvoie le code B à m variable de degré t et de valuation s
+	 */
+	code res;
+	int nb_col = 1 << m;
+	res = init_code(bstdimen(s, t, m), nb_col);
+	int u = 0, x, wt;
+	int num_ligne = 0;
+	while (u < nb_col) {
+		wt = __builtin_popcount(u);
+		if (wt >= s && wt <= t) {
+			x = 0;
+			while (x < nb_col) {
+				res.G[num_ligne*nb_col + x] = (u&x) == u;
+				x += 1;
+			}
+			num_ligne += 1;
+		}
+		u += 1;
+	}
+	assert(num_ligne == res.dim);
+	return res;
+}
+
+
 
 int binomial(int k, int m){
 	/*
@@ -76,6 +101,19 @@ int rmdimen(int k, int m){
 		somme = somme + binomial(i,m);
 	}
 	return somme;
+}
+
+int bstdimen(int s, int t, int m) {
+	/*
+	 * renvoie la dimension des codes à m variable et degrée t et de valuation s
+	 */
+	int res = 0;
+	int i = s;
+	while (i <= t) {
+		res += binomial(i, m);
+		i += 1;
+	}
+	return res;
 }
 
 unsigned char* extraire_ligne(code c, int num_ligne) {

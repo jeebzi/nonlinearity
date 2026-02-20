@@ -135,7 +135,7 @@ unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 	 * prend une fonction booléenne représenter par n uint64 et renvoie ça version représenté par un tableau de uchar
 	 */
 	unsigned char *res;
-	res = (unsigned char*) calloc(ffsize, sizeof(unsigned char));
+	res = (unsigned char*) calloc((size_t)ffsize, sizeof(unsigned char));
 	int i = 0;
 	while (i < ffsize) {
 		res[i] = (mot[i/64] >> i%64) & 1;
