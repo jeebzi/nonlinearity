@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.20)  20 FEB 2026 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.20)  23 FEB 2026 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -92,34 +92,35 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Info: Redefining \degres on input line 5.
 LaTeX Info: Redefining \up on input line 5.
- (./note.toc)
+ (./note.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 3.
+)
 \tf@toc=\write3
 \openout3 = `note.toc'.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 10.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 10.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./note.aux) ) 
 Here is how much of TeX's memory you used:
  2373 strings out of 480177
  38383 string characters out of 5893867
- 343150 words of memory out of 5000000
+ 346150 words of memory out of 5000000
  20382 multiletter control sequences out of 15000+600000
  473881 words of font info for 34 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  39i,6n,46p,142b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/imat
-h-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </h
-ome/imath-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.60
+h-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </h
+ome/imath-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.60
 0pk> </home/imath-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
 x1000.600pk> </home/imath-stage1/.texlive2021/texmf-var/fonts/pk/ljfour/jknappe
 n/ec/ecbx1440.600pk>
-Output written on note.pdf (1 page, 20588 bytes).
+Output written on note.pdf (1 page, 25577 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 105 PDF objects out of 1000 (max. 8388607)
  20 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)

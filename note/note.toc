@@ -1,3 +1,4 @@
 \babel@toc {french}{}\relax 
 \contentsline {section}{\numberline {1}Runtime}{1}{}%
 \contentsline {subsection}{\numberline {1.1}Algo probabiliste}{1}{}%
+\contentsline {section}{\numberline {2}NL 2 de bent 8}{1}{}%
