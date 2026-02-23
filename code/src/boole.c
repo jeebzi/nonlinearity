@@ -1,4 +1,5 @@
 #include "boole.h"
+#include "util.h"
 
 uchar* str_to_boole(char *s, int ffsize) {
 	/*

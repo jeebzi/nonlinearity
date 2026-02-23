@@ -1,3 +1,4 @@
+#include <all.h>
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {

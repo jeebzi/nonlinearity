@@ -1,5 +1,5 @@
 CFLAGS ?= -Wall -g
-LIB = -L../src/ -lmylib
+LIB = -L../src/ -lmylib -I../src/
 
 .PHONY: clean
 

@@ -1,6 +1,7 @@
 #ifndef DISTANCE_H
 #define DISTANCE_H
 
+#include "code.h"
 #include "../include/include.h"
 
 int distance_mot_code_zip(uint64_t *mot, uint64_t *base, int ffsize, int nb_ligne);

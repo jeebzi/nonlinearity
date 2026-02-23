@@ -1,4 +1,5 @@
 #include "code.h"
+#include "boole.h"
 
 code init_code(int dim, int longueur) {
 	/*
@@ -71,6 +72,19 @@ code RM(int k, int m) {
 	return res;
 }
 
+int bstdimen(int s, int t, int m) {
+	/*
+	 * renvoie la dimension des codes à m variable et degrée t et de valuation s
+	 */
+	int res = 0;
+	int i = s;
+	while (i <= t) {
+		res += binomial(i, m);
+		i += 1;
+	}
+	return res;
+}
+
 code B(int s, int t, int m) {
 	/*
 	 * renvoie le code B à m variable de degré t et de valuation s
@@ -126,18 +140,6 @@ int rmdimen(int k, int m){
 	return somme;
 }
 
-int bstdimen(int s, int t, int m) {
-	/*
-	 * renvoie la dimension des codes à m variable et degrée t et de valuation s
-	 */
-	int res = 0;
-	int i = s;
-	while (i <= t) {
-		res += binomial(i, m);
-		i += 1;
-	}
-	return res;
-}
 
 unsigned char* extraire_ligne(code c, int num_ligne) {
 	/*
