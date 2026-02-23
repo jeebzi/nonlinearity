@@ -13,6 +13,9 @@ typedef struct code {
 code init_code(int dim, int longueur);
 void free_code(code c);
 code RM(int k, int m);
+code RMH(int k, int m);
+int bstdimen(int s, int t, int m);
+code B(int s, int t, int m);
 int binomial(int k, int m);
 int rmdimen(int k, int m);
 unsigned char* extraire_ligne(code c, int num_ligne);
