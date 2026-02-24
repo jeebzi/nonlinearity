@@ -4,10 +4,10 @@ if test ! -d $HOME/databent ; then
 	wget -r -nH -P $HOME https://langevin.univ-tln.fr/data/bent/
 	mv $HOME/data $HOME/databent
 	cd $HOME/databent/
-	ls $HOME/databent/bent/*/*html* | xargs rm
-	rm $HOME/databent/bent/*html*
+	ls $HOME/databent/bent/*/*html* | xargs rm -f
+	rm -f $HOME/databent/bent/*html*
 	echo "saved in $HOME/databent"
 else
-	echo file exist
+	echo file already exist
 fi
 
