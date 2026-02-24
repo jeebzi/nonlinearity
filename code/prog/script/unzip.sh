@@ -3,7 +3,30 @@
 
 
 dir=$HOME/databent/bent/
-src=$1
+core=$( nproc )
+running=0
+tid=0
+
+while getopts "j:t:m:r:" opt
+do
+        case $opt  in
+                t) tid=$OPTARG;;
+                r) run=$OPTARG;;
+                j) jno=$OPTARG;;
+                m) map=$OPTARG;;
+                *)
+                        echo -taskid  -rtasktorun  -jobno  -m
+                        exit
+                ;;
+        esac
+done
+
+if [ $tid = 0 ]; then
+	echo tid ?
+	exit
+fi
+
+src=stab-$tid
 
 
 for file in $dir/$src/bent-*.zip
@@ -13,9 +36,18 @@ do
 	echo $name
 
 	if [  -f  $name  ]  ; then
-		 echo ./unzip.exe $file 
+		 ./unzip.exe $file    > /tmp/$name  &
 	fi
+   (( running++ ))
+    if (( running >= core )); then
+        wait -n
+    ((running--))
+    fi
+
+
 done
 
-grep  anf   bent-*.out   > /tmp/$src.txt
+wait
+
+grep  anf   /tmp/bent-*.out   > /tmp/all-$tid.txt
 
