@@ -28,26 +28,30 @@ fi
 
 src=stab-$tid
 
+echo file number :
+ls  -1 $dir/$src/bent-*.zip | wc -l
+
 
 for file in $dir/$src/bent-*.zip
 do
 	name=$( basename  -s zip $file )out
 
 	echo $name
-
-	if [  -f  $name  ]  ; then
 		 ./unzip.exe $file    > /tmp/$name  &
-	fi
-   (( running++ ))
-    if (( running >= core )); then
-        wait -n
-    ((running--))
+   	(( running++ ))
+    	if (( running >= core )); then
+        	wait -n
+   	 ((running--))
     fi
-
-
 done
 
 wait
 
-grep  anf   /tmp/bent-*.out   > /tmp/all-$tid.txt
+all=/tmp/all-$tid.txt
+grep  anf   /tmp/bent-*.out   > $all
+rm    -rf   /tmp/bent*.out
+
+
+echo boole number :
+wc -l $all
 
