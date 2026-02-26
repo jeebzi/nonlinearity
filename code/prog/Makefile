@@ -21,7 +21,7 @@ recherche_distance.exe: recherche_distance.c -lmylib
 recherche_distance_proba.exe: recherche_distance_proba.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
-spec_27.exe: spec_27.c
+spec_27.exe: spec_27.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 clean:

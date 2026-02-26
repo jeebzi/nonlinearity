@@ -1,9 +1,14 @@
 \documentclass{article}
 
+\usepackage{amsfonts}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \begin{document}
 \tableofcontents
+
+\section{Définition}
+Fonction Booléenne:
+$$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
 
 \section{Runtime}
 \subsection{Algo probabiliste}
@@ -14,6 +19,8 @@
 
 	10000 & 19424327 & 18633 \\
 	100000 & 10107 & 188 \\
+	100000 & stab 4: 11101773 & 14000 \\
+	100000 & stab 6: 5354539 & 7000 \\
 	\hline
 \end{tabular}
 
@@ -25,6 +32,10 @@
 	stab 1 & 0 & 0 & 0 \\
 	\hline
 	stab 2 & 0 & 0 & 0 \\
+	\hline
+	stab 4 & 0 & 0 & 0 \\
+	\hline
+	stab 6 & 0 & 0 & 0 \\
 	\hline
 \end{tabular}
 
