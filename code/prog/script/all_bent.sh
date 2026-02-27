@@ -2,15 +2,18 @@
 
 CORE=$(nproc)
 NL=89
-ITER=10000
+ITER=5000
 tid=0
+PARM=nothing
 
-while getopts "t:i:c:" opt
+
+while getopts "t:i:c:ip:" opt
 do
 	case $opt in
 		t) NL=$OPTARG;;
 		i) ITER=$OPTARG;;
 		c) CORE=$OPTARG;;
+		p) PARM=$OPTARG;;
 		*)
 			echo -f id stab -t target -i nb iter -c nb core
 			exit;;
@@ -26,11 +29,16 @@ fi
 all_stab=$(ls  -d $HOME/databent/bent/stab-*)
 
 start=$(date +%s)
+num=0
+
 for stab in $all_stab ; do
+	if [ $PARM = $num ] ; then
 	#extraire tid
 	tid=$(echo $stab |sed "s/stab-//")
 	tid=$(basename $tid)
-	bash ./recherche_distance_stab.sh -f$tid -t$NL -i$ITER -c$CORE
+	./recherche_distance_stab.sh -f$tid -t$NL -i$ITER -c$CORE
+	fi
+	let num=1-num
 done
 
 end=$(date +%s)
