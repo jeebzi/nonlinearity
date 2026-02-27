@@ -199,3 +199,39 @@ void liste_approximation(uint64_t *mot, code c, int target) {
 	free(words);
 	free(mot_code);
 }
+
+uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne) {
+	/*
+	 * renvoi un pointeur sur la partie gauche et droite du mot
+	 */
+
+	int mid = ffsize / 2;
+	int i = 0;
+	uint64_t *L, *R, **res;
+	int last_left; // id du dernier entier contenant la partie gauche du mot
+	last_left = mid / 64;
+	res = (uint64_t**) malloc(2 * sizeof(uint64_t*));
+	L = (uint64_t*) calloc(last_left + 1, sizeof(uint64_t));
+	R = (uint64_t*) calloc(last_left + 1, sizeof(uint64_t));
+	// si le mot est contenu dans plus qu'un entier alors on peut juste mettre la première moité dans L et l autre dans R
+	if (int_par_ligne > 1) {
+		int fin = int_par_ligne / 2; //int par ligne toujours divisible par 2 si > 1
+		while (i < fin) {
+			L[i] = mot[i];
+			R[i] = mot[fin + i];
+			i += 1;
+		}
+	}
+
+	else {
+		//sinon on doit faire bit par bit
+		while (i < mid) {
+			L[0] ^= ((mot[0] >> i) & 1) << i;
+			R[0] ^= ((mot[0] >> i+mid) & 1) << i+mid;
+			i += 1;
+		}
+	}
+	res[0] = L;
+	res[1] = R;
+	return res;
+}

@@ -124,3 +124,58 @@ int distance_probabiliste(code c, uchar *boole, int ffsize, int nb_tour, int tar
 	free(words);
 	return score;
 }
+
+int distance_decode(uint64_t *mot, uint64_t *base, int target, int ffdimen, int ffsize, int degree) {
+	/*
+	 * calcule la distance entre un mot et un code avec la méthode de fourquet dumer tavernier
+	 */
+	int best = ffsize, int_par_ligne = (ffsize+63) / 64, dist;
+
+	// pour chaque u dans RM(1, ffdimen - 1)
+	uint64_t limite = (uint64_t)1 << rmdimen(1, ffdimen - 1);
+	uint64_t cpt = 1;
+	uint64_t *L, *R, *W, *u; // partie gauche et droit du mot avec W le résultat de (L+R+u)
+	uint64_t **zip; // le pointeur que contient la partie gauche et droite du mot
+	zip = split(mot, ffsize, int_par_ligne);
+
+	// déclaration code linéaire
+	code code_lineaire = RM(1, ffdimen);
+	uint64_t *code_lin = code_to_int(code_lineaire);
+
+	L = zip[0];
+	R = zip[1];
+	int i, j, nb_int, wt;
+	// nombre d'entier pour représenter un mot dans RM(1, ffdimen - 1)
+	nb_int = ((1 << (ffdimen - 1)) + 63) / 64;
+
+	u = (uint64_t*) calloc(nb_int, sizeof(uint64_t));
+	while (cpt < limite) {
+		i = __builtin_ctzl(cpt);
+		wt = 0;
+		j = 0;
+		while (j < nb_int) {
+			u[j] ^= code_lin[i*nb_int + j];
+			// on doit aussi additioner la partie gauche et droite du mot avec u
+			W[j] ^= u[j] ^ L[j] ^ R[j];
+			wt += __builtin_popcountl(W[j]);
+			j += 1;
+		}
+		if (wt < best) {
+			// a faire bdistance
+			dist = bdistance(zip, degree, ffdimen);
+			if (dist < target) return - 1;
+			if (dist < best) best = dist;
+		}
+		cpt += 1;
+	}
+	
+	//free
+	free(code_lin);
+	free(W);
+	free(u);
+	free(L);
+	free(R);
+	free(zip);
+
+	return best;
+}
