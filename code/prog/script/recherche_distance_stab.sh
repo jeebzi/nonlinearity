@@ -19,8 +19,8 @@ do
 done
 
 if [ ! -f /tmp/all-$tid.txt ] ; then
-	echo "le fichier n'exisite pas, lancez ./unzip.sh -t $tid"
-	exit
+	echo "le fichier n'exisite pas, lancement de ./unzip.sh -t $tid"
+	bash ./unzip.sh -t$tid
 fi
 SRC=/tmp/all-$tid.txt
 
@@ -50,7 +50,7 @@ fi
 start=$(date +%s)
 
 for ((j = 0; j<$CORE; j+=1)) do
-	../recherche_distance_proba.exe -f $SRC -k2 -n8 -t$NL -i$ITER -m14 -j$j > /tmp/filtre_2-8-$NL-$ITER-$j.txt &
+	../recherche_distance_proba.exe -f $SRC -k2 -n8 -t$NL -i$ITER -m$CORE -j$j > /tmp/filtre_2-8-$NL-$ITER-$j.txt &
 done
 wait
 
