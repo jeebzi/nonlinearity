@@ -1,4 +1,4 @@
-CFLAGS ?= -Wall -g
+CFLAGS ?= -O3 -march=native
 LIB = -L../src -lmylib -I../src
 VPATH = ../src
 

@@ -1,4 +1,4 @@
-CFLAGS ?= -g -Wall
+CFLAGS ?= -O3 -march=native
 OBJECTS = boole.o code.o affichage.o distance.o util.o
 
 .PHONY: clean
