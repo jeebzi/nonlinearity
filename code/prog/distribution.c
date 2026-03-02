@@ -29,11 +29,11 @@ int main(int argc, char *argv[]) {
 		mot = boole_to_int(f, ffsize);
 		distribution = distribution_distance(mot, words, ffsize, c.dim);
 		print_distribution(distribution, ffsize);
+		free(f);
 	}
 	free_code(c);
 	free(words);
 	free(mot);
-	free(f);
 	return 0;
 }
 

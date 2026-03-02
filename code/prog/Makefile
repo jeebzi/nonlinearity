@@ -4,7 +4,7 @@ VPATH = ../src
 
 .PHONY: clean all
 
-all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe
+all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe fdt.exe
 
 calc_nl.exe: calc_nl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
@@ -22,6 +22,9 @@ recherche_distance_proba.exe: recherche_distance_proba.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 spec_27.exe: spec_27.c -lmylib
+	gcc $(CFLAGS) $< $(LIB) -o $@
+
+fdt.exe: fdt.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 clean:

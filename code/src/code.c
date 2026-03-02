@@ -200,6 +200,18 @@ uint64_t* code_to_int(code c) {
 	return res;
 }
 
+code64 code_to_code64(code c) {
+	/*
+	 * prend un code et renvoie la même structure où la matrice génératrice est représenter par
+	 * un tableau de uint64
+	 */
+	code64 res;
+	res.dim = c.dim;
+	res.longueur = c.longueur;
+	res.G = code_to_int(c);
+	return res;
+}
+
 void pivotage(uint64_t *words, uint64_t *mot, int ffsize, int nb_ligne, int int_par_ligne) {
 	/*
 	 * effectue le pivot de gauss en mettant des 0 et en bas en choisissant le pivot de façon aléatoire

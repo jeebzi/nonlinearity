@@ -125,31 +125,35 @@ int distance_probabiliste(code c, uchar *boole, int ffsize, int nb_tour, int tar
 	return score;
 }
 
-int distance_decode(uint64_t *mot, uint64_t *base, int target, int ffdimen, int ffsize, int degree) {
+int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen, int degree) {
 	/*
 	 * calcule la distance entre un mot et un code avec la méthode de fourquet dumer tavernier
 	 */
-	int best = ffsize, int_par_ligne = (ffsize+63) / 64, dist;
+	assert((1 << ffdimen) == c.longueur);
+	assert(c.longueur == (c2.longueur << 1));
+	int best = c.longueur, int_par_ligne = (c.longueur+63) / 64, dist;
 
-	// pour chaque u dans RM(1, ffdimen - 1)
-	uint64_t limite = (uint64_t)1 << rmdimen(1, ffdimen - 1);
+	// pour chaque u dans RM(k - 1, ffdimen - 1)
+	uint64_t limite = (uint64_t)1 << rmdimen(degree - 1, ffdimen - 1);
 	uint64_t cpt = 1;
 	uint64_t *L, *R, *W, *u; // partie gauche et droit du mot avec W le résultat de (L+R+u)
 	uint64_t **zip; // le pointeur que contient la partie gauche et droite du mot
-	zip = split(mot, ffsize, int_par_ligne);
+	zip = split(mot, c.longueur, int_par_ligne);
 
 	// déclaration code linéaire
-	code code_lineaire = RM(1, ffdimen);
+	code code_lineaire = RM(degree - 1, ffdimen - 1);
 	uint64_t *code_lin = code_to_int(code_lineaire);
 
 	L = zip[0];
 	R = zip[1];
 	int i, j, nb_int, wt;
-	// nombre d'entier pour représenter un mot dans RM(1, ffdimen - 1)
+	// nombre d'entier pour représenter un mot dans RM(k - 1, ffdimen - 1)
 	nb_int = ((1 << (ffdimen - 1)) + 63) / 64;
 
 	u = (uint64_t*) calloc(nb_int, sizeof(uint64_t));
-	while (cpt < limite) {
+	W = (uint64_t*) calloc(nb_int, sizeof(uint64_t));
+	int over = 0;
+	while (cpt < limite && over == 0) {
 		i = __builtin_ctzl(cpt);
 		wt = 0;
 		j = 0;
@@ -162,14 +166,15 @@ int distance_decode(uint64_t *mot, uint64_t *base, int target, int ffdimen, int 
 		}
 		if (wt < best) {
 			// a faire bdistance
-			dist = bdistance(zip, degree, ffdimen);
-			if (dist < target) return - 1;
+			dist = bdistance(zip, c2, target, nb_int);
+			if (dist < target) { best = -1; over = 1; }
 			if (dist < best) best = dist;
 		}
 		cpt += 1;
 	}
 	
 	//free
+	free_code(code_lineaire);
 	free(code_lin);
 	free(W);
 	free(u);
@@ -177,5 +182,36 @@ int distance_decode(uint64_t *mot, uint64_t *base, int target, int ffdimen, int 
 	free(R);
 	free(zip);
 
+	return best;
+}
+
+int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
+	/*
+	 * prend un mot f représenté de cette forme [L | R] avec zip[0] = L et zip[1] = R
+	 * et renvoie la distance au code à une variable de plus par rapport au code c
+	 */
+	int best = c.longueur << 1;
+	uint64_t *v, v1, v2; // v énumère tous les mot de c
+	v = (uint64_t*) calloc(c.longueur, sizeof(uint64_t));
+	int wt, i, j;
+	uint64_t limite = (uint64_t)1 << c.dim, cpt = 1;
+	while (cpt < limite) {
+		i = __builtin_ctzl(cpt);
+		j = 0;
+		wt = 0;
+		while (j < int_par_ligne) {
+			v[j] ^= c.G[i * int_par_ligne + j];
+			// copy de v[j] qui vont être additionner avec L et R
+			v1 = v[j] ^ zip[0][j];
+			v2 = v[j] ^ zip[1][j];
+
+			wt += __builtin_popcountl(v1) + __builtin_popcountl(v2);
+			j += 1;
+		}
+		if (wt < target) { free(v); return -1; }
+		if (wt < best) best = wt;
+		cpt += 1;
+	}
+	free(v);
 	return best;
 }

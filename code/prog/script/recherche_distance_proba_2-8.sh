@@ -1,4 +1,4 @@
-#!usr/bin/bash
+#!/usr/bin/bash
 
 NL=${2:-88}
 ITER=${3:-1000}
