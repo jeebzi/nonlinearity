@@ -160,7 +160,7 @@ int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen,
 		while (j < nb_int) {
 			u[j] ^= code_lin[i*nb_int + j];
 			// on doit aussi additioner la partie gauche et droite du mot avec u
-			W[j] ^= u[j] ^ L[j] ^ R[j];
+			W[j] = u[j] ^ L[j] ^ R[j];
 			wt += __builtin_popcountl(W[j]);
 			j += 1;
 		}
@@ -192,7 +192,7 @@ int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
 	 */
 	int best = c.longueur << 1;
 	uint64_t *v, v1, v2; // v énumère tous les mot de c
-	v = (uint64_t*) calloc(c.longueur, sizeof(uint64_t));
+	v = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
 	int wt, i, j;
 	uint64_t limite = (uint64_t)1 << c.dim, cpt = 1;
 	while (cpt < limite) {

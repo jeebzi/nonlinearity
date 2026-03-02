@@ -227,7 +227,7 @@ uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne) {
 		//sinon on doit faire bit par bit
 		while (i < mid) {
 			L[0] ^= ((mot[0] >> i) & 1) << i;
-			R[0] ^= ((mot[0] >> i+mid) & 1) << i+mid;
+			R[0] ^= ((mot[0] >> (i+mid)) & 1) << (i+mid);
 			i += 1;
 		}
 	}
