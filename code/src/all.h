@@ -6,5 +6,6 @@
 #include "util.h"
 #include "distance.h"
 #include "affichage.h"
+#include "covering.h"
 
 #endif
