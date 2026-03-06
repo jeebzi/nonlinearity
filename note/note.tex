@@ -3,11 +3,19 @@
 \usepackage{amsfonts}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+%macros
+\def\RM#1#2{\ensuremath{\mathrm{RM}(#1, #2)}}
+\def\FF{\ensuremath{\mathbb{F}}}
+\def\WT#1{\ensuremath{\mathrm{wt}(#1)}}
 \begin{document}
 \tableofcontents
 
 \section{Définition}
-Fonction Booléenne:
+\subsection{Fonction booléenne}
+Une fonction booléenne et une fonction que prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
 $$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
 
 Soit $f$ une fonction booléenne en $n$ variable on définie le poid de $f$ comme :
@@ -21,46 +29,68 @@ $$ d_H = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^n\}$$
 ou
 $$ \mathrm{wt}(f+g) $$
 
-On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM}(k, n)$ comme :
-$$ \{f \in \mathbb{F}_2^n | deg(f) \leq k\} $$
-
 Soit $C$ un Code $\subset \mathbb{F}_2^{2^n}$ et $f$ une fonction booléenne en $n$ variable on définie sa distance au code comme :
 $$d(f, C) = \min_{c \in C} d_H(f, c)$$
 
-\section{Runtime}
+\subsection{Forme normal algébrique et degrée}
+Toute fonctions booléenne peut s'écrire comment une somme de polynôme nommé ANF (algebraic normal form)
+$$
+f(x)=\sum_{I\subseteq \{1,\dots,n\}} a_I \prod_{i\in I} x_i
+$$
+On note le degrée d'une fonction comme étant le degrée maximal de ses termes.
+
+\subsection{Code de Reed-Muller}
+On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM}(k, n)$ comme l'ensemble des fonctions booléennes de degrès inférieur ou égale à k.
+$$ \{f \in \mathbb{F}_2^n | deg(f) \leq k\} $$
+
+\subsection{Non linéarité}
+Soit $C \in \RM{k}{n}$ et une fonction $f \in \FF_2^n$ on définie la non linéarité de degrée $k$ de $f$ comme ça distance au code $C$ autrement dit à sa distance
+de toutes les fonctions de degrée au plus k.
+$$\mathrm{NL}_k(f) = d(f, C)$$
+
+\subsection{Rayon de recouvrement}
+On note $\rho(k, n)$ le rayon de recouvrement d'un code $C \in \mathrm{RM}(k, n)$ la distance maximale entre ce dernier et l'ensemble des fonctions $f \in \FF_2^{2^n}$
+$$ \rho(k, n) = \max_{f \in \FF_2^{2^n}} d(f, C) $$
+\ref{tab:tab_rho}
+
+\begin{table}
+	\caption{Tableau des valeur de $\rho(k,n)$}
+	\label{tab:tab_rho}
+	\begin{tabular}{c|cccccccc}
+		$k\backslash n$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+		\hline
+		1 & 2 & 6 & 12 & 28 & 56 & 120 & 242-244 & 496 \\
+		2 & 1 & 2 & 6 & 18 & 40 & 88-96 & 196-216 & 400-460 \\
+		3 & 0 & 1 & 2 & 8 & 20 & 56-60 & 111-156 & 194-372 \\
+		4 &  & 0 & 1 & 2 & 8 & 26 & 58-86 & $\leq$ 242 \\
+		5 &  &  & 0 & 1 & 2 & 10 & 28-36 & $\leq$ 122 \\
+		6 &  &  &  & 0 & 1 & 2 & 10 & $\leq$ 46 \\
+		7 &  &  &  &  & 0 & 1 & 2 & 12 \\
+		8 &  &  &  &  &  & 0 & 1 & 2\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{Problématique}
+On voudrait connaitre le rayon de recouvrement de $\RM{2}{8}$ et de $\RM{3}{8}$
+
+\subsection{Inégalité de $\rho$}
+On sait que
+$$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
+donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieur tel que $\mathrm{NL}_2(f) = 96$.
+\subsubsection{Décomposition de plotkin}
+Toute fonction booléenne $f \in \FF_2^{2^n}$ peut s'écrire sous la forme
+$$f = x_ng + h$$ avec $g \in \RM{k-1}{n-1}$ et $h \in \RM{k}{n-1}$
+si $x_n = 0, f = h$ et si $x_n = 1,  f = g + h$ la table de vérité de toute fonction sont donc de la forme
+$$[h \mid h+g]$$
+Ce qui veut dire que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
+$$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
+
+
+
+\section{Algo}
 \subsection{Algo probabiliste}
-\begin{tabular}{|c | c | c|}
-	\hline
-	nb itérations & nombre de fonctions & temp d'éxécution (seconde) \\
-	\hline\hline
 
-	10000 & 19424327 & 18633 \\
-	100000 & 10107 & 188 \\
-	100000 & stab 4: 11101773 & 14000 \\
-	100000 & stab 6: 5354539 & 7000 \\
-	100000 & stab 7: 201428 & 258 \\
-	100000 & stab 8: 5290982 & 6670 \\
-	\hline
-\end{tabular}
-
-\section{NL 2 de bent 8}
-\begin{tabular}{|c|c|c|c|}
-	\hline
-	& 88 & 92 & 96 \\
-	\hline\hline
-	stab 1 & 0 & 0 & 0 \\
-	\hline
-	stab 2 & 0 & 0 & 0 \\
-	\hline
-	stab 4 & 0 & 0 & 0 \\
-	\hline
-	stab 6 & 0 & 0 & 0 \\
-	\hline
-	stab 7 & 0 & 0 & 0 \\
-	\hline
-	stab 8 & 0 & 0 & 0 \\
-	\hline
-\end{tabular}
 
 
 \end{document}
