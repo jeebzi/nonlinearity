@@ -14,7 +14,7 @@ Soit $f$ une fonction booléenne en $n$ variable on définie le poid de $f$ comm
 $$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^n\} $$
 
 Soit $f$ une fonction booléenne en $n$ variable, on peut la représenter par son vecteur d'évaluation (table de vérité) comme :
-$$ (f(0), f(1), ..., f(2^n)) $$
+$$ (f(0), f(1), ..., f(2^n-1)) $$
 
 On définie la distance de hamming de deux fonctions booléenne $f$ et $ g$ comme :
 $$ d_H = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^n\}$$
@@ -25,7 +25,7 @@ On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM
 $$ \{f \in \mathbb{F}_2^n | deg(f) \leq k\} $$
 
 Soit $C$ un Code $\subset \mathbb{F}_2^{2^n}$ et $f$ une fonction booléenne en $n$ variable on définie sa distance au code comme :
-$$d(f, C) = \min_{c \in C} d_h(f, c)$$
+$$d(f, C) = \min_{c \in C} d_H(f, c)$$
 
 \section{Runtime}
 \subsection{Algo probabiliste}
