@@ -15,13 +15,13 @@
 
 \section{Définition}
 \subsection{Fonction booléenne}
-Une fonction booléenne et une fonction que prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
+Une fonction booléenne et une fonction qui prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
 $$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
 
 Soit $f$ une fonction booléenne en $n$ variable on définie le poid de $f$ comme :
 $$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^n\} $$
 
-Soit $f$ une fonction booléenne en $n$ variable, on peut la représenter par son vecteur d'évaluation (table de vérité) comme :
+On peut représenter une fonction par son vecteur d'évaluation (table de vérité) comme :
 $$ (f(0), f(1), ..., f(2^n-1)) $$
 
 On définie la distance de hamming de deux fonctions booléenne $f$ et $ g$ comme :
@@ -33,18 +33,18 @@ Soit $C$ un Code $\subset \mathbb{F}_2^{2^n}$ et $f$ une fonction booléenne en 
 $$d(f, C) = \min_{c \in C} d_H(f, c)$$
 
 \subsection{Forme normal algébrique et degrée}
-Toute fonctions booléenne peut s'écrire comment une somme de polynôme nommé ANF (algebraic normal form)
+Toute fonctions booléenne peut s'écrire comme une somme de polynôme nommé ANF (algebraic normal form)
 $$
 f(x)=\sum_{I\subseteq \{1,\dots,n\}} a_I \prod_{i\in I} x_i
 $$
 On note le degrée d'une fonction comme étant le degrée maximal de ses termes.
 
 \subsection{Code de Reed-Muller}
-On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM}(k, n)$ comme l'ensemble des fonctions booléennes de degrès inférieur ou égale à k.
+On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM}(k, n)$ comme l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
 $$ \{f \in \mathbb{F}_2^n | deg(f) \leq k\} $$
 
 \subsection{Non linéarité}
-Soit $C \in \RM{k}{n}$ et une fonction $f \in \FF_2^n$ on définie la non linéarité de degrée $k$ de $f$ comme ça distance au code $C$ autrement dit à sa distance
+Soit un code $C \in \RM{k}{n}$ et une fonction $f \in \FF_2^n$ on définie la non linéarité de degrée $k$ de $f$ comme sa distance au code $C$ autrement dit à sa distance
 de toutes les fonctions de degrée au plus k.
 $$\mathrm{NL}_k(f) = d(f, C)$$
 
@@ -77,13 +77,13 @@ On voudrait connaitre le rayon de recouvrement de $\RM{2}{8}$ et de $\RM{3}{8}$
 \subsection{Inégalité de $\rho$}
 On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
-donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieur tel que $\mathrm{NL}_2(f) = 96$.
-\subsubsection{Décomposition de plotkin}
+donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
+\subsubsection{Décomposition de Plotkin}
 Toute fonction booléenne $f \in \FF_2^{2^n}$ peut s'écrire sous la forme
 $$f = x_ng + h$$ avec $g \in \RM{k-1}{n-1}$ et $h \in \RM{k}{n-1}$
-si $x_n = 0, f = h$ et si $x_n = 1,  f = g + h$ la table de vérité de toute fonction sont donc de la forme
+si $x_n = 0, f = h$ et si $x_n = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
 $$[h \mid h+g]$$
-Ce qui veut dire que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
+Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
 $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 
 
