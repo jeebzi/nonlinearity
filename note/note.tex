@@ -1,6 +1,9 @@
 \documentclass{article}
 
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{hyperref}
@@ -15,7 +18,7 @@
 
 \section{Définition}
 \subsection{Fonction booléenne}
-Une fonction booléenne et une fonction qui prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
+Une fonction booléenne est une fonction qui prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
 $$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
 
 Soit $f$ une fonction booléenne en $n$ variable on définie le poid de $f$ comme :
@@ -83,7 +86,7 @@ Toute fonction booléenne $f \in \FF_2^{2^n}$ peut s'écrire sous la forme
 $$f = x_ng + h$$ avec $g \in \RM{k-1}{n-1}$ et $h \in \RM{k}{n-1}$
 si $x_n = 0, f = h$ et si $x_n = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
 $$[h \mid h+g]$$
-Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
+Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
 $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 
 
@@ -91,6 +94,29 @@ $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 \section{Algo}
 \subsection{Algo probabiliste}
 
+\begin{algorithm}
+\caption{Random translate}
+\label{alg:pivotage}
+\begin{algorithmic}[1]
+	\REQUIRE $G$ : Une matrice génératrice d'un code \RM{k}{n} de dimension $[K,N]$
+	$f$ : Une fonction booléenne en $n$ variable représenter par sa table de vérité de longueur $N$
+\FOR{$i \leftarrow 0$ \TO $K-1$}
+    \REPEAT
+        \STATE $pivot \leftarrow \text{rand}() \bmod N$
+	\UNTIL{$G[i][pivot] = 1$}
 
+    \FOR{$j \leftarrow i$ \TO $K-1$}
+	\IF{$j \neq i \AND G[j][pivot] = 1$ }
+	    \STATE $G[j] \gets G[j] + G[i]$
+        \ENDIF
+    \ENDFOR
+
+	\IF {$f[i] = 1$}
+		\STATE $f \gets f + G[i]$
+	\ENDIF
+\ENDFOR
+\RETURN $f$
+\end{algorithmic}
+\end{algorithm}
 
 \end{document}
