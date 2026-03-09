@@ -2,10 +2,10 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, target, version_min;
+	int ffdimen, ffsize, num, opt, k, module = 1, job = 0, cpt = 0;
 	FILE *src;
 
-	while ((opt = getopt(argc, argv, "k:n:f:t:m")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:m:j:")) != -1) {
 		switch(opt) {
 			case 'k':
 				k = atoi(optarg);
@@ -17,11 +17,11 @@ int main(int argc, char *argv[]) {
 			case 'f':
 				src = fopen(optarg, "r");
 				break;
-			case 't':
-				target = atoi(optarg);
-				break;
 			case 'm':
-				version_min = 1;
+				module = atoi(optarg);
+				break;
+			case 'j':
+				job = atoi(optarg);
 				break;
 		}
 	}
@@ -32,22 +32,17 @@ int main(int argc, char *argv[]) {
 	uchar *f;
 	int orphan = 0;
 	while ((f = load_boole(src, &num, ffsize))) {
-		mot = boole_to_int(f, ffsize);
-		dist = distance_mot_code_min(mot, words, ffsize, c.dim, target);
-		if (version_min == 1) {
-			if (dist >= target) {
-				printf("%d ", dist);
-			       	print_anf(f, ffdimen, ffsize);
-				orphan = is_orphan(mot, c64, -1);
-				if (orphan == 1) printf("is_orphan\n");
-				else printf("not_orphan\n");
-				orphan = 0;
-			}
+		if (cpt % module == job) {
+			mot = boole_to_int(f, ffsize);
+			print_anf(f, ffdimen, ffsize);
+			orphan = is_orphan(mot, c64, -1);
+			if (orphan == 1) printf("is_orphan\n");
+			else printf("not_orphan\n");
+			orphan = 0;
+			free(mot);
 		}
-		else
-		if (dist == target) print_anf(f, ffdimen, ffsize);
+		cpt += 1;
 		free(f);
-		free(mot);
 	}
 	free(c64.G);
 	free_code(c);
