@@ -2,7 +2,7 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, target, job = 0, module = 1;
+	int ffdimen, ffsize, num, opt, k, dist, target = -1, job = 0, module = 1;
 	FILE *src;
 
 	while ((opt = getopt(argc, argv, "k:n:f:t:i:j:m:")) != -1) {
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 	code64 c1, c2;
 	c1 = code_to_code64(c);
 	free_code(c);
-	c = RM(k - 1, ffdimen - 1);
+	c = RM(k, ffdimen - 1);
 	c2 = code_to_code64(c);
 	free_code(c);
 

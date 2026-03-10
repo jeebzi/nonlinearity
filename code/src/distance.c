@@ -137,8 +137,9 @@ int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen,
 	uint64_t limite = (uint64_t)1 << rmdimen(degree - 1, ffdimen - 1);
 	uint64_t cpt = 1;
 	uint64_t *L, *R, *W, *u; // partie gauche et droit du mot avec W le résultat de (L+R+u)
-	uint64_t **zip; // le pointeur que contient la partie gauche et droite du mot
+	uint64_t **zip, **cpy_zip; // le pointeur que contient la partie gauche et droite du mot
 	zip = split(mot, c.longueur, int_par_ligne);
+	cpy_zip = split(mot, c.longueur, int_par_ligne);
 
 	// déclaration code linéaire
 	code code_lineaire = RM(degree - 1, ffdimen - 1);
@@ -165,8 +166,14 @@ int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen,
 			j += 1;
 		}
 		if (wt < best) {
+			// préparer copy zip
+			 j = 0;
+			 while (j < nb_int) {
+				 cpy_zip[1][j] = zip[1][j] ^ u[j];
+				 j += 1;
+			 }
 			// a faire bdistance
-			dist = bdistance(zip, c2, target, nb_int);
+			dist = bdistance(cpy_zip, c2, target, nb_int);
 			if (dist < target) { best = -1; over = 1; }
 			if (dist < best) best = dist;
 		}
@@ -181,6 +188,9 @@ int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen,
 	free(L);
 	free(R);
 	free(zip);
+	free(cpy_zip[0]);
+	free(cpy_zip[1]);
+	free(cpy_zip);
 
 	return best;
 }
@@ -193,7 +203,7 @@ int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
 	int best = c.longueur << 1;
 	uint64_t *v, v1, v2; // v énumère tous les mot de c
 	v = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
-	int wt, i, j;
+	int wt=0, i, j;
 	uint64_t limite = (uint64_t)1 << c.dim, cpt = 1;
 	while (cpt < limite) {
 		i = __builtin_ctzl(cpt);
