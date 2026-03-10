@@ -235,3 +235,18 @@ uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne) {
 	res[1] = R;
 	return res;
 }
+
+int correlation(uint64_t *f1, uint64_t *f2, int ffsize) {
+	/*
+	 * calcule de coéfficiant de corrélation entre deux fonctions booléennes
+	 * corr(f, g) = 2**n - 2 * wt(f + g)
+	 */
+	int int_par_ligne = (ffsize+63)/64;
+	int wt = 0, i = 0, res;
+	while (i < int_par_ligne) {
+		wt += __builtin_popcountl(f1[i] ^ f2[i]);
+		i += 1;
+	}
+	res = ffsize - (2 * wt);
+	return res;
+}

@@ -13,5 +13,6 @@ uint64_t* boole_to_int(unsigned char *boole, int ffsize);
 unsigned char* int_to_boole(uint64_t *mot, int ffsize);
 void liste_approximation(uint64_t *mot, code c, int target);
 uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne);
+int correlation(uint64_t *f1, uint64_t *f2, int ffsize);
 
 #endif
