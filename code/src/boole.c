@@ -255,26 +255,33 @@ int rang(uint64_t *f, int ffdimen, int ffsize) {
 	/*
 	 * calcule de rang d'une fonction booléenne à ffdimen variable
 	 */
+	int int_par_ligne = (ffsize+63)/64;
 	code c = RMH(1, ffdimen);
 	uint64_t *G = code_to_int(c); /* matrice génératrice du code homogène linéaire */
 	/* énumérer tout les mots de RMH(1, ffdimen) */
+	uint64_t *u;
+	u = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
 	uint64_t limite = (uint64_t)1 << binomial(1, ffdimen), cpt = 1;
 	int i, j, wt;
 	while (cpt < limite) {
 		i = __builtin_ctzl(cpt);
 		j = 0;
 		wt = 0;
-		for (j < int_par_ligne) {
+		while (j < int_par_ligne) {
 			u[j] ^= G[i*int_par_ligne + j];
 			wt += __builtin_popcountl(u[j] ^ f[j]);
 			j += 1;
 		}
-		if (wt != (ffsize >> 1)) { /* si la corrélation n'est pas à 0 */
-			wt = ffsize - (2 * wt); /* corrélation */
-			/* à faire retrouver le k dans wt = 2**((n+k)/2) */
+		if (wt != (ffsize >> 1)) { /* si lé coefficient de Walsh n'est pas à 0 */
+			wt = ffsize - (2 * wt); /* calcul Walsh */
+			/* retrouver le k dans wt = 2**(n-(k/2)) */
+			wt = __builtin_ctz(wt); /* équivalant à log2(wt) */
+			wt = 2 * (ffdimen - wt);
+			free(u);
 			return wt;
 		}
 		cpt += 1;
 	}
+	free(u);
 	return -1;
 }
