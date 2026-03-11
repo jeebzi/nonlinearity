@@ -39,3 +39,15 @@ void print_distribution(int *distribution, int n) {
 	}
 	printf("\n");
 }
+
+void print_distribution_rang(int *distribution, int n) {
+	/*
+	 * affiche la distribution dees rangs avec n la taille du tableau
+	 */
+	int i = 0;
+	while (i < n) {
+		printf("%d:%d ", i<<1, distribution[i]);
+		i += 1;
+	}
+	printf("\n");
+}

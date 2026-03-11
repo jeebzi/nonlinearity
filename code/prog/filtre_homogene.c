@@ -2,12 +2,15 @@
 #include "../include/include.h"
 
 
+/*
+ * programme pour prendre un fichier de fonction booléenne et garder que les fonctions homogène
+ */
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, target, job=0, module=1, val;
+	int ffdimen, ffsize, num, opt, k = -1, job=0, module=1, val;
 	FILE *src;
 
-	while ((opt = getopt(argc, argv, "k:n:f:j:m:t:")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:j:m:")) != -1) {
 		switch(opt) {
 			case 'k':
 				k = atoi(optarg);
@@ -25,27 +28,24 @@ int main(int argc, char *argv[]) {
 			case 'm':
 				module = atoi(optarg);
 				break;
-			case 't':
-				target = atoi(optarg);
-				break;
 		}
 	}
 
 	unsigned char *boole;
-	uint64_t *mot;
-	code c = RM(k, ffdimen);
+	int homog;
 	num = 0;
 	while ((boole = load_boole(src, &val, ffsize))) {
 		if (num % module == job) {
-			mot = boole_to_int(boole, ffsize);
-			liste_approximation(mot, c, target);
-			free(mot);
+			homog = is_homogene(boole, k, ffsize);
+			if (homog == 1) {
+				if (val != -1) printf("%d ", val);
+				print_anf(boole, ffdimen, ffsize);
+			}
 		}
 		free(boole);
 		num += 1;
 	}
 	fclose(src);
-	free_code(c);
 	return 0;
 }
 	

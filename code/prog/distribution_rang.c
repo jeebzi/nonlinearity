@@ -1,17 +1,12 @@
 #include <all.h>
 #include "../include/include.h"
 
-
-
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, target, job=0, module=1, val;
+	int ffdimen, ffsize, num, opt, job=0, module=1, val, rang_val;
 	FILE *src;
 
 	while ((opt = getopt(argc, argv, "k:n:f:j:m:t:")) != -1) {
 		switch(opt) {
-			case 'k':
-				k = atoi(optarg);
-				break;
 			case 'n':
 				ffdimen = atoi(optarg);
 				ffsize = 1 << ffdimen;
@@ -25,27 +20,27 @@ int main(int argc, char *argv[]) {
 			case 'm':
 				module = atoi(optarg);
 				break;
-			case 't':
-				target = atoi(optarg);
-				break;
 		}
 	}
 
 	unsigned char *boole;
 	uint64_t *mot;
-	code c = RM(k, ffdimen);
 	num = 0;
+	int *distribution, taille_distri = ffdimen / 2 + 1;
+	distribution = (int*) calloc(taille_distri, sizeof(int));
 	while ((boole = load_boole(src, &val, ffsize))) {
 		if (num % module == job) {
 			mot = boole_to_int(boole, ffsize);
-			liste_approximation(mot, c, target);
+			rang_val = rang(mot, ffdimen, ffsize);
+			distribution[rang_val/2] += 1;
 			free(mot);
 		}
 		free(boole);
 		num += 1;
 	}
+	print_distribution_rang(distribution, taille_distri);
+	free(distribution);
 	fclose(src);
-	free_code(c);
 	return 0;
 }
 	

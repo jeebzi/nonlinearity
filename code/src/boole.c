@@ -285,3 +285,23 @@ int rang(uint64_t *f, int ffdimen, int ffsize) {
 	free(u);
 	return -1;
 }
+
+int is_homogene(unsigned char *mot, int degree, int ffsize) {
+	/*
+	 * renvoie 1 si la fonction est homogène de degrée _degree_ 0 sinon
+	 * on peut mettre degree à -1 pour une fonction homogène quelconque
+	 */
+	anf(mot, ffsize);
+	int i = 0, d;
+	while (i < ffsize) {
+		if (mot[i] == 1) {
+			d = __builtin_popcount(i);
+			if (degree == -1) degree = d;
+			else if (degree != d) { anf(mot, ffsize); return 0; }
+		}
+		i += 1;
+	}
+	anf(mot, ffsize);
+	return 1;
+}
+

@@ -14,3 +14,4 @@ uint64_t* copy_uint64(uint64_t *src, int n) {
 	}
 	return dst;
 }
+
