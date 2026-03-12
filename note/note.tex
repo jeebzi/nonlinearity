@@ -93,6 +93,7 @@ $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 
 \section{Algo}
 \subsection{Algo probabiliste}
+voir Algo \ref{alg:pivotage}
 
 \begin{algorithm}
 \caption{Random translate}
@@ -117,6 +118,27 @@ $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 \ENDFOR
 \RETURN $f$
 \end{algorithmic}
+\end{algorithm}
+
+\subsection{Algo Tervernier like}
+Voir Algo \ref{alg:tavernier}
+
+\begin{algorithm}
+	\caption{Calcule distance}
+	\label{alg:tavernier}
+	\begin{algorithmic}[1]
+		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \FF_2^{2^n} = x_ng + h$ \newline Le degrée de non linéarité recherché: $k$ \newline
+		$N$ et $K$ la longueur et la dimension du code $\RM{k}{n}$
+		\STATE best $\gets N$
+		\FOR {$u \in \RM{n-1}{k-1}$}
+		  \IF {$\WT{g+u} < best$}
+		    \FOR {$v \in \RM{k, n-1}$}
+		      \STATE best $\gets \min \WT{h+v} + \WT{h+v+g+u}$
+		    \ENDFOR
+		  \ENDIF
+		\ENDFOR
+		\RETURN best
+	\end{algorithmic}
 \end{algorithm}
 
 \end{document}
