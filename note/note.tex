@@ -13,47 +13,50 @@
 \def\RM#1#2{\ensuremath{\mathrm{RM}(#1, #2)}}
 \def\FF{\ensuremath{\mathbb{F}}}
 \def\WT#1{\ensuremath{\mathrm{wt}(#1)}}
+\def\BM{\ensuremath{\mathrm{B}(m)}}
 \begin{document}
 \tableofcontents
 
 \section{Définition}
 \subsection{Fonction booléenne}
-Une fonction booléenne est une fonction qui prend en paramétre un vecteur binaire et qui renvoie 0 ou 1.
-$$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
+Une fonction booléenne en $m$ variable est une fonction qui prend en paramétre un n-uplet binaire et renvoie 0 ou 1.
+$$ f : \mathbb{F}_2^m \to \mathbb{F}_2 $$
+$$ \FF_2 = \{0, 1\}$$
 
-Soit $f$ une fonction booléenne en $n$ variable on définie le poid de $f$ comme :
-$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^n\} $$
+Soit $f$ une fonction booléenne en $m$ variables on définit le poid de $f$ comme :
+$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\} $$
 
-On peut représenter une fonction par son vecteur d'évaluation (table de vérité) comme :
-$$ (f(0), f(1), ..., f(2^n-1)) $$
+On peut représenter une fonction par sa table de vérité:
+$$ [f(0), f(1), \dots, f(2^m-1)] $$
 
-On définie la distance de hamming de deux fonctions booléenne $f$ et $ g$ comme :
-$$ d_H = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^n\}$$
-ou
-$$ \mathrm{wt}(f+g) $$
+On définit la distance de Hamming de deux fonctions booléenne $f$ et $ g$ comme :
+$$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}$$
 
-Soit $C$ un Code $\subset \mathbb{F}_2^{2^n}$ et $f$ une fonction booléenne en $n$ variable on définie sa distance au code comme :
+Soit $C$ un code étant un sous ensemble des fonctions booléenne en $m$ variables noté $C \subset \mathbb{F}_2^{2^m}$ et $f$ une fonction booléenne en $m$ variable on définit la distance de $f$ au code comme
+la distance de Hamming minimal entre $f$ et tous les mots de C.
 $$d(f, C) = \min_{c \in C} d_H(f, c)$$
 
-\subsection{Forme normal algébrique et degrée}
-Toute fonctions booléenne peut s'écrire comme une somme de polynôme nommé ANF (algebraic normal form)
+\subsection{Forme normal algébrique et degré}
+Toute fonction booléenne peut s'écrire comme une somme de polynôme nommé ANF (algebraic normal form)
 $$
-f(x)=\sum_{I\subseteq \{1,\dots,n\}} a_I \prod_{i\in I} x_i
+f(x)=\sum_{I\subseteq \{1,\dots,m\}} a_I \prod_{i\in I} x_i
 $$
-On note le degrée d'une fonction comme étant le degrée maximal de ses termes.
+On note le degré d'une fonction comme étant le degré maximal de ses termes.
 
 \subsection{Code de Reed-Muller}
-On définie le code de Reed-Muller en $n$ variable et de degrée $k$ $\mathrm{RM}(k, n)$ comme l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
-$$ \{f \in \mathbb{F}_2^n | deg(f) \leq k\} $$
+On définit le code de Reed-Muller en $m$ variables et de degré $k$ $\mathrm{RM}(k, m)$ comme l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
+$$ \{f \in \mathbb{F}_2^m | \deg(f) \leq k\} $$
 
 \subsection{Non linéarité}
-Soit un code $C \in \RM{k}{n}$ et une fonction $f \in \FF_2^n$ on définie la non linéarité de degrée $k$ de $f$ comme sa distance au code $C$ autrement dit à sa distance
-de toutes les fonctions de degrée au plus k.
-$$\mathrm{NL}_k(f) = d(f, C)$$
+Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2$ on définit la non linéarité de degrée $k$ de $f$ comme sa distance au code autrement dit à sa distance
+de toutes les fonctions de degré au plus k.
+$$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
 
 \subsection{Rayon de recouvrement}
-On note $\rho(k, n)$ le rayon de recouvrement d'un code $C \in \mathrm{RM}(k, n)$ la distance maximale entre ce dernier et l'ensemble des fonctions $f \in \FF_2^{2^n}$
-$$ \rho(k, n) = \max_{f \in \FF_2^{2^n}} d(f, C) $$
+On note $\rho(k, m)$ le rayon de recouvrement d'un code $\mathrm{RM}(k, m)$ la distance maximale entre ce dernier et l'ensemble des fonctions booléenne 
+en $m$ variable noté $\mathrm{B}(m)$
+$$ \rho(k, m) = \max_{f \in \mathrm{B}(m)} d(f, \RM{k}{m}) $$
+
 \ref{tab:tab_rho}
 
 \begin{table}
@@ -82,9 +85,9 @@ On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
 donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
 \subsubsection{Décomposition de Plotkin}
-Toute fonction booléenne $f \in \FF_2^{2^n}$ peut s'écrire sous la forme
-$$f = x_ng + h$$ avec $g \in \RM{k-1}{n-1}$ et $h \in \RM{k}{n-1}$
-si $x_n = 0, f = h$ et si $x_n = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
+Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme
+$$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$
+si $x_m = 0, f = h$ et si $x_m = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
 $$[h \mid h+g]$$
 Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
 $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
@@ -99,11 +102,11 @@ voir Algo \ref{alg:pivotage}
 \caption{Random translate}
 \label{alg:pivotage}
 \begin{algorithmic}[1]
-	\REQUIRE $G$ : Une matrice génératrice d'un code \RM{k}{n} de dimension $[K,N]$
+	\REQUIRE $G$ : Une matrice génératrice d'un code \RM{k}{m} de dimension $[K,M]$
 	$f$ : Une fonction booléenne en $n$ variable représenter par sa table de vérité de longueur $N$
 \FOR{$i \leftarrow 0$ \TO $K-1$}
     \REPEAT
-        \STATE $pivot \leftarrow \text{rand}() \bmod N$
+        \STATE $pivot \leftarrow \text{rand}() \bmod M$
 	\UNTIL{$G[i][pivot] = 1$}
 
     \FOR{$j \leftarrow i$ \TO $K-1$}
@@ -127,12 +130,12 @@ Voir Algo \ref{alg:tavernier}
 	\caption{Calcule distance}
 	\label{alg:tavernier}
 	\begin{algorithmic}[1]
-		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \FF_2^{2^n} = x_ng + h$ \newline Le degrée de non linéarité recherché: $k$ \newline
-		$N$ et $K$ la longueur et la dimension du code $\RM{k}{n}$
-		\STATE best $\gets N$
-		\FOR {$u \in \RM{n-1}{k-1}$}
+		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \BM = x_ng + h$ \newline Le degrée de non linéarité recherché: $k$ \newline
+		$M$ et $K$ la longueur et la dimension du code $\RM{k}{m}$
+		\STATE best $\gets M$
+		\FOR {$u \in \RM{k-1}{m-1}$}
 		  \IF {$\WT{g+u} < best$}
-		    \FOR {$v \in \RM{k, n-1}$}
+		    \FOR {$v \in \RM{k, m-1}$}
 		      \STATE best $\gets \min \WT{h+v} + \WT{h+v+g+u}$
 		    \ENDFOR
 		  \ENDIF
