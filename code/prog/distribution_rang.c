@@ -26,19 +26,19 @@ int main(int argc, char *argv[]) {
 	unsigned char *boole;
 	uint64_t *mot;
 	num = 0;
-	int *distribution, taille_distri = ffdimen / 2 + 1;
-	distribution = (int*) calloc(taille_distri, sizeof(int));
+	int *distribution;
+	distribution = (int*) calloc(ffdimen, sizeof(int));
 	while ((boole = load_boole(src, &val, ffsize))) {
 		if (num % module == job) {
 			mot = boole_to_int(boole, ffsize);
 			rang_val = rang(mot, ffdimen, ffsize);
-			distribution[rang_val/2] += 1;
+			distribution[rang_val] += 1;
 			free(mot);
 		}
 		free(boole);
 		num += 1;
 	}
-	print_distribution_rang(distribution, taille_distri);
+	print_distribution(distribution, ffdimen);
 	free(distribution);
 	fclose(src);
 	return 0;

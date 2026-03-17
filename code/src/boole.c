@@ -274,9 +274,9 @@ int rang(uint64_t *f, int ffdimen, int ffsize) {
 		}
 		if (wt != (ffsize >> 1)) { /* si lé coefficient de Walsh n'est pas à 0 */
 			wt = ffsize - (2 * wt); /* calcul Walsh */
-			/* retrouver le k dans wt = 2**(n-(k/2)) */
+			/* retrouver le k dans wt = 2**((n+k)/2) */
 			wt = __builtin_ctz(wt); /* équivalant à log2(wt) */
-			wt = 2 * (ffdimen - wt);
+			wt = 2 * wt - ffdimen;
 			free(u);
 			return wt;
 		}
