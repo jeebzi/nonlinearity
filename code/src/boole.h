@@ -16,5 +16,6 @@ uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne);
 int correlation(uint64_t *f1, uint64_t *f2, int ffsize);
 int rang(uint64_t *f, int ffdimen, int ffsize);
 int is_homogene(unsigned char *mot, int degree, int ffsize);
+uchar* random_boole(int ffdimen, int degre);
 
 #endif

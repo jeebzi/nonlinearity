@@ -29,6 +29,25 @@ uchar* str_to_boole(char *s, int ffsize) {
 	return res;
 }
 
+uchar* random_boole(int ffdimen, int degre) {
+	/*
+	 * crée une fonction booléenne de manière aléatoire
+	 */
+	int ffsize = 1 << ffdimen;
+	uchar * res;
+	res = (uchar*) calloc(ffsize, sizeof(uchar));
+	int i = 0;
+	int r, fini = 0;
+	while (i < ffsize) {
+		r = random() % 10;
+		if (res[i] == 0 && r == 0 && (degre == - 1 || __builtin_popcount(i) == degre))
+			res[i] = 1;
+		i += 1;
+		if (i == ffsize && fini == 0) i = 0;
+	}
+	return res;
+}
+
 uchar* load_boole(FILE *src, int *num, int ffsize) {
 	/*
 	 * charge depuis un pointeur vers fichier une fonction booléenne représenter par un tableau de u char
