@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 	uint64_t *mot;
 	num = 0;
 	int *distribution;
-	distribution = (int*) calloc(ffdimen, sizeof(int));
+	distribution = (int*) calloc(ffdimen+1, sizeof(int));
 	while ((boole = load_boole(src, &val, ffsize))) {
 		if (num % module == job) {
 			mot = boole_to_int(boole, ffsize);

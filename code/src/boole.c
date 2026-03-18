@@ -40,8 +40,10 @@ uchar* random_boole(int ffdimen, int degre) {
 	int r, fini = 0;
 	while (i < ffsize) {
 		r = random() % 10;
-		if (res[i] == 0 && r == 0 && (degre == - 1 || __builtin_popcount(i) == degre))
+		if (res[i] == 0 && r == 0 && (degre == - 1 || __builtin_popcount(i) == degre)) {
 			res[i] = 1;
+			fini = 1;
+		}
 		i += 1;
 		if (i == ffsize && fini == 0) i = 0;
 	}
@@ -152,7 +154,7 @@ uint64_t* boole_to_int(unsigned char *boole, int ffsize) {
 
 unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 	/*
-	 * prend une fonction booléenne représenter par n uint64 et renvoie ça version représenté par un tableau de uchar
+	 * prend une fonction booléenne représenté par n uint64 et renvoie sa version représenté par un tableau de uchar
 	 */
 	unsigned char *res;
 	res = (unsigned char*) calloc((size_t)ffsize, sizeof(unsigned char));
