@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 		start = time(NULL);
 		dist = distance_mot_code_min(mot, c_int, ffsize, c1.dim, 0);
 		end = time(NULL);
-		printf("%lu sec ", end-start);
+		printf("%lu sec dist: %d", end-start, dist);
 
 
 		start = time(NULL);

@@ -35,7 +35,7 @@ int distance_mot_code_min(uint64_t *mot, uint64_t *base, uint64_t ffsize, int nb
 	 * à la target -1 sinon
 	 */
 	int int_par_ligne = (ffsize+63) / 64;
-	int score = ffsize;
+	int score = weight_64(mot, int_par_ligne);
 	uint64_t limite = (uint64_t)1 << nb_ligne;
 	uint64_t cpt = 1;
 	int i; // indice bit qui change
@@ -66,6 +66,9 @@ int *distribution_distance(uint64_t *mot, uint64_t *base, int ffsize, int nb_lig
 	int *res, int_par_ligne = (ffsize+63)/64, i, j, wt;
 	uint64_t cpt = 1, limite = (uint64_t)1 << nb_ligne;
 	res = (int*) calloc(ffsize, sizeof(int));
+	
+	wt = weight_64(mot, int_par_ligne);
+	res[wt] += 1;
 
 	//calcule des poids des mots du coset comme dans la fonction du haut
 	while (cpt < limite) {
@@ -131,7 +134,8 @@ int distance_decode(uint64_t *mot, code64 c, code64 c2, int target, int ffdimen,
 	 */
 	assert((1 << ffdimen) == c.longueur);
 	assert(c.longueur == (c2.longueur << 1));
-	int best = c.longueur, int_par_ligne = (c.longueur+63) / 64, dist;
+	int best, int_par_ligne = (c.longueur+63) / 64, dist;
+	best = weight_64(mot, int_par_ligne);
 
 	// pour chaque u dans RM(k - 1, ffdimen - 1)
 	uint64_t limite = (uint64_t)1 << rmdimen(degree - 1, ffdimen - 1);

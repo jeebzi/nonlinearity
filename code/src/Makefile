@@ -1,5 +1,5 @@
 CFLAGS ?= -O3 -march=native
-OBJECTS = boole.o code.o affichage.o distance.o util.o covering.o
+OBJECTS = boole.o code.o affichage.o distance.o util.o covering.o weight.o
 
 .PHONY: clean
 
@@ -22,6 +22,8 @@ util.o: util.c util.h
 	gcc $(CFLAGS) -c $< -o $@
 
 covering.o: covering.c covering.h code.h
+
+weight.o: weight.c weight.h
 
 clean:
 	rm $(OBJECTS) libmylib.a
