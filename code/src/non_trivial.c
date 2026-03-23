@@ -1,34 +1,30 @@
 #include "non_trivial.h"
 
-link_list_uint cherche_non_triviaux(int ffdimen, int ffsize) {
+link_list_uint* cherche_non_triviaux(int ffdimen, int ffsize) {
 	/*
 	 * donne la liste de tous les x, y, z, t dans F_2^m tel que pour tous les q dans les fonctions
 	 * quadratiques homogène q(x) + q(y) + q(z) + q(t) = 0 avec x < y < z < t
 	 */
-	link_list_uint = res;
+	link_list_uint* res = NULL;
 	unsigned int x, y, z, t;
 
 	//allocation mémoire
-	int int_par_ligne = (ffsize+63)/64;
-	x = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
-	y = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
-	z = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
-	t = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
+	int flag;
 	//initialisation il faut que x < y < z < t
-	y[0] = 1;
-	z[0] = 2;
-	t[0] = 3;
+	y = 1;
+	z = 2;
+	t = 3;
 
 	while (x <= ffsize - 3) {
 		while (y <= ffsize - 2) {
 			while (z <= ffsize - 1) {
 				while (t <= ffsize) {
-					flag = check_non_trivial(x, y, z, t, ffdimen, ffsize);
+					flag = check_non_trivial(x, y, z, t, ffdimen);
 					if (flag == 1) {
-						add_list_uint64(res, x);
-						add_list_uint64(res, y);
-						add_list_uint64(res, z);
-						add_list_uint64(res, t);
+						res = add_list_uint(res, t);
+						res = add_list_uint(res, z);
+						res = add_list_uint(res, y);
+						res = add_list_uint(res, x);
 					}
 					t += 1;
 				}
@@ -48,12 +44,38 @@ link_list_uint cherche_non_triviaux(int ffdimen, int ffsize) {
 
 }
 
-int check_non_trivial(unsigned int x, unsigned int y, unsigned z, unsigned int t, int ffdimen, int ffsize) {
+int check_non_trivial(unsigned int x, unsigned int y, unsigned z, unsigned int t, int ffdimen) {
 	/*
 	 * prend 4 vecteurs dans F_2^m et regarde si pour tous les q dans RMH(2, m)
 	 * q(x) + q(y) + q(z) + q(t) = 0
 	 * renvoie 1 si c'est vrai 0 sinon
 	 */
-	res = 0;
+	/* stratégie:
+	 * regarder toutes les formes x_ij et regarder si elles sont toutes égale à 0 si une est égale à 1 c'est impossible
+	 * que pour tous les q dans RMH(2, m) que q(x) + q(y) + q(z) + q(t) = 0
+	 */
+	int res;
+	int i = 0, j;
+	while (i < ffdimen - 1) {
+		j = i + 1;
+		while (j < ffdimen) {
+			res = condition_non_trivial(x, y, z, t, i, j);
+			if (res == 0) return 0;
+			j += 1;
+		}
+		i += 1;
+	}
+	return 1;
 
+
+}
+
+int condition_non_trivial(unsigned int x, unsigned int y, unsigned int z, unsigned int t, int i, int j) {
+	int res = 0;
+	res |= ((x >> i) & 1) & ((x >> j) & 1);
+	res |= ((y >> i) & 1) & ((y >> j) & 1);
+	res |= ((z >> i) & 1) & ((z >> j) & 1);
+	res |= ((t >> i) & 1) & ((t >> j) & 1);
+	if (res == 0) return 1;
+	return 1;
 }

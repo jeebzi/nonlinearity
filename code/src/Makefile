@@ -1,5 +1,5 @@
 CFLAGS ?= -O3 -march=native
-OBJECTS = boole.o code.o affichage.o distance.o util.o covering.o weight.o
+OBJECTS = boole.o code.o affichage.o distance.o util.o covering.o weight.o linked_list.o non_trivial.o
 
 .PHONY: clean
 
@@ -24,6 +24,10 @@ util.o: util.c util.h
 covering.o: covering.c covering.h code.h
 
 weight.o: weight.c weight.h
+
+linked_list.o: linked_list.c linked_list.h
+
+non_trivial.o: non_trivial.c non_trivial.h linked_list.o
 
 clean:
 	rm $(OBJECTS) libmylib.a

@@ -1,0 +1,17 @@
+#include "linked_list.h"
+
+link_list_uint* add_list_uint(link_list_uint *L, unsigned int x) {
+	link_list_uint *new;
+	new = (link_list_uint*) malloc(sizeof(*new));
+	new->val = x;
+	new->next = L;
+	return new;
+}
+
+link_list_uint* init_list_uint(unsigned int val) {
+	link_list_uint *L;
+	L = (link_list_uint*) malloc(sizeof(*L));
+	L->val = val;
+	L->next = NULL;
+	return L;
+}
