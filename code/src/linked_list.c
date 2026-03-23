@@ -15,3 +15,12 @@ link_list_uint* init_list_uint(unsigned int val) {
 	L->next = NULL;
 	return L;
 }
+
+void print_list_uint(link_list_uint *L) {
+	printf("[");
+	while (L != NULL) {
+		printf("%u, ", L->val);
+		L = L->next;
+	}
+	printf("\b\b]\n");
+}

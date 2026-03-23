@@ -4,7 +4,7 @@ VPATH=../src
 
 .PHONY: clean
 
-all: load_test.exe code_test.exe distance_test.exe boole_to_int_test.exe code_zip_test.exe int_distance_test.exe distribution_test.exe approximation_test.exe pivot_test.exe split_test.exe
+all: load_test.exe code_test.exe distance_test.exe boole_to_int_test.exe code_zip_test.exe int_distance_test.exe distribution_test.exe approximation_test.exe pivot_test.exe split_test.exe non_trivial.exe
 
 load_test.exe: load_test.c
 	gcc $(CLFAGS) $< $(LIB) -o $@
@@ -34,6 +34,9 @@ pivot_test.exe: pivot_test.c
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 split_test.exe: split_test.c -lmylib
+	gcc $(CFLAGS) $< $(LIB) -o $@
+
+non_trivial.exe: non_trivial.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 clean:

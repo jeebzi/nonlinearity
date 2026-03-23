@@ -4,7 +4,7 @@ VPATH = ../src
 
 .PHONY: clean all
 
-all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe fdt.exe orphan.exe rang.exe filtre_homogene.exe distribution_rang.exe bench.exe
+all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe fdt.exe orphan.exe rang.exe filtre_homogene.exe distribution_rang.exe bench.exe non_trivial.exe
 
 calc_nl.exe: calc_nl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
@@ -40,6 +40,9 @@ distribution_rang.exe: distribution_rang.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 bench.exe: bench.c -lmylib
+	gcc $(CFLAGS) $< $(LIB) -o $@
+
+non_trivial.exe: non_trivial.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 clean:

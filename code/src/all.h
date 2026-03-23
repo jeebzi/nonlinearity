@@ -6,6 +6,8 @@
 #include "util.h"
 #include "distance.h"
 #include "affichage.h"
-#include "covering.h"
+#include "covering.h" 
+#include "linked_list.h"
+#include "non_trivial.h"
 
 #endif

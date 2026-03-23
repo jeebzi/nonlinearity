@@ -11,14 +11,15 @@ link_list_uint* cherche_non_triviaux(int ffdimen, int ffsize) {
 	//allocation mémoire
 	int flag;
 	//initialisation il faut que x < y < z < t
+	x = 0;
 	y = 1;
 	z = 2;
 	t = 3;
 
-	while (x <= ffsize - 3) {
-		while (y <= ffsize - 2) {
-			while (z <= ffsize - 1) {
-				while (t <= ffsize) {
+	while (x < ffsize - 3) {
+		while (y < ffsize - 2) {
+			while (z < ffsize - 1) {
+				while (t < ffsize) {
 					flag = check_non_trivial(x, y, z, t, ffdimen);
 					if (flag == 1) {
 						res = add_list_uint(res, t);
@@ -72,10 +73,29 @@ int check_non_trivial(unsigned int x, unsigned int y, unsigned z, unsigned int t
 
 int condition_non_trivial(unsigned int x, unsigned int y, unsigned int z, unsigned int t, int i, int j) {
 	int res = 0;
-	res |= ((x >> i) & 1) & ((x >> j) & 1);
-	res |= ((y >> i) & 1) & ((y >> j) & 1);
-	res |= ((z >> i) & 1) & ((z >> j) & 1);
-	res |= ((t >> i) & 1) & ((t >> j) & 1);
-	if (res == 0) return 1;
-	return 1;
+	res |= ((x >> i) & 1) && ((x >> j) & 1);
+	res |= ((y >> i) & 1) && ((y >> j) & 1);
+	res |= ((z >> i) & 1) && ((z >> j) & 1);
+	res |= ((t >> i) & 1) && ((t >> j) & 1);
+	if (res == 0) {return 1; }
+	return 0;
+}
+
+int affiche_non_trivial(link_list_uint *L) {
+	/*
+	 * prend une liste chaîné avec toutes les solutions des non triviaux et les affiches
+	 * renvoie le nombre d solution
+	 */
+	int nb_solution = 0;
+	int cpt = 0;
+	while (L != NULL) {
+		printf("%u ", L->val);
+		if (cpt == 3) {
+			nb_solution += 1;
+			printf("\n");
+		}
+		cpt = (cpt + 1) % 4;
+		L = L->next;
+	}
+	return nb_solution;
 }
