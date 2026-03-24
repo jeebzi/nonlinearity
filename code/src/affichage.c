@@ -27,6 +27,15 @@ void print_tab_uchar(unsigned char *tab, int n) {
 	printf("\n");
 }
 
+void print_tab_char(char *tab, int n) {
+	int i = 0;
+	while (i < n) {
+		printf("%hhi ", tab[i]);
+		i += 1;
+	}
+	printf("\n");
+}
+
 void print_distribution(int *distribution, int n) {
 	/*
 	 * affiche la distribution des distances
