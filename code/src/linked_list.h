@@ -17,6 +17,7 @@ typedef struct link_list_uint {
 link_list_uint* add_list_uint(link_list_uint *L, unsigned int x);
 link_list_uint* init_list_uint(unsigned int val);
 void print_list_uint(link_list_uint *L);
+void free_list_uint(link_list_uint *L);
 
 
 #endif

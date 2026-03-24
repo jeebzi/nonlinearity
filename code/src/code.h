@@ -18,6 +18,7 @@ typedef struct {
 
 code init_code(int dim, int longueur);
 void free_code(code c);
+void free_code64(code64 c);
 code RM(int k, int m);
 code RMH(int k, int m);
 int bstdimen(int s, int t, int m);

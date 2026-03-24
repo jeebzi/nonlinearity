@@ -25,6 +25,11 @@ void free_code(code c) {
 	c.pivot = NULL;
 }
 
+void free_code64(code64 c) {
+	free(c.G);
+	c.G = NULL;
+}
+
 code RMH(int k, int m) {
 	/*
 	 * initialse un code de Reed-Muller homogène de degrée k et à m variable

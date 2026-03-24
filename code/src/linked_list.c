@@ -24,3 +24,13 @@ void print_list_uint(link_list_uint *L) {
 	}
 	printf("\b\b]\n");
 }
+
+void free_list_uint(link_list_uint *L) {
+	link_list_uint *prochain;
+	while (L != NULL) {
+		prochain = L->next;
+		free(L);
+		L = NULL;
+		L = prochain;
+	}
+}

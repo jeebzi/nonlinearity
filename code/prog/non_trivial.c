@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {
 	L = cherche_non_triviaux(ffdimen, ffsize);
 	nb = affiche_non_trivial(L);
 	printf("#nb solution: %d\n", nb);
+	free_list_uint(L);
 	return 0;
 }
 
