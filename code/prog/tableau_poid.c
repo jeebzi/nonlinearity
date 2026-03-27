@@ -29,6 +29,7 @@ int *tableau_poid(uint64_t *h, int ffdimen, int ffsize) {
 	/* énum q */
 	while (cpt < longueur_tab) {
 		i = __builtin_ctz(cpt);
+		id_tab ^= 1 << i;
 		j = 0;
 		while (j < int_par_ligne) {
 			q[j] ^= base_quad.G[i*int_par_ligne + j];
@@ -50,7 +51,6 @@ int *tableau_poid(uint64_t *h, int ffdimen, int ffsize) {
 			cpt2 += 1;
 		}
 		tab[id_tab] = max;
-		id_tab += 1;
 		cpt += 1;
 	}
 	free_code64(base_quad);
