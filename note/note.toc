@@ -10,6 +10,7 @@
 \contentsline {subsubsection}{\numberline {2.1.1}Décomposition de Plotkin}{3}{subsubsection.2.1.1}%
 \contentsline {section}{\numberline {3}calcul de distance}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}énumération}{3}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Algo}{4}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Algo probabiliste}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Algo Tervernier like}{4}{subsection.4.2}%
+\contentsline {section}{\numberline {4}Travail sur les bent}{4}{section.4}%
+\contentsline {section}{\numberline {5}Algo}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Algo probabiliste}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Algo Tervernier like}{4}{subsection.5.2}%
