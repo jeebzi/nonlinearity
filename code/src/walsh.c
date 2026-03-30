@@ -1,8 +1,8 @@
 #include "walsh.h"
 
-void fourrier_transform(char *boole, int ffsize) {
+void fourier_transform(int *boole, int ffsize) {
 	/*
-	 * effectue la tranformation de fourrier rapide sur une fonction booléenne représenté en signe
+	 * effectue la tranformation de fourier rapide sur une fonction booléenne représenté en signe
 	 */
 	int nb_etape = __builtin_ctz(ffsize);
 	int droite, gauche, i = 0, tmp, decalage, j;
@@ -30,12 +30,12 @@ void fourrier_transform(char *boole, int ffsize) {
 	}
 }
 
-char* representation_signe(uchar *boole, int ffsize) {
+int* representation_signe(uchar *boole, int ffsize) {
 	/*
 	 * prend une fonction booléenne et la tranforme en représentation -1 ou 1
 	 */
-	char *res;
-	res = (char*) calloc(ffsize, sizeof(char));
+	int *res;
+	res = (int*) calloc(ffsize, sizeof(int));
 	int i = 0;
 	while (i < ffsize) {
 		if (boole[i] == 0) {

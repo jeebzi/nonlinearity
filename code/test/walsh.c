@@ -17,10 +17,12 @@ int main(int argc, char *argv[]) {
 	}
 	boole = load_boole(src, &num, ffsize);
 	print_tab_uchar(boole, ffsize);
-	char* sboole;
+	int* sboole;
 	sboole = representation_signe(boole, ffsize);
 	fourrier_transform(sboole, ffsize);
-	print_tab_char(sboole, ffsize);
+	print_tab_int(sboole, ffsize);
+	fourrier_transform(sboole, ffsize);
+	print_tab_int(sboole, ffsize);
 	free(boole);
 	free(sboole);
 	return 0;

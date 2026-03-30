@@ -3,7 +3,7 @@
 #include "../include/include.h"
 #include "affichage.h"
 
-void fourrier_transform(char *boole, int ffsize);
-char* representation_signe(uchar *boole, int ffsize);
+void fourrier_transform(int *boole, int ffsize);
+int* representation_signe(uchar *boole, int ffsize);
 
 #endif
