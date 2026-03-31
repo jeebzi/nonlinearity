@@ -44,11 +44,11 @@ $$
 On note le degré d'une fonction comme étant le degré maximal de ses termes.
 
 \subsection{Code de Reed-Muller}
-On définit le code de Reed-Muller en $m$ variables et de degré $k$ $\mathrm{RM}(k, m)$ comme l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
+On définit le code de Reed-Muller en $m$ variables et d'ordre $k$ $\mathrm{RM}(k, m)$ comme l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
 $$ \{f \in \mathbb{F}_2^m | \deg(f) \leq k\} $$
 
 \subsection{Non linéarité}
-Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2$ on définit la non linéarité de degrée $k$ de $f$ comme sa distance au code autrement dit à sa distance
+Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code autrement dit à sa distance
 de toutes les fonctions de degré au plus k.
 $$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
 
@@ -161,14 +161,14 @@ voir Algo \ref{alg:pivotage}
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Algo Tervernier like}
+\subsection{Algo Tarvernier like}
 Voir Algo \ref{alg:tavernier}
 
 \begin{algorithm}
 	\caption{Calcule distance}
 	\label{alg:tavernier}
 	\begin{algorithmic}[1]
-		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \BM = x_ng + h$ \newline Le degrée de non linéarité recherché: $k$ \newline
+		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \BM = x_ng + h$ \newline L'odre de non linéarité recherché: $k$ \newline
 		$M$ et $K$ la longueur et la dimension du code $\RM{k}{m}$
 		\STATE best $\gets M$
 		\FOR {$u \in \RM{k-1}{m-1}$}
