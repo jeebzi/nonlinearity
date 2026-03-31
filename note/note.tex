@@ -122,7 +122,13 @@ $$
 \section{Travail sur les bent}
 Une fonction booléenne $f$ et dite bent si ça distance aux fonctions affinnes est la plus grande possible $\textrm{NL}_1(f) = \rho(1, m)$ nous avons voulu
 étudier la non linéarité d'ordre 2 pour les bent en 8 variables. Calculer la non linéarité d'ordre 2 de toutes les fonction bent aurait été impossible étant donnée qu'il y en a 190 million
-et $2^{37}$ mot dans $\RM{2}{8}$
+et $2^{37}$ mot dans $\RM{2}{8}$. Il nous fallait donc trouver un moyen d'estimer rapidement la non linéarité d'une fonction à l'aide d'un algorithme probabiliste.
+La classe latérale d'une fonction $f$ modulo $C$ est l'ensemble des translaté de $f$ par les éléments de $C$
+$$ f + C = \{f + c | c \in C\}
+$$
+Calculé la distance de $f$ à un code revient donc à trouvé le poid minimal de sa classe latérale. L'algorithme probabiliste que l'on a utilisé a pour but de creer un translaté aléatoire de $f$ de poid au plus
+$m - k$ avec $m$ et $k$ la longueur et la dimension du code. Cette algorithme a été très rapide et efficace pour trouver et éliminer les fonctions de faible non linéarité ce qui nous a permis de traiter l'intégralité des fonctions bent en quelque heure.
+Nous avons trouvé que la non linéarité d'ordre 2 des fonctions bent est de 88. On pourrait dire par intuition que $\rho(2, 8) = 88$ mais rien est sûr.
 
 
 
