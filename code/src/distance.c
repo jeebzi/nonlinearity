@@ -229,3 +229,11 @@ int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
 	free(v);
 	return best;
 }
+
+int ftl(uchar *boole, int ffsize) {
+	/*
+	 * calcule la non linéarité d'une fonction booléenne grâce au décodeage de liste de Fourquet Tavernier
+	 * fonction uniquement pour RM(2, 8) pour l'instant
+	 */
+	int score = 0;
+}
