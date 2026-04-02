@@ -19,20 +19,19 @@
 
 \section{Définition}
 \subsection{Fonction booléenne}
-Une fonction booléenne en $m$ variable est une fonction qui prend en paramétre un n-uplet binaire et renvoie 0 ou 1.
+Une fonction booléenne en $m$ variable est une fonction qui prend en paramétre un m-uplet binaire et qui a ses valeurs dans $\{0, 1\}$.
 $$ f : \mathbb{F}_2^m \to \mathbb{F}_2 $$
-$$ \FF_2 = \{0, 1\}$$
-
-Soit $f$ une fonction booléenne en $m$ variables on définit le poid de $f$ comme :
+on note \BM l'ensemble des fonctions booléennes en $m$ variable.
+Soit $f \in$ \BM, on définit le poid de $f$ comme le nombre de fois où la fonction prend la valeur 1.
 $$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\} $$
 
-On peut représenter une fonction par sa table de vérité:
-$$ [f(0), f(1), \dots, f(2^m-1)] $$
+On peut représenter une fonction par la table de ses valeur:
+$$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
 
-On définit la distance de Hamming de deux fonctions booléenne $f$ et $ g$ comme :
+La distance de Hamming de deux fonctions booléenne $f$ et $ g$ est définie par le nombre de fois où les fonctions ne partage pas de valeur égale.
 $$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}$$
 
-Soit $C$ un code étant un sous ensemble des fonctions booléenne en $m$ variables noté $C \subset \mathbb{F}_2^{2^m}$ et $f$ une fonction booléenne en $m$ variable on définit la distance de $f$ au code comme
+Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléenne en $m$ variables et $f$ une fonction booléenne en $m$ variable on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
 $$d(f, C) = \min_{c \in C} d_H(f, c)$$
 
