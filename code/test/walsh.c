@@ -16,13 +16,18 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	boole = load_boole(src, &num, ffsize);
+	uint64_t *f = boole_to_int(boole, ffsize);
+	int max;
 	print_tab_uchar(boole, ffsize);
 	int* sboole;
 	sboole = representation_signe(boole, ffsize);
-	fourrier_transform(sboole, ffsize);
+	fourier_transform(sboole, ffsize);
 	print_tab_int(sboole, ffsize);
-	fourrier_transform(sboole, ffsize);
+	fourier_transform(sboole, ffsize);
 	print_tab_int(sboole, ffsize);
+	max = sup_walsh(f, ffdimen, ffsize);
+	printf("max walsh = %d\n", max);
+	free(f);
 	free(boole);
 	free(sboole);
 	return 0;
