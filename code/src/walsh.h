@@ -3,6 +3,7 @@
 #include "../include/include.h"
 #include "affichage.h"
 #include "code.h"
+#include "weight.h"
 
 void fourier_transform(int *boole, int ffsize);
 int* representation_signe(uchar *boole, int ffsize);

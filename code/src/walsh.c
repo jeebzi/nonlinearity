@@ -60,7 +60,11 @@ int sup_walsh(uint64_t *f, int ffdimen, int ffsize) {
 	free_code(lin);
 	uint64_t *l = calloc(int_par_ligne, sizeof(uint64_t));
 
-	int maxi = 0, wt, j, i;
+	int maxi, wt, j, i;
+	/*initialisation du sup */
+	wt = weight_64(f, int_par_ligne);
+	maxi = ffsize - (2 * wt);
+
 	int coef_walsh;
 
 	unsigned int limite = (unsigned int) 1 << base_lin.dim, cpt = 1;
@@ -74,7 +78,6 @@ int sup_walsh(uint64_t *f, int ffdimen, int ffsize) {
 			j += 1;
 		}
 		coef_walsh = ffsize - (2 * wt);
-		printf("walsh %d\n", coef_walsh);
 		if (coef_walsh < 0) coef_walsh = -1 * coef_walsh;
 		if (coef_walsh > maxi) maxi = coef_walsh;
 		cpt += 1;
