@@ -1,1 +1,1 @@
-anf=abd+ace+ade+bcf+bdf+cef+abg+abcg+adg+bdg+abdg+aceg+fg+bcfg+defg
+anf=ac+bc+abd+acd+de+bde+af+abf+cf+bcf+df+ef+aef+cdef+ag+acg+dg+adg+bdg+bceg+adeg+abfg+dfg+efg+h+ah+bh+abh+ch+ach+bch+abch+adh+bdh+abdh+acdh+eh+fh+afh+abfh+dfh+bdfh+efh+aefh+cgh+acgh+egh
