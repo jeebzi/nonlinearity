@@ -273,9 +273,10 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 			gamma1 = sup_walsh(f1, ffdimen - 1, ffsize >> 1);
 		}
 		else {
+			i = __builtin_ctzl(cpt_quad);
 			j = 0;
 			while (j < int_par_ligne2) {
-				p[j] ^= base_quad.G[i*int_par_ligne + j];
+				p[j] ^= base_quad.G[i*int_par_ligne2 + j];
 				f0p[j] = p[j] ^ f0[j];
 				f1p[j] = p[j] ^ f1[j];
 				j += 1;
