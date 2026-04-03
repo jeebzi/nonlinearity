@@ -20,8 +20,10 @@ int main(int argc, char *argv[]) {
 	boole = load_boole(src, &num, ffsize);
 
 	uint64_t *mot;
+	unsigned int score;
 	mot = boole_to_int(boole, ffsize);
-	ftl(mot, ffdimen, ffsize, 64);
+	score = ftl(mot, ffdimen, ffsize, 64);
+	printf("score = %u\n", score);
 	free(mot);
 	free(boole);
 	fclose(src);

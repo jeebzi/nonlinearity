@@ -230,14 +230,17 @@ int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
 	return best;
 }
 
-int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
+unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	/*
 	 * calcule la non linéarité (plutôt la somme de charactère max d'une fonction au RM(2,8) d'une fonction booléenne grâce au décodeage de liste de Fourquet Tavernier
 	 * fonction uniquement pour RM(2, 8) pour l'instant
 	 */
+	assert(ffdimen >= 7);
+	assert(ffsize == (1 << ffdimen));
 	int int_par_ligne = (ffsize+63)/64;
 	int int_par_ligne2 = ((ffsize >> 1) + 63) / 64;
-	int score = 0, j, i;
+	int j, i;
+	unsigned int score = 0;
 	code tmp;
 	tmp = RMH(2, 7);
 	code64 base_quad = code_to_code64(tmp);
@@ -247,9 +250,11 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	free_code(tmp);
 
 	uint64_t *p; /* prefix de q dans rm(2,8) */
-	uint64_t *l;
+	uint64_t *l, *y, *fpp;
 	p = calloc(int_par_ligne2, sizeof(uint64_t));
-	l = calloc(int_par_ligne2, sizeof(uint64_t));
+	l = calloc(int_par_ligne, sizeof(uint64_t));
+	y = calloc(int_par_ligne, sizeof(uint64_t));
+	fpp = calloc(int_par_ligne, sizeof(uint64_t));
 
 	uint64_t lim_quad, cpt_quad, lim_lin, cpt_lin;
 	lim_quad = (uint64_t) 1 << base_quad.dim;
@@ -266,29 +271,56 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	uint64_t *f0p, *f1p;
 	f0p = calloc(int_par_ligne2, sizeof(uint64_t));
 	f1p = calloc(int_par_ligne2, sizeof(uint64_t));
-	unsigned int gamma0, gamma1;
+	unsigned int gamma0, gamma1, gamma;
 	while (cpt_quad < lim_quad) {
 		if (cpt_quad == 0) {
 			gamma0 = sup_walsh(f0, ffdimen - 1, ffsize >> 1);
 			gamma1 = sup_walsh(f1, ffdimen - 1, ffsize >> 1);
 		}
 		else {
+			i = __builtin_ctzl(cpt_quad);
 			j = 0;
 			while (j < int_par_ligne2) {
-				p[j] ^= base_quad.G[i*int_par_ligne + j];
+				p[j] ^= base_quad.G[i*int_par_ligne2 + j];
 				f0p[j] = p[j] ^ f0[j];
 				f1p[j] = p[j] ^ f1[j];
 				j += 1;
 			}
-			int w1, w2;
-			w1 = weight_64(f0p, int_par_ligne2);
-			w2 = weight_64(f1p, int_par_ligne2);
 			gamma0 = sup_walsh(f0p, ffdimen - 1, ffsize >> 1);
 			gamma1 = sup_walsh(f1p, ffdimen - 1, ffsize >> 1);
-			printf("w0 %d w1 %d\n", w1, w2);
 		}
-		printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
+		// printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
+		if (0 && (gamma0 + gamma1) >= target) {
+			memset(l, 0, int_par_ligne);
+			cpt_lin = 0;
+			while (cpt_lin < lim_lin) {
+				if (cpt_lin == 0) {
+					/* création de f + p  avec p sur m + 1 variable [p|p]*/
+					j = 0;
+					while (j < int_par_ligne) {
+						fpp[j] = f[j] ^ p[j%int_par_ligne2];
+						y[j] = fpp[j];
+						j += 1;
+					}
+				}
+				/* on regarde y = f + p + x_8l */
+				else {
+					i = __builtin_ctzl(cpt_lin);
+					j = 0;
+					/* l = [0|l] */
+					while (j < int_par_ligne2) {
+						l[int_par_ligne2 + j] ^= base_lin.G[i*int_par_ligne2 + j];
+						y[int_par_ligne2 + j] = fpp[int_par_ligne2 + j] ^ l[int_par_ligne2 + j];
+						j += 1;
+					}
+				}
+				gamma = sup_walsh(y, ffdimen, ffsize);
+				if (gamma > score) score = gamma;
+				cpt_lin += 1;
+			}
+		}
 		cpt_quad += 1;
+		printf("cpt_quad %lu lim %lu\n", cpt_quad, lim_quad);
 	}
 
 
@@ -300,5 +332,7 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	free(f1p);
 	free(f0);
 	free(f1);
+	free(fpp);
+	free(y);
 	return score;
 }
