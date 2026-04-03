@@ -239,7 +239,7 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	assert(ffsize == (1 << ffdimen));
 	int int_par_ligne = (ffsize+63)/64;
 	int int_par_ligne2 = ((ffsize >> 1) + 63) / 64;
-	int j, i;
+	int j, i, k;
 	unsigned int score = 0;
 	code tmp;
 	tmp = RMH(2, 7);
@@ -290,7 +290,7 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 			gamma1 = sup_walsh(f1p, ffdimen - 1, ffsize >> 1);
 		}
 		// printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
-		if (0 && (gamma0 + gamma1) >= target) {
+		if ((gamma0 + gamma1) >= target) {
 			memset(l, 0, int_par_ligne);
 			cpt_lin = 0;
 			while (cpt_lin < lim_lin) {
@@ -307,10 +307,12 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 				else {
 					i = __builtin_ctzl(cpt_lin);
 					j = 0;
+					k = int_par_ligne2;
 					/* l = [0|l] */
 					while (j < int_par_ligne2) {
-						l[int_par_ligne2 + j] ^= base_lin.G[i*int_par_ligne2 + j];
-						y[int_par_ligne2 + j] = fpp[int_par_ligne2 + j] ^ l[int_par_ligne2 + j];
+						l[k] ^= base_lin.G[i*int_par_ligne2 + j];
+						y[k] = fpp[k] ^ l[k];
+						k += 1;
 						j += 1;
 					}
 				}
@@ -320,7 +322,7 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 			}
 		}
 		cpt_quad += 1;
-		printf("cpt_quad %lu lim %lu\n", cpt_quad, lim_quad);
+		// printf("cpt_quad %lu lim %lu\n", cpt_quad, lim_quad);
 	}
 
 
