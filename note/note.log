@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  7 APR 2026 11:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  9 APR 2026 14:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -413,32 +413,31 @@ Overfull \hbox (4.86267pt too wide) in paragraph at lines 40--41
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 88.
+(hyperref)                removing `math shift' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rho' on input line 88.
+(hyperref)                removing `\rho' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 88.
+(hyperref)                removing `math shift' on input line 93.
 
-[2]
-Overfull \hbox (29.2153pt too wide) detected at line 125
+[2] [3]
+Overfull \hbox (69.2296pt too wide) detected at line 130
 \OML/cmm/m/it/10 G \OT1/cmr/m/n/10 = []  []
  []
 
-[3]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 145.
- [4] [5] (./note.aux)
+put line 152.
+[4] [5] (./note.aux)
 Package rerunfilecheck Info: File `note.out' has not changed.
 (rerunfilecheck)             Checksum: DCD055B62EFBEC0D219A37D8B396E0D9;2168.
  ) 
 Here is how much of TeX's memory you used:
  11200 strings out of 480104
  174738 string characters out of 5892286
- 486272 words of memory out of 5000000
+ 485272 words of memory out of 5000000
  28968 multiletter control sequences out of 15000+600000
  484756 words of font info for 66 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
@@ -455,13 +454,14 @@ s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on note.pdf (5 pages, 158470 bytes).
+/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on note.pdf (5 pages, 169199 bytes).
 PDF statistics:
- 400 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
+ 408 PDF objects out of 1000 (max. 8388607)
+ 192 compressed objects within 2 object streams
  48 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
