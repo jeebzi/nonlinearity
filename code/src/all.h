@@ -10,5 +10,6 @@
 #include "linked_list.h"
 #include "non_trivial.h"
 #include "walsh.h"
+#include "bench.h"
 
 #endif

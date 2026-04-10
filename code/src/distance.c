@@ -230,22 +230,22 @@ int bdistance(uint64_t **zip, code64 c, int target, int int_par_ligne) {
 	return best;
 }
 
-unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
+int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	/*
-	 * calcule la non linéarité (plutôt la somme de charactère max d'une fonction au RM(2,8) d'une fonction booléenne grâce au décodeage de liste de Fourquet Tavernier
+	 * calcule la non linéarité d'une fonction booléenne grâce au décodeage de liste de Fourquet Tavernier
 	 * fonction uniquement pour RM(2, 8) pour l'instant
 	 */
 	assert(ffdimen >= 7);
 	assert(ffsize == (1 << ffdimen));
 	int int_par_ligne = (ffsize+63)/64;
 	int int_par_ligne2 = ((ffsize >> 1) + 63) / 64;
-	int j, i, k;
+	int j, i, k, over = 0, wt;
 	unsigned int score = 0;
 	code tmp;
-	tmp = RMH(2, 7);
+	tmp = RMH(2, ffdimen - 1);
 	code64 base_quad = code_to_code64(tmp);
 	free_code(tmp);
-	tmp = RMH(1, 7);
+	tmp = RMH(1, ffdimen - 1);
 	code64 base_lin = code_to_code64(tmp);
 	free_code(tmp);
 
@@ -272,7 +272,7 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	f0p = calloc(int_par_ligne2, sizeof(uint64_t));
 	f1p = calloc(int_par_ligne2, sizeof(uint64_t));
 	unsigned int gamma0, gamma1, gamma;
-	while (cpt_quad < lim_quad) {
+	while (over == 0 && cpt_quad < lim_quad) {
 		if (cpt_quad == 0) {
 			gamma0 = sup_walsh(f0, ffdimen - 1, ffsize >> 1);
 			gamma1 = sup_walsh(f1, ffdimen - 1, ffsize >> 1);
@@ -290,10 +290,10 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 			gamma1 = sup_walsh(f1p, ffdimen - 1, ffsize >> 1);
 		}
 		// printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
-		if ((gamma0 + gamma1) >= target) {
+		if ((gamma0 + gamma1) >= score) {
 			memset(l, 0, int_par_ligne);
 			cpt_lin = 0;
-			while (cpt_lin < lim_lin) {
+			while (over == 0 && cpt_lin < lim_lin) {
 				if (cpt_lin == 0) {
 					/* création de f + p  avec p sur m + 1 variable [p|p]*/
 					j = 0;
@@ -317,7 +317,11 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 					}
 				}
 				gamma = sup_walsh(y, ffdimen, ffsize);
-				if (gamma > score) score = gamma;
+				if (gamma > score) {
+					score = gamma;
+					wt = (ffsize >> 1) - (score >> 1);
+					if (wt < target) over = 1;
+				}
 				cpt_lin += 1;
 			}
 		}
@@ -336,5 +340,6 @@ unsigned int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	free(f1);
 	free(fpp);
 	free(y);
-	return score;
+	if (over == 1) return -1;
+	return wt;
 }

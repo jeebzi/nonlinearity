@@ -2,11 +2,14 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, nb_sample = 1024, target = -1;
+	int ffdimen, num, ffsize, opt, k, dist, nb_sample=1024, target = -1;
 	FILE *src;
 
-	while ((opt = getopt(argc, argv, "n:f:s:t:")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:s:t:")) != -1) {
 		switch(opt) {
+			case 'k':
+				k = atoi(optarg);
+				break;
 			case 'n':
 				ffdimen = atoi(optarg);
 				ffsize = 1 << ffdimen;
@@ -25,17 +28,18 @@ int main(int argc, char *argv[]) {
 
 		}
 	}
+	code c = RM(k, ffdimen);
 	time_t tim, start;
 	unsigned int iteration, cpt = 0;
 	double time_moyen = 0, iter_moyen = 0;
 	int rejet;
-	uint64_t *mot;
+	uint64_t *words = code_to_int(c), *mot;
 	int tab_rejet[1024] = {0};
 	uchar *f;
 	while ((f = load_boole(src, &num, ffsize)) && cpt < nb_sample) {
 		mot = boole_to_int(f, ffsize);
 		start = time(NULL);
-		dist = ftl_bench(mot, ffdimen, ffsize, target, &iteration, &rejet);
+		dist = distance_mot_code_bench(mot, words, ffsize, c.dim, target, &iteration, &rejet);
 		tim = time(NULL) - start;
 		if (dist == -1) {
 			tab_rejet[rejet] += 1;
@@ -51,5 +55,7 @@ int main(int argc, char *argv[]) {
 	printf("iter_moyen = %f\n", iter_moyen);
 	printf("time_moyen = %f\n", time_moyen);
 	fclose(src);
+	free_code(c);
+	free(words);
 	return 0;
 }
