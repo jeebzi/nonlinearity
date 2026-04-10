@@ -4,7 +4,7 @@ VPATH = ../src
 
 .PHONY: clean all
 
-all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe fdt.exe orphan.exe rang.exe filtre_homogene.exe distribution_rang.exe bench.exe non_trivial.exe tableau_poid.exe bench_enum.exe bench_ftl.exe
+all: calc_nl.exe distribution.exe approximation.exe recherche_distance.exe recherche_distance_proba.exe spec_27.exe fdt.exe orphan.exe rang.exe filtre_homogene.exe distribution_rang.exe bench.exe non_trivial.exe tableau_poid.exe bench_enum.exe bench_ftl.exe ftl.exe
 
 calc_nl.exe: calc_nl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
@@ -53,6 +53,10 @@ bench_enum.exe: bench_enum.c -lmylib
 
 bench_ftl.exe: bench_ftl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
+
+ftl.exe: ftl.c -lmylib
+	gcc $(CFLAGS) $< $(LIB) -o $@
+
 
 clean:
 	rm *.exe
