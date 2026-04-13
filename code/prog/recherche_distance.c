@@ -2,7 +2,7 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, target, version_min;
+	int ffdimen, ffsize, num, opt, k, dist, target = -1, version_min = 1;
 	FILE *src;
 
 	while ((opt = getopt(argc, argv, "k:n:f:t:m")) != -1) {
