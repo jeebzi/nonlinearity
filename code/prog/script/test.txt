@@ -1,8 +1,4 @@
-anf=abd+ace+ade+bcf+bdf+cef+abg+abcg+adg+bdg+abdg+aceg+fg+bcfg+defg
-is_orphan
-anf=bcd+ace+bce+acf+abcf+bdf+cdf+aef+acef+cdef+abg+bdg+bceg+deg+fg+bdfg+aefg+befg
-is_orphan
-anf=acd+bcd+ace+adf+abg+bdg+deg+fg
-is_orphan
-anf=cde+adf+bdf+bef+bdg+aeg+fg+defg
-is_orphan
+40 anf=abd+ace+ade+bcf+bdf+cef+abg+abcg+adg+bdg+abdg+aceg+fg+bcfg+defg
+40 anf=bcd+ace+bce+acf+abcf+bdf+cdf+aef+acef+cdef+abg+bdg+bceg+deg+fg+bdfg+aefg+befg
+40 anf=acd+bcd+ace+adf+abg+bdg+deg+fg
+40 anf=cde+adf+bdf+bef+bdg+aeg+fg+defg
