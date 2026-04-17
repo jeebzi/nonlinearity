@@ -239,7 +239,7 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	assert(ffsize == (1 << ffdimen));
 	int int_par_ligne = (ffsize+63)/64;
 	int int_par_ligne2 = ((ffsize >> 1) + 63) / 64;
-	int j, i, k, over = 0, wt;
+	int j, i, k, over = 0, wt=-1;
 	unsigned int score = 0;
 	code tmp;
 	tmp = RMH(2, ffdimen - 1);
@@ -289,7 +289,7 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 			gamma0 = sup_walsh(f0p, ffdimen - 1, ffsize >> 1);
 			gamma1 = sup_walsh(f1p, ffdimen - 1, ffsize >> 1);
 		}
-		// printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
+		 printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
 		if ((gamma0 + gamma1) >= score) {
 			memset(l, 0, int_par_ligne);
 			cpt_lin = 0;

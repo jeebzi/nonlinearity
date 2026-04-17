@@ -1,9 +1,13 @@
-\documentclass{article}
+\documentclass{report}
 
+\usepackage{enumitem}
+\usepackage{biblatex}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{hyperref}
@@ -15,9 +19,16 @@
 \def\WT#1{\ensuremath{\mathrm{wt}(#1)}}
 \def\BM{\ensuremath{\mathrm{B}(m)}}
 \def\BST#1#2#3{\ensuremath{\mathrm{B}_#1^#2(#3)}}
+\def\binome#1#2{\ensuremath{{C}_#1^#2}}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}{Proposition}
+
+\addbibresource{source.bib}
+
 \begin{document}
 \tableofcontents
 
+\cite{gao2026}
 \section{Définition}
 \subsection{Fonction booléenne}
 Une fonction booléenne en $m$ variables est une fonction qui prend en paramétre un m-uplet binaire et qui a ses valeurs dans $\{0, 1\}$.
@@ -35,6 +46,14 @@ $$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}$$
 Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléenne en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
 $$d(f, C) = \min_{c \in C} d_H(f, c)$$
+\begin{proposition}
+	Soit $f$ et $g$ deux fonctions booléennes en $m$ variables
+	\begin{enumerate}[label=(\roman*)]
+		\item $\deg(f) = m \Longleftrightarrow f$ est de poids impair.
+		\item $\deg(f) < m \Longleftrightarrow f$ est de poids pair.
+		\item $\WT{f+g} = \WT{f} + \WT{g} - 2\WT{fg}$
+	\end{enumerate}
+\end{proposition}
 
 \subsection{Forme normal algébrique et degré}
 Toute fonction booléenne peut s'écrire comme une somme de monômes nommé ANF (algebraic normal form)
@@ -50,6 +69,8 @@ $$
 \subsection{Code de Reed-Muller}
 Le code de Reed-Muller en $m$ variables et d'ordre $k$ $\mathrm{RM}(k, m)$ est l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
 $$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 | \deg(f) \leq k\} $$
+La dimension de \RM{k}{m} est : 
+$$ \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i}$$
 
 \subsection{Non linéarité}
 Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code autrement dit à sa distance
@@ -193,5 +214,7 @@ Voir Algo \ref{alg:tavernier}
 		\RETURN best
 	\end{algorithmic}
 \end{algorithm}
+
+\printbibliography
 
 \end{document}

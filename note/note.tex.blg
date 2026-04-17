@@ -1,0 +1,5 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'note.tex.blg'
+[35] biber:340> INFO - === jeu. avril 16, 2026, 16:24:54
+[61] Utils.pm:398> ERROR - Cannot find 'note.tex.bcf'!
+[61] Biber.pm:135> INFO - ERRORS: 1
