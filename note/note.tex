@@ -86,6 +86,14 @@ $$N = 2^8 = 256$$
 Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2,$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code, autrement dit à sa distance
 à toutes les fonctions de degré au plus k.
 $$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
+Le coéfficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
+$$
+\widehat{f}(a) = \sum_{x \in \FF_2^m} (-1)^{f(x) + a.x}
+$$
+La non linéarité d'ordre 1 peut aussi être définie par:
+$$
+\mathrm{NL}(f) = 2^{m-1} - \frac{1}{2}\max_{a \in \FF_2^m}|\widehat{f}(a)|.
+$$
 
 \subsection{Rayon de recouvrement}
 Le rayon de recouvrement $\rho(k, m)$ d'un code $\mathrm{RM}(k, m)$ de Reed-Muller, est la distance maximale entre ce dernier et l'ensemble des fonctions booléennes
@@ -124,6 +132,11 @@ Notre but et de trouver une fonction dont la non linéarité et plus grande que 
 \subsection{Inégalité de $\rho$}
 On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
+Preuve:
+
+Soit $x=(a, b)$ in vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
+De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$. Alors le mot $c = (u, u+v)$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$
+
 donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
 \subsubsection{Décomposition de Plotkin}
 Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme

@@ -13,4 +13,4 @@
 \contentsline {section}{\numberline {0.4}Travail sur les bent}{5}{section.0.4}%
 \contentsline {section}{\numberline {0.5}Algo}{5}{section.0.5}%
 \contentsline {subsection}{\numberline {0.5.1}Algo probabiliste}{5}{subsection.0.5.1}%
-\contentsline {subsection}{\numberline {0.5.2}Algo Tarvernier like}{5}{subsection.0.5.2}%
+\contentsline {subsection}{\numberline {0.5.2}Algo Tarvernier like}{6}{subsection.0.5.2}%
