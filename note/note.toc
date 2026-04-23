@@ -8,9 +8,9 @@
 \contentsline {section}{\numberline {0.2}Problématique}{3}{section.0.2}%
 \contentsline {subsection}{\numberline {0.2.1}Inégalité de $\rho $}{4}{subsection.0.2.1}%
 \contentsline {subsubsection}{Décomposition de Plotkin}{4}{section*.2}%
-\contentsline {section}{\numberline {0.3}calcul de distance}{4}{section.0.3}%
-\contentsline {subsection}{\numberline {0.3.1}énumération}{4}{subsection.0.3.1}%
+\contentsline {section}{\numberline {0.3}calcul de distance}{5}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}énumération}{5}{subsection.0.3.1}%
 \contentsline {section}{\numberline {0.4}Travail sur les bent}{5}{section.0.4}%
-\contentsline {section}{\numberline {0.5}Algo}{5}{section.0.5}%
-\contentsline {subsection}{\numberline {0.5.1}Algo probabiliste}{5}{subsection.0.5.1}%
+\contentsline {section}{\numberline {0.5}Algo}{6}{section.0.5}%
+\contentsline {subsection}{\numberline {0.5.1}Algo probabiliste}{6}{subsection.0.5.1}%
 \contentsline {subsection}{\numberline {0.5.2}Algo Tarvernier like}{6}{subsection.0.5.2}%
