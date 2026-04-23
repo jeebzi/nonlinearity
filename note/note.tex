@@ -134,10 +134,13 @@ On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
 Preuve:
 
-Soit $x=(a, b)$ in vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
-De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$. Alors le mot $c = (u, u+v)$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$
+Soit $x=(a, b)$ un vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Tous les mots $c$ dans \RM{k}{m} peuvent d'écrire comme $c = u+x_8v$ avec $u \in \RM{k}{m-1} \; v \in \RM{k-1}{m-1}$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
+De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$.
+Puisque $x=(a,b)$ et $c = (u, u+v) \quad d(c, x) = d(u, a) + d(u+v, b) = d(u, a) + d(u+b, v)$.
+Alors le mot $c$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$.
 
-donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
+
+Pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
 \subsubsection{Décomposition de Plotkin}
 Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme
 $$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$
