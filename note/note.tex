@@ -241,6 +241,26 @@ Voir Algo \ref{alg:tavernier}
 	\end{algorithmic}
 \end{algorithm}
 
+\subsection{Algo FTL}
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\STATE score $\gets 0$
+		\FOR {$P \in \BST{2}{2}{7}$}
+		\STATE $\gamma_0 \gets \max_{a \in \FF_2^7} |\widehat{f_0 + P}(a)|$
+		\STATE $\gamma_1 \gets \max_{a \in \FF_2^7} |\widehat{f_1 + P}(a)|$
+		\IF {$\gamma_0 + \gamma_1 \geq$}
+		  \FOR {$ l \in \BST{1}{1}{7}$}
+		    \STATE $h \gets f + P + x_8l$
+		    \STATE $\gamma \gets \max_{a \in \FF_2^8}|\widehat{h}(a)|$
+		    \IF {gamma > score}
+		      \STATE score $\gets \gamma$
+		    \ENDIF
+		  \ENDFOR
+		\ENDIF
+		\ENDFOR
+		\RETURN score
+	\end{algorithmic}
+\end{algorithm}
 \printbibliography
 
 \end{document}
