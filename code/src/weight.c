@@ -23,7 +23,7 @@ int* tableau_poid(uint64_t *h, code64 c) {
 	uint64_t taille_tab = (uint64_t) 1 << c.dim;
 	res = calloc(taille_tab, sizeof(int));
 
-	/*on parcour tousles q et on calcule le poid*/
+	/*on parcour tout les q et on calcule le poid*/
 	uint64_t *q;
 	q = calloc(int_par_ligne, sizeof(uint64_t));
 	int i, j, wt;
@@ -34,7 +34,7 @@ int* tableau_poid(uint64_t *h, code64 c) {
 			cpt += 1;
 		}
 		i = __builtin_ctzl(cpt);
-		indice ^= (1 << i);
+		indice ^= ((uint64_t)1 << i);
 		wt = 0;
 		j = 0;
 		while (j < int_par_ligne) {

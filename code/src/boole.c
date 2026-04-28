@@ -61,8 +61,7 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	int n;
 	while (fgets(buffer, 1024, src)) {
 		ptr = &buffer[0];
-		n = sscanf(ptr, "%d", num);
-		if (n > 0) {
+		if (sscanf(ptr, "%d%n", num, &n) != 0) {
 			ptr += n;
 			/* skip les espaces */
 			while (*ptr == ' ') ptr += 1; 

@@ -3,7 +3,7 @@
 
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, *distribution;
+	int ffdimen, ffsize, num, opt, k;
 	FILE *src;
 
 	while ((opt = getopt(argc, argv, "k:n:f:")) != -1) {
@@ -21,10 +21,57 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	uchar *f;
-	while (f = load_boole(src, &num, ffsize)) {
-		print_anf(f, ffdimen, ffsize);
+	code tmp = RM(k, ffdimen);
+	code64 c = code_to_code64(tmp);
+	free_code(tmp);
+	tmp = RMH(k, ffdimen);
+	code64 code_homogene = code_to_code64(tmp);
+
+	uchar *g_boole;
+	uint64_t *mot;
+	int *W, j, i;
+	int int_par_ligne = (63+ffsize) / 64;
+	uint64_t cpt, limite = (uint64_t) 1 << code_homogene.dim, indice_g = 0, indice_q;
+	uint64_t *g = calloc(int_par_ligne, sizeof(uint64_t));
+	uint64_t limite2 = (uint64_t) 1 << c.dim;
+	while ((f = load_boole(src, &num, ffsize))) {
+		mot = boole_to_int(f, ffsize);
+		/* on stocke la valeur de wt(h + q) pour gagner du temps */
+		W = tableau_poid(mot, c);
+		/* on regarde tous les g dans le code homogène */
+		memset(g, 0, int_par_ligne*sizeof(uint64_t));
+		cpt = 1;
+		while(cpt < limite) {
+			i = __builtin_ctzl(cpt);
+			indice_g ^= (uint64_t) 1 << i;
+			j = 0;
+			while (j < int_par_ligne) {
+				g[j] ^= code_homogene.G[i * int_par_ligne + j];
+				j += 1;
+			}
+			/* avec notre g on regarde W[q] + W[q+g] pour tous les q */
+			indice_q = 0;
+			while (indice_q < limite2 && ((W[indice_q] + W[indice_q^indice_g]) >= 88)) {
+				printf("W[q+g] = %d\n", W[indice_q]+W[indice_q^indice_g]);
+				// printf("indice q + indice g %ld\n", indice_q^indice_g);
+				indice_q += 1;
+			}
+			if (indice_q >= limite2) {
+				printf("h : ");
+				print_anf(f, ffdimen, ffsize);
+				printf("g : ");
+				g_boole = int_to_boole(g, ffsize);
+				print_anf(g_boole, ffdimen, ffsize);
+				free(g_boole);
+			}
+			cpt += 1;
+		}
+		free(mot);
 		free(f);
+		free(W);
 	}
+	free(c.G);
+	free(code_homogene.G);
 	return 0;
 }
 
