@@ -5,7 +5,7 @@
  * fonctions HNL pour RM(2,7) q les quadratique homogènes et l les fonctions affines
  */
 
-int *tableau_poid(uint64_t *h, int ffdimen, int ffsize) {
+int *tableau_poid_max(uint64_t *h, int ffdimen, int ffsize) {
 	int int_par_ligne = (ffsize+63)/64;
 	int *tab; /* tableau des poid */
 	int id_tab = 0;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
 	int *tab;
 	while ((f = load_boole(src, &num, ffsize))) {
 		h = boole_to_int(f, ffsize);
-		tab = tableau_poid(h, ffdimen, ffsize);
+		tab = tableau_poid_max(h, ffdimen, ffsize);
 		printf("done\n");
 	}
 	free(h);

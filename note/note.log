@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  16 APR 2026 16:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  28 APR 2026 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,34 +587,35 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 )
 \c@theorem=\count426
 \c@proposition=\count427
+\c@remark=\count428
 
 
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count428
-\@quotereset=\count429
+\@quotelevel=\count429
+\@quotereset=\count430
 (./note.aux)
 \openout1 = `note.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 Package biblatex Info: Trying to load language 'french'...
 Package biblatex Info: ... file 'french.lbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/french.lbx
@@ -629,17 +630,17 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'note.bbl' found.
 
 (./note.bbl)
-Package biblatex Info: Reference section=0 on input line 28.
-Package biblatex Info: Reference segment=0 on input line 28.
-LaTeX Info: Redefining \degres on input line 28.
+Package biblatex Info: Reference section=0 on input line 29.
+Package biblatex Info: Reference segment=0 on input line 29.
+LaTeX Info: Redefining \degres on input line 29.
 Package french.ldf Info: Setting StandardItemizeEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 28.
+(french.ldf)             reported on input line 29.
 Package french.ldf Info: Setting StandardEnumerateEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 28.
-LaTeX Info: Redefining \up on input line 28.
-Package hyperref Info: Link coloring OFF on input line 28.
+(french.ldf)             reported on input line 29.
+LaTeX Info: Redefining \up on input line 29.
+Package hyperref Info: Link coloring OFF on input line 29.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -649,11 +650,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count430
+\c@section@level=\count431
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
 
 (./note.out) (./note.out)
 \@outlinefile=\write4
@@ -662,16 +663,16 @@ LaTeX Info: Redefining \nameref on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count431
+\scratchcounter=\count432
 \scratchdimen=\dimen164
 \scratchbox=\box56
-\nofMPsegments=\count432
-\nofMParguments=\count433
+\nofMPsegments=\count433
+\nofMParguments=\count434
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count434
+\MPscratchCnt=\count435
 \MPscratchDim=\dimen165
-\MPnumerator=\count435
-\makeMPintoPDFobject=\count436
+\MPnumerator=\count436
+\makeMPintoPDFobject=\count437
 \everyMPtoPDFconversion=\toks36
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -699,7 +700,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (4.86267pt too wide) in paragraph at lines 59--60
+Overfull \hbox (4.86267pt too wide) in paragraph at lines 60--61
 []\T1/cmr/m/n/10 Toute fonc-tion boo-léenne peut s'écrire comme une somme de mo
 -nômes nommé
  []
@@ -707,44 +708,44 @@ Overfull \hbox (4.86267pt too wide) in paragraph at lines 59--60
 [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 114.
+(hyperref)                removing `math shift' on input line 132.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rho' on input line 114.
+(hyperref)                removing `\rho' on input line 132.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 114.
+(hyperref)                removing `math shift' on input line 132.
 
-[3]
-Overfull \hbox (69.2296pt too wide) detected at line 151
+[3] [4]
+Overfull \hbox (69.2296pt too wide) detected at line 192
 \OML/cmm/m/it/10 G \OT1/cmr/m/n/10 = []  []
  []
 
-[4]
+[5]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 173.
- [5] [6]
+put line 214.
+ [6] [7] [8]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
-18.
+79.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [7
+)
+[9
 
-]
-(./note.aux)
+] (./note.aux)
 Package rerunfilecheck Info: File `note.out' has not changed.
-(rerunfilecheck)             Checksum: D2CB3937A50567DECB8658E554DBB0C5;2017.
+(rerunfilecheck)             Checksum: A2D818301D176D076B4EAF785C6DCFC4;2404.
 Package logreq Info: Writing requests to 'note.run.xml'.
 \openout1 = `note.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19418 strings out of 480104
- 333214 string characters out of 5892286
- 1037808 words of memory out of 5000000
- 37104 multiletter control sequences out of 15000+600000
+ 19447 strings out of 480104
+ 333556 string characters out of 5892286
+ 1039848 words of memory out of 5000000
+ 37113 multiletter control sequences out of 15000+600000
  487301 words of font info for 70 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  60i,9n,68p,737b,1846s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -761,17 +762,19 @@ mf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/imath-stage1/.texlive
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
-/msbm10.pfb>
-Output written on note.pdf (7 pages, 198823 bytes).
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.p
+fb>
+Output written on note.pdf (9 pages, 222959 bytes).
 PDF statistics:
- 524 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 589 PDF objects out of 1000 (max. 8388607)
+ 262 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

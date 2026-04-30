@@ -58,13 +58,19 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	uchar *res;
 	char buffer[1024], *ptr;
 	*num = -1;
+	int n;
 	while (fgets(buffer, 1024, src)) {
 		ptr = &buffer[0];
-		if (sscanf(ptr, "%d", num) > 0) {
-			res = str_to_boole(ptr, ffsize);
-			return res;
+		if (sscanf(ptr, "%d%n", num, &n) != 0) {
+			ptr += n;
+			/* skip les espaces */
+			while (*ptr == ' ') ptr += 1; 
+			if (strncmp(ptr, "anf", 3) == 0) {
+				res = str_to_boole(ptr, ffsize);
+				return res;
+			}
 		}
-		if(*ptr != '#') {
+		if(*ptr != '#' && strncmp(ptr, "anf", 3) == 0) {
 			res = str_to_boole(buffer, ffsize);
 			return res;
 		}

@@ -22,6 +22,7 @@
 \def\binome#1#2{\ensuremath{{C}_#1^#2}}
 \newtheorem{theorem}{Théorème}
 \newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remarque}
 
 \addbibresource{source.bib}
 
@@ -32,20 +33,20 @@
 \section{Définition}
 \subsection{Fonction booléenne}
 Une fonction booléenne en $m$ variables est une fonction qui prend en paramétre un m-uplet binaire et qui a ses valeurs dans $\{0, 1\}$.
-$$ f : \mathbb{F}_2^m \to \mathbb{F}_2 $$
+$$ f : \mathbb{F}_2^m \to \mathbb{F}_2 ,$$
 on note \BM l'ensemble des fonctions booléennes en $m$ variables.
 Soit $f \in$ \BM, on définit le poid de $f$ comme le nombre de fois où la fonction prend la valeur 1.
-$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\} $$
+$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\}, $$
 
-On peut représenter une fonction par la table de ses valeur:
+On peut représenter une fonction par la table de ses valeurs (Truth Table):
 $$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
 
-La distance de Hamming de deux fonctions booléenne $f$ et $ g$ est définie par le nombre de fois où les fonctions ne partage pas de valeur égale.
-$$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}$$
+La distance de Hamming de deux fonctions booléennes $f$ et $ g$ est définie par le nombre de fois où les fonctions prennent des valeurs différentes:
+$$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
 
 Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléenne en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
-$$d(f, C) = \min_{c \in C} d_H(f, c)$$
+$$d(f, C) = \min_{c \in C} d_H(f, c) = \min_{c \in C} \WT{f+g}$$
 \begin{proposition}
 	Soit $f$ et $g$ deux fonctions booléennes en $m$ variables
 	\begin{enumerate}[label=(\roman*)]
@@ -60,29 +61,44 @@ Toute fonction booléenne peut s'écrire comme une somme de monômes nommé ANF 
 $$
 f(x)=\sum_{I\subseteq \{1,\dots,m\}} a_I \prod_{i\in I} x_i
 $$
-Le degré d'une fonction est le degré maximal de ses monômes. La valuation d'une fonction et le degré minimal de ses mônomes.
-On note $\BST{s}{t}{m}$ l'ensemble des fonctions en $m$ variables de valuation au moin $s$ et de degré au plus $t$.
+Le degré d'une fonction est le degré maximal de ses monômes. La valuation d'une fonction est le degré minimal de ses mônomes.
+On note $\BST{s}{t}{m}$ l'ensemble des fonctions en $m$ variables de valuation au moins $s$ et de degré au plus $t$.
 $$
-\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 | \mathrm{val}(f) \geq s \quad \deg(f) \leq t\}
+\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 | \mathrm{val}(f) \geq s \; \text{et} \; \deg(f) \leq t\}
 $$
 
 \subsection{Code de Reed-Muller}
-Le code de Reed-Muller en $m$ variables et d'ordre $k$ $\mathrm{RM}(k, m)$ est l'ensemble des fonctions booléennes de degrée inférieur ou égale à k.
+Le code de Reed-Muller d'ordre $k$ en $m$ variables, $\mathrm{RM}(k, m)$, est l'ensemble des fonctions booléennes de degré inférieur ou égale à k.
 $$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 | \deg(f) \leq k\} $$
-La dimension de \RM{k}{m} est : 
-$$ \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i}$$
+\begin{remark}
+	Chaque ligne de la matrice génératrice d'un code \RM{k}{m} correspond à la table de vérité d'un monôme de degré inférieur ou égale à $k$.
+\end{remark}
+La dimension $K$ de \RM{k}{m} est : 
+$$ \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i} = K$$
+La longueur $N$ de \RM{k}{m} est:
+$$N=2^m$$
+Exemple pour \RM{2}{8}:
+$$K = \binom{0}{8} + \binom{1}{8} + \binom{2}{8} = 37$$
+$$N = 2^8 = 256$$
+
 
 \subsection{Non linéarité}
-Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code autrement dit à sa distance
-de toutes les fonctions de degré au plus k.
+Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2,$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code, autrement dit à sa distance
+à toutes les fonctions de degré au plus k.
 $$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
+Le coéfficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
+$$
+\widehat{f}(a) = \sum_{x \in \FF_2^m} (-1)^{f(x) + a.x}
+$$
+La non linéarité d'ordre 1 peut aussi être définie par:
+$$
+\mathrm{NL}(f) = 2^{m-1} - \frac{1}{2}\max_{a \in \FF_2^m}|\widehat{f}(a)|.
+$$
 
 \subsection{Rayon de recouvrement}
-$\rho(k, m)$ Le rayon de recouvrement d'un code $\mathrm{RM}(k, m)$ de Reed-Muller est la distance maximale entre ce dernier et l'ensemble des fonctions booléennes
+Le rayon de recouvrement $\rho(k, m)$ d'un code $\mathrm{RM}(k, m)$ de Reed-Muller, est la distance maximale entre ce dernier et l'ensemble des fonctions booléennes
 en $m$ variables.
 $$ \rho(k, m) = \max_{f \in \BM} \mathrm{NL}_k(f) =  \max_{f \in \mathrm{B}(m)} d(f, \RM{k}{m}) $$
-
-\ref{tab:tab_rho}
 
 
 \section{Problématique}
@@ -105,16 +121,26 @@ $$ \rho(k, m) = \max_{f \in \BM} \mathrm{NL}_k(f) =  \max_{f \in \mathrm{B}(m)} 
 \end{table}
 
 Connaitre le rayon de recouvrement d'un code de Reed Muller est interessant pour "blablablablalbalblabla".
-Mais la taille de l'espace des fonctions booléennes est immense. Pour $m=8$ il existe $2^{2^8}$ soit $2^{256}$ fonctions booléennes.
-De plus si on veut calculer la non linéarité d'ordre 2 pour toutes les fonctions, calculer la distance entre une fonction de $\mathrm{B}(8)$ et tout \RM{2}{8} n'est pas non plus trivial
+La taille de l'espace des fonctions booléennes est immense. Pour $m=8$ l'enemble des fonctions booléennes en 8 variable est $2^{2^8} = 2^{256}$.
+De plus, si on veut calculer la non linéarité d'ordre 2 pour toutes les fonctions, calculer la distance entre une fonction de $\mathrm{B}(8)$ et tout \RM{2}{8} n'est pas non plus trivial
 car ce code comporte $2^{37}$ éléments.
-Ce tableau (voir tab \ref{tab:tab_rho}) recense toutes les valeurs de rho connu jusqu'à $m=10$. On peut voir que l'on connait toutes les valeurs de rho jusqu'à $m=7$. Au-delà certaine valeur sont compris dans un
-interval. Nottament on s'intéresse à $88 \leq \rho(2, 8) \leq 96$ et $56 \leq \rho(3,8) \leq 60$
+Le tableau du récent article de Jinjie GAO \cite{gao2026} (voir tab \ref{tab:tab_rho}) recense toutes les valeurs de rho connu jusqu'à $m=10$. On peut voir que l'on connait exactement toutes les valeurs de rho jusqu'à $m=7$. Au-delà certaines valeurs sont comprises dans un
+intervalle. Notament
+$$88 \leq \rho(2, 8) \leq 96$$
+Notre but et de trouver une fonction dont la non linéarité et plus grande que 88.
 
 \subsection{Inégalité de $\rho$}
 On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
-donc pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
+Preuve:
+
+Soit $x=(a, b)$ un vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Tous les mots $c$ dans \RM{k}{m} peuvent d'écrire comme $c = u+x_8v$ avec $u \in \RM{k}{m-1} \; v \in \RM{k-1}{m-1}$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
+De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$.
+Puisque $x=(a,b)$ et $c = (u, u+v) \quad d(c, x) = d(u, a) + d(u+v, b) = d(u, a) + d(u+b, v)$.
+Alors le mot $c$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$.
+
+
+Pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
 \subsubsection{Décomposition de Plotkin}
 Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme
 $$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$
@@ -123,9 +149,24 @@ $$[h \mid h+g]$$
 Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
 $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 
+\subsection{Borne inférieure du rayon de recouvrement}
+Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce au principe d'empilement des sphères.
+Le nombre d'éléments dans une sphère de rayon $r$ est
+$$
+\#B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
+$$
+En prenant l'union des sphères de rayon $R$ centrées en chaque mot $c \in C$ on couvre tout l'espace $\FF_2^n$. Ce qui nous donne le résultat
+$$
+2^k \times \#B(0,R) \geq 2^n.
+$$
+Pour trouver une borne inférieure au rayon de recouvrement il suffit donc de trouver le plus petit $r$ tel que
+$$
+2^k \times \#B(0, r) \geq 2^n.
+$$
+
 
 \section{calcul de distance}
-\subsection{énumération}
+\subsection{Enumération}
 Dans ce paragraphe je vais présenter une methode pour calculer la distance d'une fonction $f$ à un code $C$. la manière la plus simple est consiste à énumérer tous les mots du code.
 Pour cela il faut générer toutes les combinaisons linéaires des lignes de la matrice génératrice $G$ du code. La matrice $G$ comporte $k$ ligne $l_1, l_2, \dots, l_k$ donc chaque mot $c$
 du code s'écrit $$c = \sum_{i=1}^{k} u_i l_i \quad \text{où} \quad u \in \FF_2^k \quad u = (u_1, u_2, \dots, u_k)$$
@@ -180,13 +221,13 @@ voir Algo \ref{alg:pivotage}
         \STATE $pivot \leftarrow \text{rand}() \bmod M$
 	\UNTIL{$G[i][pivot] = 1$}
 
-    \FOR{$j \leftarrow i$ \TO $K-1$}
+    \FOR{$j \leftarrow i+1$ \TO $K-1$}
 	\IF{$j \neq i \AND G[j][pivot] = 1$ }
 	    \STATE $G[j] \gets G[j] + G[i]$
         \ENDIF
     \ENDFOR
 
-	\IF {$f[i] = 1$}
+	\IF {$f[pivot] = 1$}
 		\STATE $f \gets f + G[i]$
 	\ENDIF
 \ENDFOR
@@ -215,6 +256,26 @@ Voir Algo \ref{alg:tavernier}
 	\end{algorithmic}
 \end{algorithm}
 
+\subsection{Algo FTL}
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\STATE score $\gets 0$
+		\FOR {$P \in \BST{2}{2}{7}$}
+		\STATE $\gamma_0 \gets \max_{a \in \FF_2^7} |\widehat{f_0 + P}(a)|$
+		\STATE $\gamma_1 \gets \max_{a \in \FF_2^7} |\widehat{f_1 + P}(a)|$
+		\IF {$\gamma_0 + \gamma_1 \geq$}
+		  \FOR {$ l \in \BST{1}{1}{7}$}
+		    \STATE $h \gets f + P + x_8l$
+		    \STATE $\gamma \gets \max_{a \in \FF_2^8}|\widehat{h}(a)|$
+		    \IF {gamma > score}
+		      \STATE score $\gets \gamma$
+		    \ENDIF
+		  \ENDFOR
+		\ENDIF
+		\ENDFOR
+		\RETURN score
+	\end{algorithmic}
+\end{algorithm}
 \printbibliography
 
 \end{document}

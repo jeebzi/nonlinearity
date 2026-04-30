@@ -291,7 +291,7 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 		}
 		 printf("gamma0 %d + gamma 1 %d = %d\n",gamma0, gamma1, gamma0 + gamma1);
 		if ((gamma0 + gamma1) >= score) {
-			memset(l, 0, int_par_ligne);
+			memset(l, 0, int_par_ligne*sizeof(uint64_t));
 			cpt_lin = 0;
 			while (over == 0 && cpt_lin < lim_lin) {
 				if (cpt_lin == 0) {
