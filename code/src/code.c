@@ -63,7 +63,20 @@ code RM(int k, int m) {
 	int u = 0, x;
 	int num_ligne = 0;
 	while (u < nb_col) {
-		if (__builtin_popcount(u) <= k) {
+		if (__builtin_popcount(u) <= 1) {
+			x = 0;
+			while (x < nb_col) {
+				res.G[num_ligne*nb_col + x] = (u&x) == u;
+				x += 1;
+			}
+			num_ligne += 1;
+		}
+		u += 1;
+	}
+	u = 0;
+
+	while (u < nb_col) {
+		if (__builtin_popcount(u) <= k &&  __builtin_popcount(u)  > 1 ) {
 			x = 0;
 			while (x < nb_col) {
 				res.G[num_ligne*nb_col + x] = (u&x) == u;
