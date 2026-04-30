@@ -25,6 +25,11 @@ void free_code(code c) {
 	c.pivot = NULL;
 }
 
+void free_code64(code64 c) {
+	free(c.G);
+	c.G = NULL;
+}
+
 code RMH(int k, int m) {
 	/*
 	 * initialse un code de Reed-Muller homogène de degrée k et à m variable
@@ -197,6 +202,18 @@ uint64_t* code_to_int(code c) {
 		}
 		i += 1;
 	}
+	return res;
+}
+
+code64 code_to_code64(code c) {
+	/*
+	 * prend un code et renvoie la même structure où la matrice génératrice est représenter par
+	 * un tableau de uint64
+	 */
+	code64 res;
+	res.dim = c.dim;
+	res.longueur = c.longueur;
+	res.G = code_to_int(c);
 	return res;
 }
 

@@ -32,9 +32,10 @@ int enum_spec_2_4_7(uint64_t *mot, uint64_t *base, int ffdimen, int nb_ligne, in
 	code_lin = RMH(1, ffdimen);
 	uint64_t *base_lin = code_to_int(code_lin), *l;
 
-	//énum de tout les q
+	//énum de tout les q dans B_2_2_7
 	int cpt = 1, cpt2;
 	uint64_t limite = (uint64_t)1 << nb_ligne, limite2;
+	limite2 = (uint64_t)1 << code_lin.dim;
 	int i, j, wt, i2;
 	while (cpt < limite) {
 		fq = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
@@ -47,7 +48,6 @@ int enum_spec_2_4_7(uint64_t *mot, uint64_t *base, int ffdimen, int nb_ligne, in
 		}
 		// énumère la fonction lineaire
 		l = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
-		limite2 = (uint64_t)1 << code_lin.dim;
 		cpt2 = 1;
 		fql = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
 		while (cpt2 < limite2) {
@@ -60,15 +60,17 @@ int enum_spec_2_4_7(uint64_t *mot, uint64_t *base, int ffdimen, int nb_ligne, in
 				wt += __builtin_popcountl(fql[j]);
 				j += 1;
 			}
-			//on regarde si le poid correspon à ce que l'on cherche
+			//on regarde si le poid correspond à ce que l'on cherche
 			if (check_poid_spec(wt) == 1) res += 1;
 			cpt2 += 1;
 		}
-		free(fql);
 		cpt += 1;
+		free(fq);
+		free(fql);
+		free(l);
 	}
+	free(q);
 	free(base_lin);
-	free(fq);
 	free_code(code_lin);
 	return res;
 }
@@ -105,7 +107,9 @@ int main(int argc, char *argv[]) {
 	while ((boole = load_boole(src, &val, ffsize))){
 		if (cpt % module == job) {
 			mot = boole_to_int(boole, ffsize);
-			nh += enum_spec_2_4_7(mot, base, ffdimen, c.dim, int_par_ligne);
+			nh = enum_spec_2_4_7(mot, base, ffdimen, c.dim, int_par_ligne);
+			printf("nh=%d ", nh);
+			print_anf(boole, ffdimen, ffsize);
 			free(mot);
 		}
 		free(boole);

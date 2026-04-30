@@ -1,49 +1,281 @@
-\documentclass{article}
+\documentclass{report}
 
+\usepackage{enumitem}
+\usepackage{biblatex}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+%macros
+\def\RM#1#2{\ensuremath{\mathrm{RM}(#1, #2)}}
+\def\FF{\ensuremath{\mathbb{F}}}
+\def\WT#1{\ensuremath{\mathrm{wt}(#1)}}
+\def\BM{\ensuremath{\mathrm{B}(m)}}
+\def\BST#1#2#3{\ensuremath{\mathrm{B}_#1^#2(#3)}}
+\def\binome#1#2{\ensuremath{{C}_#1^#2}}
+\newtheorem{theorem}{Théorème}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remarque}
+
+\addbibresource{source.bib}
+
 \begin{document}
 \tableofcontents
 
+\cite{gao2026}
 \section{Définition}
-Fonction Booléenne:
-$$ f : \mathbb{F}_2^n \to \mathbb{F}_2 $$
+\subsection{Fonction booléenne}
+Une fonction booléenne en $m$ variables est une fonction qui prend en paramétre un m-uplet binaire et qui a ses valeurs dans $\{0, 1\}$.
+$$ f : \mathbb{F}_2^m \to \mathbb{F}_2 ,$$
+on note \BM l'ensemble des fonctions booléennes en $m$ variables.
+Soit $f \in$ \BM, on définit le poid de $f$ comme le nombre de fois où la fonction prend la valeur 1.
+$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\}, $$
 
-\section{Runtime}
+On peut représenter une fonction par la table de ses valeurs (Truth Table):
+$$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
+
+La distance de Hamming de deux fonctions booléennes $f$ et $ g$ est définie par le nombre de fois où les fonctions prennent des valeurs différentes:
+$$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
+
+Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléenne en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
+la distance de Hamming minimal entre $f$ et tous les mots de C.
+$$d(f, C) = \min_{c \in C} d_H(f, c) = \min_{c \in C} \WT{f+g}$$
+\begin{proposition}
+	Soit $f$ et $g$ deux fonctions booléennes en $m$ variables
+	\begin{enumerate}[label=(\roman*)]
+		\item $\deg(f) = m \Longleftrightarrow f$ est de poids impair.
+		\item $\deg(f) < m \Longleftrightarrow f$ est de poids pair.
+		\item $\WT{f+g} = \WT{f} + \WT{g} - 2\WT{fg}$
+	\end{enumerate}
+\end{proposition}
+
+\subsection{Forme normal algébrique et degré}
+Toute fonction booléenne peut s'écrire comme une somme de monômes nommé ANF (algebraic normal form)
+$$
+f(x)=\sum_{I\subseteq \{1,\dots,m\}} a_I \prod_{i\in I} x_i
+$$
+Le degré d'une fonction est le degré maximal de ses monômes. La valuation d'une fonction est le degré minimal de ses mônomes.
+On note $\BST{s}{t}{m}$ l'ensemble des fonctions en $m$ variables de valuation au moins $s$ et de degré au plus $t$.
+$$
+\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 | \mathrm{val}(f) \geq s \; \text{et} \; \deg(f) \leq t\}
+$$
+
+\subsection{Code de Reed-Muller}
+Le code de Reed-Muller d'ordre $k$ en $m$ variables, $\mathrm{RM}(k, m)$, est l'ensemble des fonctions booléennes de degré inférieur ou égale à k.
+$$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 | \deg(f) \leq k\} $$
+\begin{remark}
+	Chaque ligne de la matrice génératrice d'un code \RM{k}{m} correspond à la table de vérité d'un monôme de degré inférieur ou égale à $k$.
+\end{remark}
+La dimension $K$ de \RM{k}{m} est : 
+$$ \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i} = K$$
+La longueur $N$ de \RM{k}{m} est:
+$$N=2^m$$
+Exemple pour \RM{2}{8}:
+$$K = \binom{0}{8} + \binom{1}{8} + \binom{2}{8} = 37$$
+$$N = 2^8 = 256$$
+
+
+\subsection{Non linéarité}
+Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2,$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code, autrement dit à sa distance
+à toutes les fonctions de degré au plus k.
+$$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
+Le coéfficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
+$$
+\widehat{f}(a) = \sum_{x \in \FF_2^m} (-1)^{f(x) + a.x}
+$$
+La non linéarité d'ordre 1 peut aussi être définie par:
+$$
+\mathrm{NL}(f) = 2^{m-1} - \frac{1}{2}\max_{a \in \FF_2^m}|\widehat{f}(a)|.
+$$
+
+\subsection{Rayon de recouvrement}
+Le rayon de recouvrement $\rho(k, m)$ d'un code $\mathrm{RM}(k, m)$ de Reed-Muller, est la distance maximale entre ce dernier et l'ensemble des fonctions booléennes
+en $m$ variables.
+$$ \rho(k, m) = \max_{f \in \BM} \mathrm{NL}_k(f) =  \max_{f \in \mathrm{B}(m)} d(f, \RM{k}{m}) $$
+
+
+\section{Problématique}
+\begin{table}
+	\caption{Tableau des valeur de $\rho(k,n)$}
+	\label{tab:tab_rho}
+	\begin{tabular}{c|cccccccc}
+		$k\backslash n$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+		\hline
+		1 & 2 & 6 & 12 & 28 & 56 & 120 & 242-244 & 496 \\
+		2 & 1 & 2 & 6 & 18 & 40 & 88-96 & 196-216 & 400-460 \\
+		3 & 0 & 1 & 2 & 8 & 20 & 56-60 & 111-156 & 194-372 \\
+		4 &  & 0 & 1 & 2 & 8 & 26 & 58-86 & $\leq$ 242 \\
+		5 &  &  & 0 & 1 & 2 & 10 & 28-36 & $\leq$ 122 \\
+		6 &  &  &  & 0 & 1 & 2 & 10 & $\leq$ 46 \\
+		7 &  &  &  &  & 0 & 1 & 2 & 12 \\
+		8 &  &  &  &  &  & 0 & 1 & 2\\
+		\hline
+	\end{tabular}
+\end{table}
+
+Connaitre le rayon de recouvrement d'un code de Reed Muller est interessant pour "blablablablalbalblabla".
+La taille de l'espace des fonctions booléennes est immense. Pour $m=8$ l'enemble des fonctions booléennes en 8 variable est $2^{2^8} = 2^{256}$.
+De plus, si on veut calculer la non linéarité d'ordre 2 pour toutes les fonctions, calculer la distance entre une fonction de $\mathrm{B}(8)$ et tout \RM{2}{8} n'est pas non plus trivial
+car ce code comporte $2^{37}$ éléments.
+Le tableau du récent article de Jinjie GAO \cite{gao2026} (voir tab \ref{tab:tab_rho}) recense toutes les valeurs de rho connu jusqu'à $m=10$. On peut voir que l'on connait exactement toutes les valeurs de rho jusqu'à $m=7$. Au-delà certaines valeurs sont comprises dans un
+intervalle. Notament
+$$88 \leq \rho(2, 8) \leq 96$$
+Notre but et de trouver une fonction dont la non linéarité et plus grande que 88.
+
+\subsection{Inégalité de $\rho$}
+On sait que
+$$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
+Preuve:
+
+Soit $x=(a, b)$ un vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Tous les mots $c$ dans \RM{k}{m} peuvent d'écrire comme $c = u+x_8v$ avec $u \in \RM{k}{m-1} \; v \in \RM{k-1}{m-1}$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
+De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$.
+Puisque $x=(a,b)$ et $c = (u, u+v) \quad d(c, x) = d(u, a) + d(u+v, b) = d(u, a) + d(u+b, v)$.
+Alors le mot $c$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$.
+
+
+Pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
+\subsubsection{Décomposition de Plotkin}
+Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme
+$$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$
+si $x_m = 0, f = h$ et si $x_m = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
+$$[h \mid h+g]$$
+Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
+$$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
+
+\subsection{Borne inférieure du rayon de recouvrement}
+Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce au principe d'empilement des sphères.
+Le nombre d'éléments dans une sphère de rayon $r$ est
+$$
+\#B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
+$$
+En prenant l'union des sphères de rayon $R$ centrées en chaque mot $c \in C$ on couvre tout l'espace $\FF_2^n$. Ce qui nous donne le résultat
+$$
+2^k \times \#B(0,R) \geq 2^n.
+$$
+Pour trouver une borne inférieure au rayon de recouvrement il suffit donc de trouver le plus petit $r$ tel que
+$$
+2^k \times \#B(0, r) \geq 2^n.
+$$
+
+
+\section{calcul de distance}
+\subsection{Enumération}
+Dans ce paragraphe je vais présenter une methode pour calculer la distance d'une fonction $f$ à un code $C$. la manière la plus simple est consiste à énumérer tous les mots du code.
+Pour cela il faut générer toutes les combinaisons linéaires des lignes de la matrice génératrice $G$ du code. La matrice $G$ comporte $k$ ligne $l_1, l_2, \dots, l_k$ donc chaque mot $c$
+du code s'écrit $$c = \sum_{i=1}^{k} u_i l_i \quad \text{où} \quad u \in \FF_2^k \quad u = (u_1, u_2, \dots, u_k)$$
+Nous avons donc besoin d'énumérer tous les u mais au lieu d'utilisé l'odre binaire classique $0=(000), 1=(001), 2=(010) \dots$ on utilise le code de Gray afin de changé un bit à la fois, l'indice de ce bit correspond à l'indice de la ligne
+à additionner afin de calculer le prochain mot du code. Par exemple pour $k=3$:
+$$
+G = 
+\begin{bmatrix}
+	l_1\\
+	l_2\\
+	l_3\\
+\end{bmatrix}
+\qquad
+\begin{array}{|c|cccccccc|}
+	\hline
+	u & 000 & 00\textbf{1} & 0\textbf{1}1 & 01\textbf{0} & \textbf{1}10 & 11\textbf{1} & 1\textbf{0}1 & 10\textbf{0}\\
+	\hline
+	\text{ligne additionné} & 0 & l_1 & l_2 & l_1 & l_3 & l_1 & l_2 & l_1\\
+	\hline
+	c & 0 & l_1 & l_1+l_2 & l_2 & l_3+l_2 & l_3+l_2+l_1 & l_3+l_1 & l_3\\
+	\hline
+\end{array}
+$$
+Dans l'exemple pour passer du mot $l_1+l_2$ représenté par le vecteur $u=011$ on passe à la prochaine valeur de $u$ dans le code de Gray qui est $u=010$,
+le bit d'indice 1 a été modifié donc pour passer au prochain mot il suffit de faire $l_1+l_2+l_1 = l_2$.
+
+\section{Travail sur les bent}
+Une fonction booléenne $f$ et dite bent si ça distance aux fonctions affinnes est la plus grande possible $\textrm{NL}_1(f) = \rho(1, m)$ nous avons voulu
+étudier la non linéarité d'ordre 2 pour les bent en 8 variables. Calculer la non linéarité d'ordre 2 de toutes les fonction bent aurait été impossible étant donnée qu'il y en a 190 million
+et $2^{37}$ mot dans $\RM{2}{8}$. Il nous fallait donc trouver un moyen d'estimer rapidement la non linéarité d'une fonction à l'aide d'un algorithme probabiliste.
+La classe latérale d'une fonction $f$ modulo $C$ est l'ensemble des translaté de $f$ par les éléments de $C$
+$$ f + C = \{f + c | c \in C\}
+$$
+Calculé la distance de $f$ à un code revient donc à trouvé le poid minimal de sa classe latérale. L'algorithme probabiliste que l'on a utilisé a pour but de creer un translaté aléatoire de $f$ de poid au plus
+$m - k$ avec $m$ et $k$ la longueur et la dimension du code. Cette algorithme a été très rapide et efficace pour trouver et éliminer les fonctions de faible non linéarité ce qui nous a permis de traiter l'intégralité des fonctions bent en quelque heure.
+Nous avons trouvé que la non linéarité d'ordre 2 des fonctions bent est de 88. On pourrait dire par intuition que $\rho(2, 8) = 88$ mais rien est sûr.
+
+
+
+\section{Algo}
 \subsection{Algo probabiliste}
-\begin{tabular}{|c | c | c|}
-	\hline
-	nb itérations & nombre de fonctions & temp d'éxécution (seconde) \\
-	\hline\hline
+voir Algo \ref{alg:pivotage}
 
-	10000 & 19424327 & 18633 \\
-	100000 & 10107 & 188 \\
-	100000 & stab 4: 11101773 & 14000 \\
-	100000 & stab 6: 5354539 & 7000 \\
-	100000 & stab 7: 201428 & 258 \\
-	100000 & stab 8: 5290982 & 6670 \\
-	\hline
-\end{tabular}
+\begin{algorithm}
+\caption{Random translate}
+\label{alg:pivotage}
+\begin{algorithmic}[1]
+	\REQUIRE $G$ : Une matrice génératrice d'un code \RM{k}{m} de dimension $[K,M]$
+	$f$ : Une fonction booléenne en $n$ variable représenter par sa table de vérité de longueur $N$
+\FOR{$i \leftarrow 0$ \TO $K-1$}
+    \REPEAT
+        \STATE $pivot \leftarrow \text{rand}() \bmod M$
+	\UNTIL{$G[i][pivot] = 1$}
 
-\section{NL 2 de bent 8}
-\begin{tabular}{|c|c|c|c|}
-	\hline
-	& 88 & 92 & 96 \\
-	\hline\hline
-	stab 1 & 0 & 0 & 0 \\
-	\hline
-	stab 2 & 0 & 0 & 0 \\
-	\hline
-	stab 4 & 0 & 0 & 0 \\
-	\hline
-	stab 6 & 0 & 0 & 0 \\
-	\hline
-	stab 7 & 0 & 0 & 0 \\
-	\hline
-	stab 8 & 0 & 0 & 0 \\
-	\hline
-\end{tabular}
+    \FOR{$j \leftarrow i+1$ \TO $K-1$}
+	\IF{$j \neq i \AND G[j][pivot] = 1$ }
+	    \STATE $G[j] \gets G[j] + G[i]$
+        \ENDIF
+    \ENDFOR
 
+	\IF {$f[pivot] = 1$}
+		\STATE $f \gets f + G[i]$
+	\ENDIF
+\ENDFOR
+\RETURN $f$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Algo Tarvernier like}
+Voir Algo \ref{alg:tavernier}
+
+\begin{algorithm}
+	\caption{Calcule distance}
+	\label{alg:tavernier}
+	\begin{algorithmic}[1]
+		\REQUIRE Une fonction booléenne en $n$ variable: $f \in \BM = x_ng + h$ \newline L'odre de non linéarité recherché: $k$ \newline
+		$M$ et $K$ la longueur et la dimension du code $\RM{k}{m}$
+		\STATE best $\gets M$
+		\FOR {$u \in \RM{k-1}{m-1}$}
+		  \IF {$\WT{g+u} < best$}
+		    \FOR {$v \in \RM{k, m-1}$}
+		      \STATE best $\gets \min \WT{h+v} + \WT{h+v+g+u}$
+		    \ENDFOR
+		  \ENDIF
+		\ENDFOR
+		\RETURN best
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Algo FTL}
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\STATE score $\gets 0$
+		\FOR {$P \in \BST{2}{2}{7}$}
+		\STATE $\gamma_0 \gets \max_{a \in \FF_2^7} |\widehat{f_0 + P}(a)|$
+		\STATE $\gamma_1 \gets \max_{a \in \FF_2^7} |\widehat{f_1 + P}(a)|$
+		\IF {$\gamma_0 + \gamma_1 \geq$}
+		  \FOR {$ l \in \BST{1}{1}{7}$}
+		    \STATE $h \gets f + P + x_8l$
+		    \STATE $\gamma \gets \max_{a \in \FF_2^8}|\widehat{h}(a)|$
+		    \IF {gamma > score}
+		      \STATE score $\gets \gamma$
+		    \ENDIF
+		  \ENDFOR
+		\ENDIF
+		\ENDFOR
+		\RETURN score
+	\end{algorithmic}
+\end{algorithm}
+\printbibliography
 
 \end{document}

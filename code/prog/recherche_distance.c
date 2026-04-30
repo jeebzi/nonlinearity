@@ -2,10 +2,9 @@
 #include "../include/include.h"
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k, dist, target, version_min;
-	FILE *src;
+	int ffdimen, ffsize, num, opt, k, dist, target = -1, module = 1, job = 0; FILE *src;
 
-	while ((opt = getopt(argc, argv, "k:n:f:t:m")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:t:m:j:")) != -1) {
 		switch(opt) {
 			case 'k':
 				k = atoi(optarg);
@@ -21,7 +20,10 @@ int main(int argc, char *argv[]) {
 				target = atoi(optarg);
 				break;
 			case 'm':
-				version_min = 1;
+				module = atoi(optarg);
+				break;
+			case 'j':
+				job = atoi(optarg);
 				break;
 		}
 	}
@@ -29,19 +31,19 @@ int main(int argc, char *argv[]) {
 	code c = RM(k, ffdimen);
 	uint64_t *words = code_to_int(c), *mot;
 	uchar *f;
+	unsigned int cpt = 0;
 	while ((f = load_boole(src, &num, ffsize))) {
-		mot = boole_to_int(f, ffsize);
-		dist = distance_mot_code_min(mot, words, ffsize, c.dim, target);
-		if (version_min == 1) {
-			if (dist >= target) {
-				printf("%d ", dist);
-			       	print_anf(f, ffdimen, ffsize);
+		if  (cpt % module == job) {
+			mot = boole_to_int(f, ffsize);
+			dist = distance_mot_code_min(mot, words, ffsize, c.dim, target);
+			if (dist != -1) {
+				 printf("%d ", dist);
+				 print_anf(f, ffdimen, ffsize);
 			}
+			free(f);
+			free(mot);
 		}
-		else
-		if (dist == target) print_anf(f, ffdimen, ffsize);
-		free(f);
-		free(mot);
+		cpt += 1;
 	}
 	free_code(c);
 	free(words);

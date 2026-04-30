@@ -29,6 +29,27 @@ uchar* str_to_boole(char *s, int ffsize) {
 	return res;
 }
 
+uchar* random_boole(int ffdimen, int degre) {
+	/*
+	 * crée une fonction booléenne de manière aléatoire
+	 */
+	int ffsize = 1 << ffdimen;
+	uchar * res;
+	res = (uchar*) calloc(ffsize, sizeof(uchar));
+	int i = 0;
+	int r, fini = 0;
+	while (i < ffsize) {
+		r = random() % 10;
+		if (res[i] == 0 && r == 0 && (degre == - 1 || __builtin_popcount(i) == degre)) {
+			res[i] = 1;
+			fini = 1;
+		}
+		i += 1;
+		if (i == ffsize && fini == 0) i = 0;
+	}
+	return res;
+}
+
 uchar* load_boole(FILE *src, int *num, int ffsize) {
 	/*
 	 * charge depuis un pointeur vers fichier une fonction booléenne représenter par un tableau de u char
@@ -37,13 +58,19 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	uchar *res;
 	char buffer[1024], *ptr;
 	*num = -1;
+	int n;
 	while (fgets(buffer, 1024, src)) {
 		ptr = &buffer[0];
-		if (sscanf(ptr, "%d", num) > 0) {
-			res = str_to_boole(ptr, ffsize);
-			return res;
+		if (sscanf(ptr, "%d%n", num, &n) != 0) {
+			ptr += n;
+			/* skip les espaces */
+			while (*ptr == ' ') ptr += 1; 
+			if (strncmp(ptr, "anf", 3) == 0) {
+				res = str_to_boole(ptr, ffsize);
+				return res;
+			}
 		}
-		if(*ptr != '#') {
+		if(*ptr != '#' && strncmp(ptr, "anf", 3) == 0) {
 			res = str_to_boole(buffer, ffsize);
 			return res;
 		}
@@ -133,10 +160,10 @@ uint64_t* boole_to_int(unsigned char *boole, int ffsize) {
 
 unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 	/*
-	 * prend une fonction booléenne représenter par n uint64 et renvoie ça version représenté par un tableau de uchar
+	 * prend une fonction booléenne représenté par n uint64 et renvoie sa version représenté par un tableau de uchar
 	 */
 	unsigned char *res;
-	res = calloc( ffsize, sizeof(unsigned char) );
+	res  =  calloc(  ffsize,  sizeof(unsigned char));
 	int i = 0;
 	while (i < ffsize) {
 		res[i] = (mot[i/64] >> i%64) & 1;
@@ -227,7 +254,7 @@ uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne) {
 		//sinon on doit faire bit par bit
 		while (i < mid) {
 			L[0] ^= ((mot[0] >> i) & 1) << i;
-			R[0] ^= ((mot[0] >> i+mid) & 1) << i+mid;
+			R[0] ^= ((mot[0] >> (i+mid)) & 1) << (i+mid);
 			i += 1;
 		}
 	}
@@ -235,3 +262,73 @@ uint64_t** split(uint64_t *mot, int ffsize, int int_par_ligne) {
 	res[1] = R;
 	return res;
 }
+
+int correlation(uint64_t *f1, uint64_t *f2, int ffsize) {
+	/*
+	 * calcule de coéfficiant de corrélation entre deux fonctions booléennes
+	 * corr(f, g) = 2**n - 2 * wt(f + g)
+	 */
+	int int_par_ligne = (ffsize+63)/64;
+	int wt = 0, i = 0, res;
+	while (i < int_par_ligne) {
+		wt += __builtin_popcountl(f1[i] ^ f2[i]);
+		i += 1;
+	}
+	res = ffsize - (2 * wt);
+	return res;
+}
+
+int rang(uint64_t *f, int ffdimen, int ffsize) {
+	/*
+	 * calcule de rang d'une fonction booléenne à ffdimen variable
+	 */
+	int int_par_ligne = (ffsize+63)/64;
+	code c = RMH(1, ffdimen);
+	uint64_t *G = code_to_int(c); /* matrice génératrice du code homogène linéaire */
+	/* énumérer tout les mots de RMH(1, ffdimen) */
+	uint64_t *u;
+	u = (uint64_t*) calloc(int_par_ligne, sizeof(uint64_t));
+	uint64_t limite = (uint64_t)1 << binomial(1, ffdimen), cpt = 1;
+	int i, j, wt;
+	while (cpt < limite) {
+		i = __builtin_ctzl(cpt);
+		j = 0;
+		wt = 0;
+		while (j < int_par_ligne) {
+			u[j] ^= G[i*int_par_ligne + j];
+			wt += __builtin_popcountl(u[j] ^ f[j]);
+			j += 1;
+		}
+		if (wt != (ffsize >> 1)) { /* si lé coefficient de Walsh n'est pas à 0 */
+			wt = ffsize - (2 * wt); /* calcul Walsh */
+			/* retrouver le k dans wt = 2**((n+k)/2) */
+			wt = __builtin_ctz(wt); /* équivalant à log2(wt) */
+			wt = 2 * wt - ffdimen;
+			free(u);
+			return wt;
+		}
+		cpt += 1;
+	}
+	free(u);
+	return -1;
+}
+
+int is_homogene(unsigned char *mot, int degree, int ffsize) {
+	/*
+	 * renvoie 1 si la fonction est homogène de degrée _degree_ 0 sinon
+	 * on peut mettre degree à -1 pour une fonction homogène quelconque
+	 */
+	anf(mot, ffsize);
+	int i = 0, d;
+	while (i < ffsize) {
+		if (mot[i] == 1) {
+			d = __builtin_popcount(i);
+			if (degree == -1) degree = d;
+			else if (degree != d) { anf(mot, ffsize); return 0; }
+		}
+		i += 1;
+	}
+	anf(mot, ffsize);
+	return 1;
+}
+

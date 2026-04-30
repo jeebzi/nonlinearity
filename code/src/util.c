@@ -14,3 +14,17 @@ uint64_t* copy_uint64(uint64_t *src, int n) {
 	}
 	return dst;
 }
+
+int max_tab_int(int *tab, int n) {
+	/*
+	 * renvoie la valeur max d'un tableau d'entier non trié
+	 */
+	int maxi;
+	int i = 1;
+	maxi = tab[0];
+	while (i < n) {
+		if (tab[i] > maxi) maxi = tab[i];
+		i += 1;
+	}
+	return maxi;
+}

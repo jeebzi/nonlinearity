@@ -27,6 +27,15 @@ void print_tab_uchar(unsigned char *tab, int n) {
 	printf("\n");
 }
 
+void print_tab_char(char *tab, int n) {
+	int i = 0;
+	while (i < n) {
+		printf("%hhi ", tab[i]);
+		i += 1;
+	}
+	printf("\n");
+}
+
 void print_distribution(int *distribution, int n) {
 	/*
 	 * affiche la distribution des distances
@@ -35,6 +44,18 @@ void print_distribution(int *distribution, int n) {
 	while (i < n) {
 		nb = distribution[i];
 		if (nb != 0) printf("%d:%d ", i, nb);
+		i += 1;
+	}
+	printf("\n");
+}
+
+void print_distribution_rang(int *distribution, int n) {
+	/*
+	 * affiche la distribution dees rangs avec n la taille du tableau
+	 */
+	int i = 0;
+	while (i < n) {
+		printf("%d:%d ", i<<1, distribution[i]);
 		i += 1;
 	}
 	printf("\n");
