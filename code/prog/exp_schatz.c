@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 	uint64_t cpt, limite = (uint64_t) 1 << code_homogene.dim, indice_g = 0, indice_q;
 	uint64_t *g = calloc(int_par_ligne, sizeof(uint64_t));
 	uint64_t limite2 = (uint64_t) 1 << c.dim;
+	int min, wt;
 	while ((f = load_boole(src, &num, ffsize))) {
 		mot = boole_to_int(f, ffsize);
 		/* on stocke la valeur de wt(h + q) pour gagner du temps */
@@ -46,23 +47,26 @@ int main(int argc, char *argv[]) {
 			indice_g ^= (uint64_t) 1 << i;
 			j = 0;
 			while (j < int_par_ligne) {
-				g[j] ^= code_homogene.G[i * int_par_ligne + j];
+				g[j] ^= c.G[i * int_par_ligne + j];
 				j += 1;
 			}
 			/* avec notre g on regarde W[q] + W[q+g] pour tous les q */
 			indice_q = 0;
-			while (indice_q < limite2 && ((W[indice_q] + W[indice_q^indice_g]) >= 88)) {
-				printf("W[q+g] = %d\n", W[indice_q]+W[indice_q^indice_g]);
-				// printf("indice q + indice g %ld\n", indice_q^indice_g);
+			min = W[indice_q]<<1;
+			wt = W[indice_q] + W[indice_q^indice_g];
+			while (indice_q < limite2 && ((wt) > 88)) {
+				if (wt < min) min = wt;
 				indice_q += 1;
+				wt = W[indice_q] + W[indice_q^indice_g];
 			}
-			if (indice_q >= limite2) {
+			if (indice_q >= limite) {
 				printf("h : ");
 				print_anf(f, ffdimen, ffsize);
 				printf("g : ");
 				g_boole = int_to_boole(g, ffsize);
 				print_anf(g_boole, ffdimen, ffsize);
 				free(g_boole);
+				printf("min = %d\n", min);
 			}
 			cpt += 1;
 		}
@@ -72,6 +76,7 @@ int main(int argc, char *argv[]) {
 	}
 	free(c.G);
 	free(code_homogene.G);
+	fclose(src);
 	return 0;
 }
 
