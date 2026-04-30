@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 		/* on regarde tous les g dans le code homogène */
 		memset(g, 0, int_par_ligne*sizeof(uint64_t));
 		cpt = 1;
-		while(cpt < limite) {
+		while(cpt < limite2) {
 			i = __builtin_ctzl(cpt);
 			indice_g ^= (uint64_t) 1 << i;
 			j = 0;
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 				indice_q += 1;
 				wt = W[indice_q] + W[indice_q^indice_g];
 			}
-			if (indice_q >= limite) {
+			if (indice_q >= limite2) {
 				printf("h : ");
 				print_anf(f, ffdimen, ffsize);
 				printf("g : ");
