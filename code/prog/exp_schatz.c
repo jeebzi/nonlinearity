@@ -1,5 +1,6 @@
 #include <all.h>
 #include "../include/include.h"
+#include <omp.h>
 
 
 int main(int argc, char *argv[]) {
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
 	code64 code_homogene = code_to_code64(tmp);
 
 	uchar *g_boole;
-	uint64_t *mot;
+	uint64_t *mot, *g;
 	int *W, j, i;
 	int int_par_ligne = (63+ffsize) / 64;
 	uint64_t cpt, limite = (uint64_t) 1 << code_homogene.dim, indice_g = 0, indice_q;
@@ -48,8 +49,9 @@ int main(int argc, char *argv[]) {
 			while ( indice_q < limite2 &&  (wt  > 88)  ) {
 				wt = W[indice_q] + W[indice_q ^ indice_g];
 				int score = wt;
+				int base = W[indice_q];
 				for ( uint64_t l = 0; l < limite1; l++ ) {
-					int w = W[ indice_q ] + W[ indice_q^indice_g ^ l ];
+					int w = base + W[ indice_q^indice_g ^ l ];
 					if ( w < score ){
 					       	score = w;
 					}
@@ -62,15 +64,14 @@ int main(int argc, char *argv[]) {
 				printf("h : ");
 				print_anf(f, ffdimen, ffsize);
 				printf("g : ");
-				/*
+				g = indice_to_boole(indice_g, c);
 				g_boole = int_to_boole(g, ffsize);
 				print_anf(g_boole, ffdimen, ffsize);
 				free(g_boole);
-				*/
+				free(g);
 			}
-			indice_g += limite1;
 		}
-		puts("done");
+		// puts("done");
 		free(mot);
 		free(f);
 		free(W);
