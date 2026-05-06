@@ -1,5 +1,6 @@
 #include <all.h>
 #include "../include/include.h"
+#include <omp.h>
 
 
 int main(int argc, char *argv[]) {
@@ -40,16 +41,17 @@ int main(int argc, char *argv[]) {
 		/* on stocke la valeur de wt(h + q) pour gagner du temps */
 		W = tableau_poid(mot, c);
 		/* on regarde tous les g dans le code homogène */
+		#pragma omp parallel for private(indice_q, wt) schedule(dynamic)
 		for( indice_g = 0; indice_g < limite2; indice_g += limite1 ) {
 			/* avec notre g on regarde W[q] + W[q+g] pour tous les q */
 			indice_q = 0;
 			wt = ffsize;
 
 			while ( indice_q < limite2 &&  (wt  > 88)  ) {
-				wt = W[indice_q] + W[indice_q ^ indice_g];
 				int score = wt;
+				int base = W[indice_q];
 				for ( uint64_t l = 0; l < limite1; l++ ) {
-					int w = W[ indice_q ] + W[ indice_q^indice_g ^ l ];
+					int w = base + W[ indice_q^indice_g ^ l ];
 					if ( w < score ){
 					       	score = w;
 					}
@@ -68,7 +70,6 @@ int main(int argc, char *argv[]) {
 				free(g_boole);
 				*/
 			}
-			indice_g += limite1;
 		}
 		puts("done");
 		free(mot);
