@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  23 APR 2026 14:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  28 APR 2026 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -719,32 +719,33 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 132.
 
 [3] [4]
-Overfull \hbox (69.2296pt too wide) detected at line 177
+Overfull \hbox (69.2296pt too wide) detected at line 192
 \OML/cmm/m/it/10 G \OT1/cmr/m/n/10 = []  []
  []
 
+[5]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 199.
-[5] [6]
+put line 214.
+ [6] [7] [8]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
-44.
+79.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [7
+)
+[9
 
-]
-(./note.aux)
+] (./note.aux)
 Package rerunfilecheck Info: File `note.out' has not changed.
-(rerunfilecheck)             Checksum: D2CB3937A50567DECB8658E554DBB0C5;2017.
+(rerunfilecheck)             Checksum: A2D818301D176D076B4EAF785C6DCFC4;2404.
 Package logreq Info: Writing requests to 'note.run.xml'.
 \openout1 = `note.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19426 strings out of 480104
- 333281 string characters out of 5892286
+ 19447 strings out of 480104
+ 333556 string characters out of 5892286
  1039848 words of memory out of 5000000
- 37111 multiletter control sequences out of 15000+600000
+ 37113 multiletter control sequences out of 15000+600000
  487301 words of font info for 70 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  60i,9n,68p,737b,1846s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -770,10 +771,10 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.p
 fb>
-Output written on note.pdf (7 pages, 216326 bytes).
+Output written on note.pdf (9 pages, 222959 bytes).
 PDF statistics:
- 546 PDF objects out of 1000 (max. 8388607)
- 227 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 589 PDF objects out of 1000 (max. 8388607)
+ 262 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 129 words of extra memory for PDF output out of 10000 (max. 10000000)
 

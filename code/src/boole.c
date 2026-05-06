@@ -58,13 +58,19 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	uchar *res;
 	char buffer[1024], *ptr;
 	*num = -1;
+	int n;
 	while (fgets(buffer, 1024, src)) {
 		ptr = &buffer[0];
-		if (sscanf(ptr, "%d", num) > 0) {
-			res = str_to_boole(ptr, ffsize);
-			return res;
+		if (sscanf(ptr, "%d%n", num, &n) != 0) {
+			ptr += n;
+			/* skip les espaces */
+			while (*ptr == ' ') ptr += 1; 
+			if (strncmp(ptr, "anf", 3) == 0) {
+				res = str_to_boole(ptr, ffsize);
+				return res;
+			}
 		}
-		if(*ptr != '#') {
+		if(*ptr != '#' && strncmp(ptr, "anf", 3) == 0) {
 			res = str_to_boole(buffer, ffsize);
 			return res;
 		}
@@ -157,7 +163,7 @@ unsigned char* int_to_boole(uint64_t *mot, int ffsize) {
 	 * prend une fonction booléenne représenté par n uint64 et renvoie sa version représenté par un tableau de uchar
 	 */
 	unsigned char *res;
-	res = (unsigned char*) calloc((size_t)ffsize, sizeof(unsigned char));
+	res  =  calloc(  ffsize,  sizeof(unsigned char));
 	int i = 0;
 	while (i < ffsize) {
 		res[i] = (mot[i/64] >> i%64) & 1;
