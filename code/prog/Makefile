@@ -62,7 +62,7 @@ verif_ftl.exe: verif_ftl.c -lmylib
 	gcc $(CFLAGS) $< $(LIB) -o $@
 
 exp_schatz.exe: exp_schatz.c -lmylib
-	gcc $(CFLAGS) $< $(LIB) -o $@
+	gcc $(CFLAGS) -fopenmp $< $(LIB) -o $@
 
 clean:
 	rm *.exe

@@ -332,3 +332,26 @@ int is_homogene(unsigned char *mot, int degree, int ffsize) {
 	return 1;
 }
 
+uint64_t* indice_to_boole(uint64_t indice, code64 c) {
+	/*
+	 * prend en entier sur 64 bit représentant la combinaison linéaire de la matrice génératrice du code c et renvoie
+	 * la fonction correspondante représenté par un tableau de int 64
+	 */
+	uint64_t *res;
+	int int_par_ligne = (63+c.longueur) / 64;
+	res = calloc(int_par_ligne, sizeof(uint64_t));
+	int j, i = 0;
+	while (indice != 0) {
+		if ((indice & 1) == 1) {
+			j = 0;
+			while (j < int_par_ligne) {
+				res[j] ^= c.G[i * int_par_ligne + j];
+				j += 1;
+			}
+		}
+		indice = indice >> 1;
+		i += 1;
+	}
+	return res;
+}
+
