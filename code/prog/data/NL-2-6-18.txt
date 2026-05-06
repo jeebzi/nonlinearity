@@ -1,3 +1,0 @@
-anf=ace+bce+bde+bcf+adf
-anf=ab+ace+bce+bde+bcf+adf
-anf=ab+cd+ace+bce+bde+bcf+adf
