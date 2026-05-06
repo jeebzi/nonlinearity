@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 	code64 code_homogene = code_to_code64(tmp);
 
 	uchar *g_boole;
-	uint64_t *mot;
+	uint64_t *mot, *g;
 	int *W, j, i;
 	int int_par_ligne = (63+ffsize) / 64;
 	uint64_t cpt, limite = (uint64_t) 1 << code_homogene.dim, indice_g = 0, indice_q;
@@ -61,14 +61,17 @@ int main(int argc, char *argv[]) {
 			}
 					
 			if (indice_q >= limite2) {
+				#pragma omp critical 
+				{
 				printf("h : ");
 				print_anf(f, ffdimen, ffsize);
 				printf("g : ");
-				/*
+				g = indice_to_boole(indice_g, c);
 				g_boole = int_to_boole(g, ffsize);
 				print_anf(g_boole, ffdimen, ffsize);
 				free(g_boole);
-				*/
+				free(g);
+				 }
 			}
 		}
 		puts("done");
