@@ -4,10 +4,10 @@
 
 
 int main(int argc, char *argv[]) {
-	int ffdimen, ffsize, num, opt, k;
+	int ffdimen=7, ffsize=128, num, opt, k=2, core=omp_get_num_procs();
 	FILE *src;
 
-	while ((opt = getopt(argc, argv, "k:n:f:")) != -1) {
+	while ((opt = getopt(argc, argv, "k:n:f:c:")) != -1) {
 		switch(opt) {
 			case 'k':
 				k = atoi(optarg);
@@ -18,6 +18,9 @@ int main(int argc, char *argv[]) {
 				break;
 			case 'f':
 				src = fopen(optarg, "r");
+				break;
+			case 'c':
+				core = atoi(optarg);
 				break;
 		}
 	}
@@ -36,11 +39,14 @@ int main(int argc, char *argv[]) {
 	uint64_t limite2 = (uint64_t) 1 << c.dim;
 	uint64_t limite1 = (uint64_t) 1 << ( ffdimen + 1 );
 	int min, wt;
+	time_t start, end;
+	start = time(NULL);
 	while ((f = load_boole(src, &num, ffsize))) {
 		mot = boole_to_int(f, ffsize);
 		/* on stocke la valeur de wt(h + q) pour gagner du temps */
 		W = tableau_poid(mot, c);
 		/* on regarde tous les g dans le code homogène */
+		omp_set_num_threads(core);
 		#pragma omp parallel for private(indice_q, wt) schedule(dynamic)
 		for( indice_g = 0; indice_g < limite2; indice_g += limite1 ) {
 			/* avec notre g on regarde W[q] + W[q+g] pour tous les q */
@@ -74,7 +80,7 @@ int main(int argc, char *argv[]) {
 				 }
 			}
 		}
-		puts("done");
+		// puts("done");
 		free(mot);
 		free(f);
 		free(W);
@@ -82,6 +88,8 @@ int main(int argc, char *argv[]) {
 	free(c.G);
 	free(code_homogene.G);
 	fclose(src);
+	end = time(NULL);
+	printf("#time = %ld\n", end-start);
 	return 0;
 }
 
