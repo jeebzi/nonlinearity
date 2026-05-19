@@ -1,1 +1,2 @@
-92 anf=ab+ac+bc+d+ad+bd+abd+cd+bcd+e+be+de+af+bf+abf+cf+adf+cdf+ef+aef+cef+ag+bg+abg+acg+bcg+adg+bdg+eg+deg+fg+cdfg+befg+h+abh+bch+eh+fh+afh+bfh+cfh+dfh+gh+agh+egh+afgh
+anf=1+b+ac+ad+cd+bcd+ae+ce+ace+de+bde+bcde+af+abf+cf+bcf+abcf+df+cdf+abcdf+ef+abcef+cdef+ag+bg+cg+bcg+dg+adg+eg+abceg+cdeg+acdeg+acfg+abdfg+cdfg+acdfg+bcdfg+aefg+abefg+acefg+bcefg+adefg+cdefg
+anf=ab+cd+be+de+af

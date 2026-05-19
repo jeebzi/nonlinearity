@@ -55,7 +55,7 @@ code RMH(int k, int m) {
 }
 code RM(int k, int m) {
 	/*
-	 * initialse un code de Reed-Muller de degrée k et à m variable
+	 * initialse un code de Reed-Muller d'ordre k et à m variable
 	 */
 	code res;
 	int nb_col = 1 << m;

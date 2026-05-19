@@ -164,6 +164,53 @@ $$
 2^k \times \#B(0, r) \geq 2^n.
 $$
 
+\subsection{Classification des fonctions booléennes}
+L’espace des fonctions booléennes étant extrêmement vaste, il est impossible d’étudier individuellement chacune de ses fonctions.
+Nous allons donc introduire des relations d’équivalence afin de partitionner cet espace en classes d’équivalence et de regrouper les fonctions partageant les mêmes propriétés.
+Soit
+\[
+A : \mathbb{F}_2^m \to \mathbb{F}_2^m
+\]
+une transformation linéaire. On peut la représenter par une matrice
+
+\[
+A =
+\begin{pmatrix}
+a_{1,1} & a_{1,2} & \cdots & a_{1,m} \\
+a_{2,1} & a_{2,2} & \cdots & a_{2,m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m,1} & a_{m,2} & \cdots & a_{m,m}
+\end{pmatrix}.
+\]
+
+où les coefficients \(a_{i,j}\) appartiennent à \(\mathbb{F}_2\).
+Pour tout vecteur \(x \in \mathbb{F}_2^m\), l’image de \(x\) par \(A\) est donnée par
+\[
+	A(x) = Ax = \sum_{j=1}^m x_j A_j,
+\]
+où $A_j$ désigne le $j$-ème colonne de $A$.
+Nous nous intérressont uniquement aux transformations linéaire inversible qui forme le groupe appelé groupe linéaire
+générale noté $GL(\FF_2^m)$. Une transformation affine est une application
+$$
+S : \FF_2^m \to \FF_2^m
+$$
+de la forme
+$$
+S = A(x) + a
+$$
+où
+$$ A \in GL(\FF_2^m)
+$$
+et
+$$
+a \in \FF_2^m
+$$
+Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forme le groupe affine noté $AGL(\FF_2^m)$.
+Soit $f$ et $g$ deux fonctions booléennes en $m$ variables. On dit que $g$ est équivalent à $f$ si il exsiste une transformation affine $S$ tel que
+$$
+g(x) = f \circ S(x)
+$$
+
 
 \section{calcul de distance}
 \subsection{Enumération}
