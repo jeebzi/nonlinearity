@@ -48,7 +48,7 @@ done
 wait
 
 all=/tmp/all-$tid.txt
-grep  anf   /tmp/bent-*.out   > $all
+grep -h  anf   /tmp/bent-*.out   > $all
 rm    -rf   /tmp/bent*.out
 
 

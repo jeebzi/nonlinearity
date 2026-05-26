@@ -65,6 +65,7 @@ int main(int argc, char *argv[]) {
 				wt = score;
 				indice_q += limite1;
 			}
+			printf("%d\n", wt);
 					
 			if (indice_q >= limite2) {
 				#pragma omp critical 

@@ -12,8 +12,8 @@
 \contentsline {subsection}{\numberline {0.2.3}Classification des fonctions booléennes}{5}{subsection.0.2.3}%
 \contentsline {section}{\numberline {0.3}calcul de distance}{6}{section.0.3}%
 \contentsline {subsection}{\numberline {0.3.1}Enumération}{6}{subsection.0.3.1}%
-\contentsline {section}{\numberline {0.4}Travail sur les bent}{6}{section.0.4}%
-\contentsline {section}{\numberline {0.5}Algo}{7}{section.0.5}%
-\contentsline {subsection}{\numberline {0.5.1}Algo probabiliste}{7}{subsection.0.5.1}%
-\contentsline {subsection}{\numberline {0.5.2}Algo Tarvernier like}{7}{subsection.0.5.2}%
-\contentsline {subsection}{\numberline {0.5.3}Algo FTL}{8}{subsection.0.5.3}%
+\contentsline {section}{\numberline {0.4}Travail sur les fonctions courbes}{7}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Algo}{8}{section.0.5}%
+\contentsline {subsection}{\numberline {0.5.1}Algo probabiliste}{8}{subsection.0.5.1}%
+\contentsline {subsection}{\numberline {0.5.2}Algo Tarvernier like}{8}{subsection.0.5.2}%
+\contentsline {subsection}{\numberline {0.5.3}Algo FTL}{9}{subsection.0.5.3}%

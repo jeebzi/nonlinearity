@@ -19,6 +19,130 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{DBLP:journals/tit/BerlekampW72}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c8c99493bda5a7232952c399c1425cc1}{%
+           family={Berlekamp},
+           familyi={B\bibinitperiod},
+           given={Elwyn\bibnamedelima R.},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=37acf4d77a2d1722ac56f588a13bf711}{%
+           family={Welch},
+           familyi={W\bibinitperiod},
+           given={Lloyd\bibnamedelima R.},
+           giveni={L\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{571fdd8cf0607208b25c55b697743fe9}
+      \strng{fullhash}{571fdd8cf0607208b25c55b697743fe9}
+      \strng{bibnamehash}{571fdd8cf0607208b25c55b697743fe9}
+      \strng{authorbibnamehash}{571fdd8cf0607208b25c55b697743fe9}
+      \strng{authornamehash}{571fdd8cf0607208b25c55b697743fe9}
+      \strng{authorfullhash}{571fdd8cf0607208b25c55b697743fe9}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Trans. Inf. Theory}
+      \field{number}{1}
+      \field{title}{Weight distributions of the cosets of the (32, 6) Reed-Muller code}
+      \field{volume}{18}
+      \field{year}{1972}
+      \true{nocite}
+      \field{pages}{203\bibrangedash 207}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/TIT.1972.1054732
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/TIT.1972.1054732
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/TIT.1972.1054732
+      \endverb
+    \endentry
+    \entry{DBLP:conf/itw/BrierL03}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=5581761ee1107fd3f862954262a595b0}{%
+           family={Brier},
+           familyi={B\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=59535db698f9ee36aa2c36e7a7c5392e}{%
+           family={Langevin},
+           familyi={L\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \strng{fullhash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \strng{bibnamehash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \strng{authorbibnamehash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \strng{authornamehash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \strng{authorfullhash}{cb0627519fcdbb0c73da1beaf302cfe3}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings 2003 {IEEE} Information Theory Workshop, {ITW} 2003, La Sorbonne, Paris, France, 31 March - 4 April, 2003}
+      \field{title}{Classification of Boolean cubic forms of nine variables}
+      \field{year}{2003}
+      \true{nocite}
+      \field{pages}{179\bibrangedash 182}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1109/ITW.2003.1216724
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/ITW.2003.1216724
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/ITW.2003.1216724
+      \endverb
+    \endentry
+    \entry{DBLP:journals/dcc/FourquetT08}{article}{}
+      \name{author}{2}{}{%
+        {{hash=79fcedb9f890fc5d047ff2efbd20ac60}{%
+           family={Fourquet},
+           familyi={F\bibinitperiod},
+           given={Rafaël},
+           giveni={R\bibinitperiod}}}%
+        {{hash=46a69a68e4f214452ce4f2a8bc0aca58}{%
+           family={Tavernier},
+           familyi={T\bibinitperiod},
+           given={Cédric},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{f48a0989f6c76a995b02677af2f03ace}
+      \strng{fullhash}{f48a0989f6c76a995b02677af2f03ace}
+      \strng{bibnamehash}{f48a0989f6c76a995b02677af2f03ace}
+      \strng{authorbibnamehash}{f48a0989f6c76a995b02677af2f03ace}
+      \strng{authornamehash}{f48a0989f6c76a995b02677af2f03ace}
+      \strng{authorfullhash}{f48a0989f6c76a995b02677af2f03ace}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Des. Codes Cryptogr.}
+      \field{number}{1-3}
+      \field{title}{An improved list decoding algorithm for the second order Reed-Muller codes and its applications}
+      \field{volume}{49}
+      \field{year}{2008}
+      \true{nocite}
+      \field{pages}{323\bibrangedash 340}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1007/S10623-008-9184-8
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s10623-008-9184-8
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s10623-008-9184-8
+      \endverb
+    \endentry
     \entry{gao2026}{article}{}
       \name{author}{1}{}{%
         {{hash=2384d1887222bf3854f8eb90ee37bcb0}{%
@@ -52,6 +176,373 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1587/transfun.2025eap1015
+      \endverb
+    \endentry
+    \entry{DBLP:journals/iandc/GaoKLXW24}{article}{}
+      \name{author}{5}{}{%
+        {{hash=2384d1887222bf3854f8eb90ee37bcb0}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Jinjie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a704dd3eea53de649e10bfd03e270a08}{%
+           family={Kan},
+           familyi={K\bibinitperiod},
+           given={Haibin},
+           giveni={H\bibinitperiod}}}%
+        {{hash=e5d6fa51a69f9c96a946952d51fd92f7}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=cf55abb21e9354971d25d65fec03b160}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Jiahua},
+           giveni={J\bibinitperiod}}}%
+        {{hash=173e398de85bf1b84fb78e78730ef9b3}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qichun},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{fullhash}{41bd876694f7c5f2cba7ed56bff8b636}
+      \strng{bibnamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authorbibnamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authornamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authorfullhash}{41bd876694f7c5f2cba7ed56bff8b636}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Inf. Comput.}
+      \field{title}{Monomial Boolean functions with large high-order nonlinearities}
+      \field{volume}{297}
+      \field{year}{2024}
+      \true{nocite}
+      \field{pages}{105152}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/J.IC.2024.105152
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.ic.2024.105152
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.ic.2024.105152
+      \endverb
+    \endentry
+    \entry{DBLP:journals/tit/GaoKLW23}{article}{}
+      \name{author}{4}{}{%
+        {{hash=2384d1887222bf3854f8eb90ee37bcb0}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Jinjie},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a704dd3eea53de649e10bfd03e270a08}{%
+           family={Kan},
+           familyi={K\bibinitperiod},
+           given={Haibin},
+           giveni={H\bibinitperiod}}}%
+        {{hash=e5d6fa51a69f9c96a946952d51fd92f7}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Yuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=173e398de85bf1b84fb78e78730ef9b3}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qichun},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{fullhash}{49b32984afb0e3ae5847227dc968b72f}
+      \strng{bibnamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authorbibnamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authornamehash}{c7a8c70b7df2d010af6c69a30c6e42d3}
+      \strng{authorfullhash}{49b32984afb0e3ae5847227dc968b72f}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Trans. Inf. Theory}
+      \field{number}{6}
+      \field{title}{The Covering Radius of the Third-Order Reed-Muller Code RM(3,7) is 20}
+      \field{volume}{69}
+      \field{year}{2023}
+      \true{nocite}
+      \field{pages}{3663\bibrangedash 3673}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/TIT.2023.3242966
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/TIT.2023.3242966
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/TIT.2023.3242966
+      \endverb
+    \endentry
+    \entry{DBLP:journals/ccds/GillotL23}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4c7d28e5703bcde74fa860253b45d1b8}{%
+           family={Gillot},
+           familyi={G\bibinitperiod},
+           given={Valérie},
+           giveni={V\bibinitperiod}}}%
+        {{hash=59535db698f9ee36aa2c36e7a7c5392e}{%
+           family={Langevin},
+           familyi={L\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{fullhash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{bibnamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authorbibnamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authornamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authorfullhash}{3cca059e3c6e661b595d208e14f61920}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cryptogr. Commun.}
+      \field{number}{6}
+      \field{title}{Classification of some cosets of the Reed-Muller code}
+      \field{volume}{15}
+      \field{year}{2023}
+      \true{nocite}
+      \field{pages}{1129\bibrangedash 1137}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1007/S12095-023-00652-4
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s12095-023-00652-4
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s12095-023-00652-4
+      \endverb
+    \endentry
+    \entry{DBLP:journals/amco/GillotL24}{article}{}
+      \name{author}{2}{}{%
+        {{hash=4c7d28e5703bcde74fa860253b45d1b8}{%
+           family={Gillot},
+           familyi={G\bibinitperiod},
+           given={Valérie},
+           giveni={V\bibinitperiod}}}%
+        {{hash=59535db698f9ee36aa2c36e7a7c5392e}{%
+           family={Langevin},
+           familyi={L\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{fullhash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{bibnamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authorbibnamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authornamehash}{3cca059e3c6e661b595d208e14f61920}
+      \strng{authorfullhash}{3cca059e3c6e661b595d208e14f61920}
+      \field{extraname}{2}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Adv. Math. Commun.}
+      \field{number}{2}
+      \field{title}{Covering radius of $\mathrm{RM}(4,8)$}
+      \field{volume}{18}
+      \field{year}{2024}
+      \true{nocite}
+      \field{pages}{383\bibrangedash 393}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.3934/AMC.2023038
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.3934/amc.2023038
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.3934/amc.2023038
+      \endverb
+    \endentry
+    \entry{langevin2008classification}{article}{}
+      \name{author}{2}{}{%
+        {{hash=59535db698f9ee36aa2c36e7a7c5392e}{%
+           family={Langevin},
+           familyi={L\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c203d509dba794a9c8c6108dbacf6cc8}{%
+           family={Leander},
+           familyi={L\bibinitperiod},
+           given={Gregor},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOS Press Amsterdam}%
+      }
+      \strng{namehash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \strng{fullhash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \strng{bibnamehash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \strng{authorbibnamehash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \strng{authornamehash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \strng{authorfullhash}{4e7ce21879fbbec94e05ccd3ec22b496}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Boolean Functions in Cryptology and Information Security}
+      \field{title}{Classification of Boolean quartics forms in eight variables}
+      \field{volume}{18}
+      \field{year}{2008}
+      \true{nocite}
+      \field{pages}{139\bibrangedash 147}
+      \range{pages}{9}
+    \endentry
+    \entry{doi:10.1137/1022103}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7ab2d32d6463a28e3f9f347d91a0f7f9}{%
+           family={Mattson},
+           familyi={M\bibinitperiod},
+           given={H.\bibnamedelimi F.},
+           giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod},
+           suffix={Jr.},
+           suffixi={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \strng{fullhash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \strng{bibnamehash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \strng{authorbibnamehash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \strng{authornamehash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \strng{authorfullhash}{7ab2d32d6463a28e3f9f347d91a0f7f9}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Review}
+      \field{number}{4}
+      \field{title}{The Theory of Error-Correcting Codes (F. J. MacWilliams and N. J. A. Sloane)}
+      \field{volume}{22}
+      \field{year}{1980}
+      \true{nocite}
+      \field{pages}{513\bibrangedash 519}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1137/1022103
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1137/1022103
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1137/1022103
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1137/1022103
+      \endverb
+    \endentry
+    \entry{doi:10.1137/0137032}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7bdc52b4b82e6ac5fd0932b99557723f}{%
+           family={McLoughlin},
+           familyi={M\bibinitperiod},
+           given={Aileen\bibnamedelima M.},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \strng{fullhash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \strng{bibnamehash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \strng{authorbibnamehash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \strng{authornamehash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \strng{authorfullhash}{7bdc52b4b82e6ac5fd0932b99557723f}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Applied Mathematics}
+      \field{number}{2}
+      \field{title}{The Covering Radius of the \$(m - 3)\$rd Order Reed Muller Codes and a Lower Bound on the \$(m - 4)\$th Order Reed Muller Codes}
+      \field{volume}{37}
+      \field{year}{1979}
+      \true{nocite}
+      \field{pages}{419\bibrangedash 422}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1137/0137032
+      \endverb
+    \endentry
+    \entry{DBLP:journals/tit/Schatz81}{article}{}
+      \name{author}{1}{}{%
+        {{hash=77dbb7882d9a2f51c031fe85964e275c}{%
+           family={Schatz},
+           familyi={S\bibinitperiod},
+           given={James\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{77dbb7882d9a2f51c031fe85964e275c}
+      \strng{fullhash}{77dbb7882d9a2f51c031fe85964e275c}
+      \strng{bibnamehash}{77dbb7882d9a2f51c031fe85964e275c}
+      \strng{authorbibnamehash}{77dbb7882d9a2f51c031fe85964e275c}
+      \strng{authornamehash}{77dbb7882d9a2f51c031fe85964e275c}
+      \strng{authorfullhash}{77dbb7882d9a2f51c031fe85964e275c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Trans. Inf. Theory}
+      \field{number}{4}
+      \field{title}{The second order Reed-Muller code of length 64 has covering radius 18}
+      \field{volume}{27}
+      \field{year}{1981}
+      \true{nocite}
+      \field{pages}{529\bibrangedash 530}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1109/TIT.1981.1056364
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1109/TIT.1981.1056364
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1109/TIT.1981.1056364
+      \endverb
+    \endentry
+    \entry{DBLP:journals/dm/Wang19c}{article}{}
+      \name{author}{1}{}{%
+        {{hash=173e398de85bf1b84fb78e78730ef9b3}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Qichun},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{173e398de85bf1b84fb78e78730ef9b3}
+      \strng{fullhash}{173e398de85bf1b84fb78e78730ef9b3}
+      \strng{bibnamehash}{173e398de85bf1b84fb78e78730ef9b3}
+      \strng{authorbibnamehash}{173e398de85bf1b84fb78e78730ef9b3}
+      \strng{authornamehash}{173e398de85bf1b84fb78e78730ef9b3}
+      \strng{authorfullhash}{173e398de85bf1b84fb78e78730ef9b3}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Discret. Math.}
+      \field{number}{12}
+      \field{title}{The covering radius of the Reed-Muller code RM(2, 7) is 40}
+      \field{volume}{342}
+      \field{year}{2019}
+      \true{nocite}
+      \verb{doi}
+      \verb 10.1016/J.DISC.2019.111625
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.disc.2019.111625
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.disc.2019.111625
       \endverb
     \endentry
   \enddatalist

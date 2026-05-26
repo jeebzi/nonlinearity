@@ -1,5 +1,6 @@
 \documentclass{report}
 
+\errorcontextlines=999
 \usepackage{enumitem}
 \usepackage{biblatex}
 \usepackage{algorithm}
@@ -20,6 +21,7 @@
 \def\BM{\ensuremath{\mathrm{B}(m)}}
 \def\BST#1#2#3{\ensuremath{\mathrm{B}_#1^#2(#3)}}
 \def\binome#1#2{\ensuremath{{C}_#1^#2}}
+\def\NL{\ensuremath{\mathrm{NL}}}
 \newtheorem{theorem}{Théorème}
 \newtheorem{proposition}{Proposition}
 \newtheorem{remark}{Remarque}
@@ -44,9 +46,9 @@ $$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
 La distance de Hamming de deux fonctions booléennes $f$ et $ g$ est définie par le nombre de fois où les fonctions prennent des valeurs différentes:
 $$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
 
-Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléenne en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
+Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléennes en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
-$$d(f, C) = \min_{c \in C} d_H(f, c) = \min_{c \in C} \WT{f+g}$$
+$$d(f, C) = \min_{c \in C} d_H(f, c) = \min_{c \in C} \WT{f+c}$$
 \begin{proposition}
 	Soit $f$ et $g$ deux fonctions booléennes en $m$ variables
 	\begin{enumerate}[label=(\roman*)]
@@ -74,7 +76,7 @@ $$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 | \deg(f) \leq k\} $$
 	Chaque ligne de la matrice génératrice d'un code \RM{k}{m} correspond à la table de vérité d'un monôme de degré inférieur ou égale à $k$.
 \end{remark}
 La dimension $K$ de \RM{k}{m} est : 
-$$ \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i} = K$$
+$$ K = \mathrm{dim}(\RM{k}{m}) = \sum_{i=0}^{k} \binom{m}{i}$$
 La longueur $N$ de \RM{k}{m} est:
 $$N=2^m$$
 Exemple pour \RM{2}{8}:
@@ -86,7 +88,7 @@ $$N = 2^8 = 256$$
 Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2,$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code, autrement dit à sa distance
 à toutes les fonctions de degré au plus k.
 $$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
-Le coéfficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
+Le coefficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
 $$
 \widehat{f}(a) = \sum_{x \in \FF_2^m} (-1)^{f(x) + a.x}
 $$
@@ -120,14 +122,16 @@ $$ \rho(k, m) = \max_{f \in \BM} \mathrm{NL}_k(f) =  \max_{f \in \mathrm{B}(m)} 
 	\end{tabular}
 \end{table}
 
-Connaitre le rayon de recouvrement d'un code de Reed Muller est interessant pour "blablablablalbalblabla".
-La taille de l'espace des fonctions booléennes est immense. Pour $m=8$ l'enemble des fonctions booléennes en 8 variable est $2^{2^8} = 2^{256}$.
+En cryptographie avoir une haute non linéarité est un critère important pour les fonctions booléennes utilisé dans les cryptosystèmes symétriques. La plus grande valeur de non linéarité d'ordre $k$
+de toutes les fonctions booléennes en $m$ variable étant le rayon de recouvrement du code de Reed-Muller $\RM{k}{m}$, connaitre ce rayon est intéressant.
+
+La taille de l'espace des fonctions booléennes est immense. Pour $m=8$ l'ensemble des fonctions booléennes en 8 variable est $2^{2^8} = 2^{256}$.
 De plus, si on veut calculer la non linéarité d'ordre 2 pour toutes les fonctions, calculer la distance entre une fonction de $\mathrm{B}(8)$ et tout \RM{2}{8} n'est pas non plus trivial
 car ce code comporte $2^{37}$ éléments.
-Le tableau du récent article de Jinjie GAO \cite{gao2026} (voir tab \ref{tab:tab_rho}) recense toutes les valeurs de rho connu jusqu'à $m=10$. On peut voir que l'on connait exactement toutes les valeurs de rho jusqu'à $m=7$. Au-delà certaines valeurs sont comprises dans un
+Le tableau du récent article de Jinjie GAO \cite{gao2026} (voir tab \ref{tab:tab_rho}) recense toutes les valeurs de $\rho$ connues jusqu'à $m=10$. On peut voir que l'on connait exactement toutes les valeurs de rho jusqu'à $m=7$. Au-delà certaines valeurs sont comprises dans un
 intervalle. Notament
 $$88 \leq \rho(2, 8) \leq 96$$
-Notre but et de trouver une fonction dont la non linéarité et plus grande que 88.
+Notre but est de trouver une fonction dont la non linéarité est plus grande que 88.
 
 \subsection{Inégalité de $\rho$}
 On sait que
@@ -165,7 +169,7 @@ $$
 $$
 
 \subsection{Classification des fonctions booléennes}
-L’espace des fonctions booléennes étant extrêmement vaste, il est impossible d’étudier individuellement chacune de ses fonctions.
+L’espace des fonctions booléennes étant extrêmement vaste, il est impossible d’étudier exhaustivement l'espace de ses fonctions.
 Nous allons donc introduire des relations d’équivalence afin de partitionner cet espace en classes d’équivalence et de regrouper les fonctions partageant les mêmes propriétés.
 Soit
 \[
@@ -206,10 +210,18 @@ $$
 a \in \FF_2^m
 $$
 Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forme le groupe affine noté $AGL(\FF_2^m)$.
-Soit $f$ et $g$ deux fonctions booléennes en $m$ variables. On dit que $g$ est équivalent à $f$ si il exsiste une transformation affine $S$ tel que
+Soit $f$ et $g$ deux fonctions booléennes. On dit que $g$ est équivalent à $f$ si il exsiste une transformation affine $S$ tel que
 $$
 g(x) = f \circ S(x)
 $$
+\begin{proposition}
+	Soit $f$ et $g$ deux fonctions booléennes équivalentes
+	\begin{enumerate}
+		\item $\WT{g} = \WT{f}$
+		\item $\NL_r(g) = \NL_r(f)$
+		\item $\deg(g) = \deg(f)$
+	\end{enumerate}
+\end{proposition}
 
 
 \section{calcul de distance}
@@ -230,7 +242,7 @@ G =
 \begin{array}{|c|cccccccc|}
 	\hline
 	u & 000 & 00\textbf{1} & 0\textbf{1}1 & 01\textbf{0} & \textbf{1}10 & 11\textbf{1} & 1\textbf{0}1 & 10\textbf{0}\\
-	\hline
+	\ hline
 	\text{ligne additionné} & 0 & l_1 & l_2 & l_1 & l_3 & l_1 & l_2 & l_1\\
 	\hline
 	c & 0 & l_1 & l_1+l_2 & l_2 & l_3+l_2 & l_3+l_2+l_1 & l_3+l_1 & l_3\\
@@ -240,16 +252,47 @@ $$
 Dans l'exemple pour passer du mot $l_1+l_2$ représenté par le vecteur $u=011$ on passe à la prochaine valeur de $u$ dans le code de Gray qui est $u=010$,
 le bit d'indice 1 a été modifié donc pour passer au prochain mot il suffit de faire $l_1+l_2+l_1 = l_2$.
 
-\section{Travail sur les bent}
-Une fonction booléenne $f$ et dite bent si ça distance aux fonctions affinnes est la plus grande possible $\textrm{NL}_1(f) = \rho(1, m)$ nous avons voulu
-étudier la non linéarité d'ordre 2 pour les bent en 8 variables. Calculer la non linéarité d'ordre 2 de toutes les fonction bent aurait été impossible étant donnée qu'il y en a 190 million
-et $2^{37}$ mot dans $\RM{2}{8}$. Il nous fallait donc trouver un moyen d'estimer rapidement la non linéarité d'une fonction à l'aide d'un algorithme probabiliste.
+\section{Travail sur les fonctions courbes}
+
+Une fonction booléenne \(f\) est dite courbe si sa distance aux fonctions affines est la plus grande possible, c’est-à-dire
+\[
+\mathrm{NL}_1(f) = \rho(1,m),
+\]
+ou encore si
+\[
+\widehat{f}(a) = \pm 2^{\frac{m}{2}}
+\]
+pour tout \(a \in \mathbb{F}_2^m\).
+
+Les fonctions courbes ayant une non-linéarité maximale d’ordre \(1\), nous avons voulu étudier la non-linéarité d’ordre \(2\) de toutes les fonctions courbes.
+
+Il existe \(190\) millions de classes de fonctions courbes et \(2^{37}\) mots dans \(\RM{2}{8}\). Il est donc impossible de calculer, pour toutes les fonctions \(f\), le poids minimal de
+\[
+f + c, \qquad c \in \RM{2}{8}.
+\]
+
+Il nous fallait donc trouver un moyen d’estimer rapidement la non-linéarité d’une fonction à l’aide d’un algorithme probabiliste.
 La classe latérale d'une fonction $f$ modulo $C$ est l'ensemble des translaté de $f$ par les éléments de $C$
 $$ f + C = \{f + c | c \in C\}
 $$
-Calculé la distance de $f$ à un code revient donc à trouvé le poid minimal de sa classe latérale. L'algorithme probabiliste que l'on a utilisé a pour but de creer un translaté aléatoire de $f$ de poid au plus
-$m - k$ avec $m$ et $k$ la longueur et la dimension du code. Cette algorithme a été très rapide et efficace pour trouver et éliminer les fonctions de faible non linéarité ce qui nous a permis de traiter l'intégralité des fonctions bent en quelque heure.
-Nous avons trouvé que la non linéarité d'ordre 2 des fonctions bent est de 88. On pourrait dire par intuition que $\rho(2, 8) = 88$ mais rien est sûr.
+Il nous fallait donc trouver un moyen d’estimer rapidement la non-linéarité d’une fonction à l’aide d’un algorithme probabiliste.
+
+La classe latérale d’une fonction \(f\) modulo \(C\) est l’ensemble des translatés de \(f\) par les éléments de \(C\) :
+\[
+f + C = \{f + c \mid c \in C\}.
+\]
+
+Calculer la distance de \(f\) à un code revient donc à trouver le poids minimal de sa classe latérale.
+
+L’algorithme probabiliste \ref{alg:pivotage} que nous avons utilisé a pour but de créer un translaté aléatoire de \(f\) de poids au plus \(m-k\), où \(m\) et \(k\) désignent respectivement la longueur et la dimension du code.
+
+Cet algorithme s’est révélé très rapide et efficace pour trouver et éliminer les fonctions de faible non-linéarité, ce qui nous a permis de traiter l’intégralité des fonctions courbes en quelques heures.
+
+Nous avons trouvé que la non-linéarité d’ordre \(2\) des fonctions courbes est égale à \(88\). On pourrait conjecturer que
+\[
+\rho(2,8)=88,
+\]
+mais rien ne permet pour l’instant de l’affirmer avec certitude.
 
 
 
@@ -323,6 +366,7 @@ Voir Algo \ref{alg:tavernier}
 		\RETURN score
 	\end{algorithmic}
 \end{algorithm}
-\printbibliography
 
+\nocite{*}
+\printbibliography
 \end{document}
