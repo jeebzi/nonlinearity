@@ -154,7 +154,7 @@ Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe
 $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
 
 \subsection{Borne inférieure du rayon de recouvrement}
-Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce au principe d'empilement des sphères.
+Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce au principe d'empilement de sphères.
 Le nombre d'éléments dans une sphère de rayon $r$ est
 $$
 \#B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
@@ -193,8 +193,12 @@ Pour tout vecteur \(x \in \mathbb{F}_2^m\), l’image de \(x\) par \(A\) est don
 	A(x) = Ax = \sum_{j=1}^m x_j A_j,
 \]
 où $A_j$ désigne le $j$-ème colonne de $A$.
-Nous nous intérressont uniquement aux transformations linéaire inversible qui forme le groupe appelé groupe linéaire
-générale noté $GL(\FF_2^m)$. Une transformation affine est une application
+Nous nous intérressonts uniquement aux transformations linéaires inversibles qui forment le groupe appelé groupe linéaire
+générale noté $GL(\FF_2^m)$ le cardinal de cet ensemble est égale à
+$$
+\text{card}(GL(\FF_2^m))=\prod_{i=0}^{m-1}2^m - 2^i
+$$
+Une transformation affine est une application
 $$
 S : \FF_2^m \to \FF_2^m
 $$
@@ -209,8 +213,9 @@ et
 $$
 a \in \FF_2^m
 $$
-Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forme le groupe affine noté $AGL(\FF_2^m)$.
-Soit $f$ et $g$ deux fonctions booléennes. On dit que $g$ est équivalent à $f$ si il exsiste une transformation affine $S$ tel que
+Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forment le groupe affine noté $AGL(\FF_2^m)$ ayant pour dimension le cardinal de $GL(F_2^m)$.
+
+Soit $f$ et $g$ deux fonctions booléennes. On dit que $g$ est équivalent à $f$ si il existe une transformation affine $S$ telle que
 $$
 g(x) = f \circ S(x)
 $$
@@ -222,6 +227,14 @@ $$
 		\item $\deg(g) = \deg(f)$
 	\end{enumerate}
 \end{proposition}
+La classe d'une fonction $f$ est l'ensemble des fonctions $g$ telles que $f$ et $g$ soient équivalentes.
+$$
+\text{classe}(f) = \{g|g\sim f\} = \{f \circ S | S \in AGL(\FF_2^m)\}
+$$
+Le stabilisateur d'une fonction $f$ est l'ensemble des tranformations affines $S$ tel que
+$$
+\text{stab}(f) = \{S \in AGL(\FF_2^m) | f \circ S = f\}
+$$
 
 
 \section{calcul de distance}
