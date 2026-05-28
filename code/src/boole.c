@@ -355,3 +355,21 @@ uint64_t* indice_to_boole(uint64_t indice, code64 c) {
 	return res;
 }
 
+uint64_t* merge(uint64_t *h, uint64_t *g, int ffsize) {
+	/*
+	 * prend 2 fonctions booléenne h et g puis creer unr fonction f tel que f = x_m*g+h
+	 * f = [h | g + h]
+	 */
+	uint64_t *f;
+	if (ffsize >= 64) {
+		int int_par_ligne = (63+ffsize)/64;
+		f = calloc(int_par_ligne << 1, sizeof(uint64_t));
+		int j = 0;
+		while (j < (int_par_ligne << 1)) {
+			f[j] = h[j%int_par_ligne] ^ ((j / int_par_ligne) * g[j%int_par_ligne]);
+			j += 1;
+		}
+	}
+	return f;
+}
+

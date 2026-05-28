@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
 	mot = boole_to_int(g, ffsize);
 	j = 0;
 	/* boole_g = [0|g] */
+	print_tab_uchar(g, ffsize);
 	while (j < int_par_ligne) {
 		boole_g[j+int_par_ligne] = mot[j];
 		j += 1;
@@ -50,6 +51,10 @@ int main(int argc, char *argv[]) {
 		boole_f[j] = boole_h[j] ^ boole_g[j];
 		j += 1;
 	}
+	printf("h :");
+	print_tab_uint64(boole_h, int_par_ligne1);
+	printf("g : ");
+	print_tab_uint64(boole_g, int_par_ligne1);
 	print_tab_uint64(boole_f, int_par_ligne1);
 	
 
@@ -58,6 +63,14 @@ int main(int argc, char *argv[]) {
 	int dist;
 	dist = distance_mot_code_min(boole_f, words, 1 << 8, tmp.dim, 0);
 	printf("dist = %d\n", dist);
+	free(boole_f);
+	mot = boole_to_int(h, ffsize);
+	uint64_t *mot_g = boole_to_int(g, ffsize);
+	boole_f = merge(mot, mot_g, ffsize);
+	print_tab_uint64(boole_f, int_par_ligne1);
+	dist = distance_mot_code_min(boole_f, words, 1 << 8, tmp.dim, 0);
+	printf("dist = %d\n", dist);
+
 	return 0;
 }
 
