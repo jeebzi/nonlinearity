@@ -1,1 +1,2 @@
 36 anf=bcd+abe+bde+abf+abg+deg+afg
+36 anf=abd+bcd+abe+bce+ade+bde+bcde+abcf+bef+cdef+bcg+adg+cdeg+fg+acfg+cdfg+aefg
