@@ -85,10 +85,10 @@ int main(int argc, char *argv[]) {
 					}
 				}
 			}
-		// puts("done");
-		free(mot);
-		free(f);
-		free(W);
+			// puts("done");
+			free(mot);
+			free(f);
+			free(W);
 		}
 		cpt += 1;
 	}
