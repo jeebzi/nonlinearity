@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass{article}
 
 \errorcontextlines=999
 \usepackage{enumitem}
@@ -83,20 +83,38 @@ Exemple pour \RM{2}{8}:
 $$K = \binom{0}{8} + \binom{1}{8} + \binom{2}{8} = 37$$
 $$N = 2^8 = 256$$
 
+\subsubsection{Décomposition de Plotkin}
+Toute fonction booléenne $f \in \RM{k}{m}$ peut s'écrire sous la forme
+$$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$,
+Si $x_m = 0$ $f$ est égale à $h$ et si $x_m = 1$ $f$ est égale à $g+h$. La table de vérité de toute fonction est donc de la forme
+$$\text{TT}(f)=[\text{TT}(h) \mid \text{TT}(h+g)]$$
 
 \subsection{Non linéarité}
-Soit un code $\RM{k}{m}$ et une fonction $f : \FF_2^m \to \FF_2,$ on définit la non linéarité d'ordre $k$ de $f$ comme sa distance au code, autrement dit à sa distance
-à toutes les fonctions de degré au plus k.
-$$\mathrm{NL}_k(f) = d(f, \RM{k}{m})$$
-Le coefficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est définie par :
+La non linéarité d'une fonction $f : \FF_2^m \to \FF_2$ est la distance de Hamming minimale entre $f$ et l'ensemble des fonctions affines en $m$ variables.
+$$
+\mathrm{NL}(f) = \min_{l \in \RM{1}{m}} d_H(f, l)
+$$
+La non linéarité d'une fonction peut aussi être définie à l'aide de sa transformé de Walsh.
+
+Le coefficient de Walsh d'une fonction $f$ en $a \in \FF_2^m$ est défini par
 $$
 \widehat{f}(a) = \sum_{x \in \FF_2^m} (-1)^{f(x) + a.x}
 $$
-La non linéarité d'ordre 1 peut aussi être définie par:
+La non linéarité s'exprime alors par la formule
 $$
 \mathrm{NL}(f) = 2^{m-1} - \frac{1}{2}\max_{a \in \FF_2^m}|\widehat{f}(a)|.
 $$
+L'amplitude spectrale d'une fonction booléenne $f$ est définie comme la valeur absolue maximale
+de ses coefficients de Walsh : 
+$$
+S(f) = \max_{a \in \FF_2^m} |\widehat{f}(a)|
+$$
+Ainsi, maximiser la non linéarité d'une fonction revient à minimiser son amplitude spectrale.
 
+Plus généralement, la non linéarité d'ordre $r$ d'une fonction $f$ est définie par
+$$
+\mathrm{NL}_r(f) = \min_{g \in \RM{r}{m}} d(f,g)
+$$
 \subsection{Rayon de recouvrement}
 Le rayon de recouvrement $\rho(k, m)$ d'un code $\mathrm{RM}(k, m)$ de Reed-Muller, est la distance maximale entre ce dernier et l'ensemble des fonctions booléennes
 en $m$ variables.
@@ -105,19 +123,20 @@ $$ \rho(k, m) = \max_{f \in \BM} \mathrm{NL}_k(f) =  \max_{f \in \mathrm{B}(m)} 
 
 \section{Problématique}
 \begin{table}
-	\caption{Tableau des valeur de $\rho(k,n)$}
+	\center
+	\caption{Tableau des valeurs de $\rho(k,m)$}
 	\label{tab:tab_rho}
-	\begin{tabular}{c|cccccccc}
-		$k\backslash n$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+	\begin{tabular}{c|ccccccccc}
+		$k\backslash m$ & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
 		\hline
-		1 & 2 & 6 & 12 & 28 & 56 & 120 & 242-244 & 496 \\
-		2 & 1 & 2 & 6 & 18 & 40 & 88-96 & 196-216 & 400-460 \\
-		3 & 0 & 1 & 2 & 8 & 20 & 56-60 & 111-156 & 194-372 \\
-		4 &  & 0 & 1 & 2 & 8 & 26 & 58-86 & $\leq$ 242 \\
-		5 &  &  & 0 & 1 & 2 & 10 & 28-36 & $\leq$ 122 \\
-		6 &  &  &  & 0 & 1 & 2 & 10 & $\leq$ 46 \\
-		7 &  &  &  &  & 0 & 1 & 2 & 12 \\
-		8 &  &  &  &  &  & 0 & 1 & 2\\
+		1 & 2 & 6 & 12 & 28 & 56 & 120 & 242-244 & 496 & 996 \\
+		2 & 1 & 2 & 6 & 18 & 40 & 88-96 & 196-216 & 400-460 & 856-956 \\
+		3 & 0 & 1 & 2 & 8 & 20 & 56-60 & 111-156 & 194-372 & 454-832 \\
+		4 &  & 0 & 1 & 2 & 8 & 26 & 58-86 & $\leq$ 242 & $\leq$ 614 \\
+		5 &  &  & 0 & 1 & 2 & 10 & 28-36 & $\leq$ 122 & $\leq$ 364 \\
+		6 &  &  &  & 0 & 1 & 2 & 10 & $\leq$ 46 & $\leq$ 168 \\
+		7 &  &  &  &  & 0 & 1 & 2 & 12 & $\leq$ 58 \\
+		8 &  &  &  &  &  & 0 & 1 & 2 & 12 \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -133,28 +152,24 @@ intervalle. Notament
 $$88 \leq \rho(2, 8) \leq 96$$
 Notre but est de trouver une fonction dont la non linéarité est plus grande que 88.
 
-\subsection{Inégalité de $\rho$}
+\subsection{Borne supérieure du rayon de recouvrement}
 On sait que
 $$ \rho(k, n) \leq \rho(k, n-1) + \rho(k - 1, n - 1) $$
 Preuve:
 
-Soit $x=(a, b)$ un vecteur binaire dans $\FF_2^m$ avec a et b de longueur $2^m-1$. Tous les mots $c$ dans \RM{k}{m} peuvent d'écrire comme $c = u+x_8v$ avec $u \in \RM{k}{m-1} \; v \in \RM{k-1}{m-1}$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
+Soit $x=(a, b)$ un vecteur binaire de longeur $2^m$ avec a et b de longueur $2^m-1$. Tous les mots $c$ dans \RM{k}{m} peuvent d'écrire comme $c = (u, u+v)$ avec $u \in \RM{k}{m-1} \; v \in \RM{k-1}{m-1}$. Il existe un mot $u \in \RM{k}{m-1}$ tel que $d(a, u) \leq \rho(k, m-1)$.
 De plus is existe un mot $v \in \RM{k-1}{m-1}$ tel que $d(b+u, v) \leq \rho(k-1, m-1)$.
 Puisque $x=(a,b)$ et $c = (u, u+v) \quad d(c, x) = d(u, a) + d(u+v, b) = d(u, a) + d(u+b, v)$.
 Alors le mot $c$ vérifie $d(x, c) \leq \rho(k, m-1) + \rho(k-1, m-1)$.
 
 
-Pour \RM{2}{8} on voudrait savoir si il existe une fonction $f$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
-\subsubsection{Décomposition de Plotkin}
-Toute fonction booléenne $f$ en $m$ variable de degré $k$ autrement dit $f \in \RM{k}{m}$ peut s'écrire sous la forme
-$$f = x_mg + h$$ avec $g \in \RM{k-1}{m-1}$ et $h \in \RM{k}{m-1}$
-si $x_m = 0, f = h$ et si $x_m = 1,  f = g + h$ la table de vérité de toute fonction est donc de la forme
-$$[h \mid h+g]$$
-Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u \in \RM{2}{8}$
-$$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+v}+\WT{h+v+g+u} \geq 96$$
+Pour \RM{2}{8} on voudrait savoir si il existe une fonction $f \in \mathrm{B}(8)$ qui atteindrait cette borne supérieure tel que $\mathrm{NL}_2(f) = 96$.
+On rappelle que pour tout $f \in \RM{k}{m} f = x_mg+h$ où $h \in \RM{k}{m-1}$ et $g \in \RM{k-1}{m-1}$.
+Ce qui veut dire que pour que $\mathrm{NL}_2(f) = 96$ il faut que pour n'importe quelle fonction $t = x_8v + u, \; t \in \RM{2}{8}$
+$$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+u}+\WT{h+u+g+v} \geq 96$$
 
 \subsection{Borne inférieure du rayon de recouvrement}
-Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce au principe d'empilement de sphères.
+Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce à la borne de recouvrement des sphères.
 Le nombre d'éléments dans une sphère de rayon $r$ est
 $$
 \#B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
@@ -167,6 +182,25 @@ Pour trouver une borne inférieure au rayon de recouvrement il suffit donc de tr
 $$
 2^k \times \#B(0, r) \geq 2^n.
 $$
+Ceci nous a permis de trouver des bornes inférieures jusque là inexistante au tableau et de meilleure borne inférieur pour $m = 10$ et $m=11$
+\begin{table}
+	\center
+	\caption{Amélioration des bornes inférieures sur $\rho(k,m)$}
+	\label{tab:tab_inf}
+	\begin{tabular}{c|cc}
+		$k\backslash m$ & 10 & 11 \\
+		\hline
+		1 &496 & 996 \\
+		2 & 400-460 & 856-956 \\
+		3 & \textbf{271}-372 & \textbf{628}-832 \\
+		4 & \textbf{161}-242 & \textbf{416}-614 \\
+		5 & \textbf{76}-122 & \textbf{227}-364 \\
+		6 & \textbf{27}-46 & \textbf{98}-168 \\
+		7 & 12 & \textbf{32}-58 \\
+		8 & 2 & 12 \\
+		\hline
+	\end{tabular}
+\end{table}
 
 \subsection{Classification des fonctions booléennes}
 L’espace des fonctions booléennes étant extrêmement vaste, il est impossible d’étudier exhaustivement l'espace de ses fonctions.
