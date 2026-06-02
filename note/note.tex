@@ -204,12 +204,28 @@ Ceci nous a permis de trouver des bornes inférieures jusque là inexistante au 
 
 \subsection{Classification des fonctions booléennes}
 L’espace des fonctions booléennes étant extrêmement vaste, il est impossible d’étudier exhaustivement l'espace de ses fonctions.
-Nous allons donc introduire des relations d’équivalence afin de partitionner cet espace en classes d’équivalence et de regrouper les fonctions partageant les mêmes propriétés.
+Nous allons donc introduire une relation d’équivalence afin de partitionner cet espace en classes d’équivalence regroupant les fonctions partageant les mêmes propriétés (degré, non linéarité).
 Soit
 \[
 A : \mathbb{F}_2^m \to \mathbb{F}_2^m
 \]
-une transformation linéaire. On peut la représenter par une matrice
+une transformation linéaire. On rappelle que
+$$
+A(x + y) = A(x) + A(y) \\
+$$
+$$
+A(0) = 0
+$$
+Soit $(e_1 \dots e_m)$ la base cannonique de $\FF_2^m$, où $e_j$ désigne le vecteur dont toutes les coordonées sont nulles sauf la $j$-ème. $e_1 = (100\dots0)$.
+Soit $x=(x_1, x_2, \dots x_m) \in \FF_2^m$ le vecteur $x$ peut donc s'écrire comme une combinaison linéaire de la base cannonique : 
+$$
+x = \sum_{i=1}^{m} x_ie_i
+$$
+L'image de $x$ par $A$ est donnée par
+$$
+A(x) = A(\sum_{i=1}^{m} x_ie_i) = \sum_{i=1}^m x_i A(e_i)
+$$
+On peut représenter cette transformation linéaire par une matrice dont la $j$-ème colonne est le vecteur $A(e_j)$.
 
 \[
 A =
@@ -218,40 +234,41 @@ a_{1,1} & a_{1,2} & \cdots & a_{1,m} \\
 a_{2,1} & a_{2,2} & \cdots & a_{2,m} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{m,1} & a_{m,2} & \cdots & a_{m,m}
+\end{pmatrix}
+= \begin{pmatrix}
+\big| & \big| &        & \big| \\
+A(e_1) & A(e_2) & \cdots & A(e_m) \\
+\big| & \big| &        & \big|
 \end{pmatrix}.
 \]
 
 où les coefficients \(a_{i,j}\) appartiennent à \(\mathbb{F}_2\).
-Pour tout vecteur \(x \in \mathbb{F}_2^m\), l’image de \(x\) par \(A\) est donnée par
-\[
-	A(x) = Ax = \sum_{j=1}^m x_j A_j,
-\]
-où $A_j$ désigne le $j$-ème colonne de $A$.
-Nous nous intérressonts uniquement aux transformations linéaires inversibles qui forment le groupe appelé groupe linéaire
-générale noté $GL(\FF_2^m)$ le cardinal de cet ensemble est égale à
+
+Nous nous nous intéressons uniquement aux transformations linéaires inversibles qui forment le groupe appelé groupe général linéaire
+noté $GL(\FF_2^m)$, le cardinal de cet ensemble est égale à :
 $$
-\text{card}(GL(\FF_2^m))=\prod_{i=0}^{m-1}2^m - 2^i
+\text{card}(GL(\FF_2^m))=\prod_{i=0}^{m-1}(2^m - 2^i)
 $$
 Une transformation affine est une application
 $$
 S : \FF_2^m \to \FF_2^m
 $$
 de la forme
-$$
+$
 S = A(x) + a
-$$
+$
 où
-$$ A \in GL(\FF_2^m)
-$$
+$ A \in GL(\FF_2^m)
+$
 et
-$$
+$
 a \in \FF_2^m
-$$
-Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forment le groupe affine noté $AGL(\FF_2^m)$ ayant pour dimension le cardinal de $GL(F_2^m)$.
+$. \\
+Une transformation affine est une transformation linéaire et une translation. L'ensemble de ces transformations forment le groupe affine noté $AGL(\FF_2^m)$ ayant pour ordre le cardinal de $GL(F_2^m)$.
 
-Soit $f$ et $g$ deux fonctions booléennes. On dit que $g$ est équivalent à $f$ si il existe une transformation affine $S$ telle que
+Soit $f$ et $g$ deux fonctions booléennes. On dit que $g$ est équivalent à $f$ s'il existe une transformation affine $S$ telle que
 $$
-g(x) = f \circ S(x)
+g(x) = f \circ S(x).
 $$
 \begin{proposition}
 	Soit $f$ et $g$ deux fonctions booléennes équivalentes
@@ -261,22 +278,25 @@ $$
 		\item $\deg(g) = \deg(f)$
 	\end{enumerate}
 \end{proposition}
-La classe d'une fonction $f$ est l'ensemble des fonctions $g$ telles que $f$ et $g$ soient équivalentes.
+La classe d'une fonction $f$ est l'ensemble des fonctions $g$ équivalentes à $f$.
 $$
-\text{classe}(f) = \{g|g\sim f\} = \{f \circ S | S \in AGL(\FF_2^m)\}
+\text{classe}(f) = \{g \mid g\sim f\} = \{f \circ S  \mid  S \in AGL(\FF_2^m)\}
 $$
 Le stabilisateur d'une fonction $f$ est l'ensemble des tranformations affines $S$ tel que
 $$
-\text{stab}(f) = \{S \in AGL(\FF_2^m) | f \circ S = f\}
+\text{stab}(f) = \{S \in AGL(\FF_2^m)  \mid  f \circ S = f\}
 $$
-
+$\text{stab}(f)$ est un sous groupe de $AGL(\FF_2^m)$ de plus la formule des classes affirme que :
+$$
+\#\text{stab}(f) \times \#\text{classe}(f) = \#AGL(\FF_2^m)
+$$
 
 \section{calcul de distance}
 \subsection{Enumération}
 Dans ce paragraphe je vais présenter une methode pour calculer la distance d'une fonction $f$ à un code $C$. la manière la plus simple est consiste à énumérer tous les mots du code.
-Pour cela il faut générer toutes les combinaisons linéaires des lignes de la matrice génératrice $G$ du code. La matrice $G$ comporte $k$ ligne $l_1, l_2, \dots, l_k$ donc chaque mot $c$
-du code s'écrit $$c = \sum_{i=1}^{k} u_i l_i \quad \text{où} \quad u \in \FF_2^k \quad u = (u_1, u_2, \dots, u_k)$$
-Nous avons donc besoin d'énumérer tous les u mais au lieu d'utilisé l'odre binaire classique $0=(000), 1=(001), 2=(010) \dots$ on utilise le code de Gray afin de changé un bit à la fois, l'indice de ce bit correspond à l'indice de la ligne
+Pour cela il faut générer toutes les combinaisons linéaires des lignes d'une matrice génératrice $G$ du code. La matrice $G$ comporte $k$ ligne $L_1, L_2, \dots, L_k$ donc chaque mot $c$
+du code s'écrit $$c = \sum_{i=1}^{k} u_i L_i \quad \text{où} \quad u \in \FF_2^k \quad u = (u_1, u_2, \dots, u_k)$$
+Nous avons donc besoin d'énumérer tous les u mais au lieu d'utilisé l'odre binaire classique $0=(000), 1=(001), 2=(010) \dots$ on utilise un code de Gray afin de changé un bit à la fois, l'indice de ce bit correspond à l'indice de la ligne
 à additionner afin de calculer le prochain mot du code. Par exemple pour $k=3$:
 $$
 G = 
@@ -285,19 +305,19 @@ G =
 	l_2\\
 	l_3\\
 \end{bmatrix}
-\qquad
+\ 
 \begin{array}{|c|cccccccc|}
 	\hline
 	u & 000 & 00\textbf{1} & 0\textbf{1}1 & 01\textbf{0} & \textbf{1}10 & 11\textbf{1} & 1\textbf{0}1 & 10\textbf{0}\\
-	\ hline
-	\text{ligne additionné} & 0 & l_1 & l_2 & l_1 & l_3 & l_1 & l_2 & l_1\\
+	\hline
+	\text{ligne} & 0 & l_1 & l_2 & l_1 & l_3 & l_1 & l_2 & l_1\\
 	\hline
 	c & 0 & l_1 & l_1+l_2 & l_2 & l_3+l_2 & l_3+l_2+l_1 & l_3+l_1 & l_3\\
 	\hline
 \end{array}
 $$
 Dans l'exemple pour passer du mot $l_1+l_2$ représenté par le vecteur $u=011$ on passe à la prochaine valeur de $u$ dans le code de Gray qui est $u=010$,
-le bit d'indice 1 a été modifié donc pour passer au prochain mot il suffit de faire $l_1+l_2+l_1 = l_2$.
+le bit d'indice 1 a été modifié donc pour passer au prochain mot il suffit d'additionner $l_1$ au mot actuel. $l_1+l_2+l_1 = l_2$.
 
 \section{Travail sur les fonctions courbes}
 
