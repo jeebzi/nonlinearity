@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  2 JUN 2026 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.3.9)  3 JUN 2026 12:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -697,35 +697,29 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (4.86267pt too wide) in paragraph at lines 62--63
-[]\T1/cmr/m/n/10 Toute fonc-tion boo-léenne peut s'écrire comme une somme de mo
--nômes nommé
- []
-
-[2] [3] [4] [5] [6]
-Overfull \hbox (2.02379pt too wide) detected at line 318
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+Overfull \hbox (2.02379pt too wide) detected at line 321
 \OML/cmm/m/it/10 G \OT1/cmr/m/n/10 = []  []
  []
 
 [7]
-Overfull \hbox (4.35158pt too wide) in paragraph at lines 336--337
+Overfull \hbox (4.35158pt too wide) in paragraph at lines 339--340
 []\T1/cmr/m/n/10 Il existe $\OT1/cmr/m/n/10 190$ \T1/cmr/m/n/10 mil-lions de cl
 asses de fonc-tions courbes et $\OT1/cmr/m/n/10 2[]$ \T1/cmr/m/n/10 mots dans $
 []\OT1/cmr/m/n/10 (2\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 8)$\T1/cmr/m/n/10 .
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 371.
+put line 374.
 [8]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
-38.
+41.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [9] [10] [11]
 (./note.aux)
 Package rerunfilecheck Info: File `note.out' has not changed.
-(rerunfilecheck)             Checksum: 23AE5AA14FF9CA58FA6A83A99A163D73;3026.
+(rerunfilecheck)             Checksum: 4A5B7BEF7BFE55261F37CBE3BB40C6F6;3031.
 Package logreq Info: Writing requests to 'note.run.xml'.
 \openout1 = `note.run.xml'.
 
@@ -758,7 +752,7 @@ cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb
 >
-Output written on note.pdf (11 pages, 243360 bytes).
+Output written on note.pdf (11 pages, 243455 bytes).
 PDF statistics:
  695 PDF objects out of 1000 (max. 8388607)
  322 compressed objects within 4 object streams
