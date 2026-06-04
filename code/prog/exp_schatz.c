@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
 	tmp = RMH(k, ffdimen);
 	code64 code_homogene = code_to_code64(tmp);
 
-	uchar *g_boole;
 	uint64_t *mot, *g;
 	int *W, j, i;
 	int int_par_ligne = (63+ffsize) / 64;
@@ -85,13 +84,12 @@ int main(int argc, char *argv[]) {
 
 				if (indice_q >= limite2) {
 					{
-						printf("h : ");
-						print_anf(f, ffdimen, ffsize);
-						printf("g : ");
 						g = indice_to_boole(indice_g, c);
-						g_boole = int_to_boole(g, ffsize);
-						print_anf(g_boole, ffdimen, ffsize);
-						free(g_boole);
+						uint64_t *boole_finale = merge(mot, g, ffsize);
+						uchar *res = int_to_boole(boole_finale, ffsize<<1);
+						print_anf(res, ffdimen + 1, ffsize<<1);
+						free(boole_finale);
+						free(res);
 						free(g);
 					}
 				}
