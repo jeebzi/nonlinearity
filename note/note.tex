@@ -38,13 +38,13 @@ Une fonction booléenne en $m$ variables est une fonction qui prend en paramétr
 $$ f : \mathbb{F}_2^m \to \mathbb{F}_2 ,$$
 on note \BM l'ensemble des fonctions booléennes en $m$ variables.
 Soit $f \in$ \BM, on définit le poid de $f$ comme le nombre de fois où la fonction prend la valeur 1.
-$$ \mathrm{wt}(f) = \#\{f(x) = 1 | x \in \mathbb{F}_2^m\}, $$
+$$ \mathrm{wt}(f) = \#\{f(x) = 1 \mid x \in \mathbb{F}_2^m\}, $$
 
 On peut représenter une fonction par la table de ses valeurs (Truth Table):
 $$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
 
 La distance de Hamming de deux fonctions booléennes $f$ et $ g$ est définie par le nombre de fois où les fonctions prennent des valeurs différentes:
-$$ d_H(f, g) = \#\{f(x) \neq g(x) | x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
+$$ d_H(f, g) = \#\{f(x) \neq g(x) \mid x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
 
 Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléennes en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
@@ -58,20 +58,23 @@ $$d(f, C) = \min_{c \in C} d_H(f, c) = \min_{c \in C} \WT{f+c}$$
 	\end{enumerate}
 \end{proposition}
 
-\subsection{Forme normal algébrique et degré}
-Toute fonction booléenne peut s'écrire comme une somme de monômes nommé ANF (algebraic normal form)
-$$
-f(x)=\sum_{I\subseteq \{1,\dots,m\}} a_I \prod_{i\in I} x_i
-$$
+\subsection{Forme normale algébrique et degré}
+Toute fonction booléenne $f : \FF_2^m \to \FF_2$ admet une ecriture polynomiale unique sur $\FF_2$, appelée forme normale algébrique (ANF):
+\[
+f(x_1,\dots,x_m)
+=
+\bigoplus_{u \in \mathbb{F}_2^m}
+a_u \prod_{i=1}^m x_i^{u_i},
+\]
 Le degré d'une fonction est le degré maximal de ses monômes. La valuation d'une fonction est le degré minimal de ses mônomes.
 On note $\BST{s}{t}{m}$ l'ensemble des fonctions en $m$ variables de valuation au moins $s$ et de degré au plus $t$.
 $$
-\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 | \mathrm{val}(f) \geq s \; \text{et} \; \deg(f) \leq t\}
+\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 \mid \mathrm{val}(f) \geq s \; \text{et} \; \deg(f) \leq t\}
 $$
 
 \subsection{Code de Reed-Muller}
 Le code de Reed-Muller d'ordre $k$ en $m$ variables, $\mathrm{RM}(k, m)$, est l'ensemble des fonctions booléennes de degré inférieur ou égale à k.
-$$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 | \deg(f) \leq k\} $$
+$$ \RM{k}{m} := \{f: \FF_2^m \to \FF_2 \mid \deg(f) \leq k\} $$
 \begin{remark}
 	Chaque ligne de la matrice génératrice d'un code \RM{k}{m} correspond à la table de vérité d'un monôme de degré inférieur ou égale à $k$.
 \end{remark}
