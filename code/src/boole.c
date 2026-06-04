@@ -357,7 +357,7 @@ uint64_t* indice_to_boole(uint64_t indice, code64 c) {
 
 uint64_t* merge(uint64_t *h, uint64_t *g, int ffsize) {
 	/*
-	 * prend 2 fonctions booléenne h et g puis creer unr fonction f tel que f = x_m*g+h
+	 * prend 2 fonctions booléenne h et g puis creer une fonction f tel que f = x_m*g+h
 	 * f = [h | g + h]
 	 */
 	uint64_t *f;
