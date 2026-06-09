@@ -38,13 +38,13 @@ Une fonction booléenne en $m$ variables est une fonction qui prend en paramétr
 $$ f : \mathbb{F}_2^m \to \mathbb{F}_2 ,$$
 on note \BM l'ensemble des fonctions booléennes en $m$ variables.
 Soit $f \in$ \BM, on définit le poid de $f$ comme le nombre de fois où la fonction prend la valeur 1.
-$$ \mathrm{wt}(f) = \#\{f(x) = 1 \mid x \in \mathbb{F}_2^m\}, $$
+$$ \mathrm{wt}(f) = \sharp\{x \in \mathbb{F}_2^m \mid f(x) = 1 \}, $$
 
 On peut représenter une fonction par la table de ses valeurs (Truth Table):
 $$ \textrm{TT}(f) := [f(0), f(1), \dots, f(2^m-1)] $$
 
 La distance de Hamming de deux fonctions booléennes $f$ et $ g$ est définie par le nombre de fois où les fonctions prennent des valeurs différentes:
-$$ d_H(f, g) = \#\{f(x) \neq g(x) \mid x \in \mathbb{F}_2^m\} = \WT{f+g}.$$
+$$ d_H(f, g) = \sharp \{x \in \mathbb{F}_2^m \mid f(x) \neq g(x)\} = \WT{f+g}.$$
 
 Soit $C$ un code dont ses éléments sont un sous ensemble des fonctions booléennes en $m$ variables et $f$ une fonction booléenne en $m$ variables, on définit la distance de $f$ au code comme
 la distance de Hamming minimal entre $f$ et tous les mots de C.
@@ -69,7 +69,7 @@ a_u \prod_{i=1}^m x_i^{u_i},
 Le degré d'une fonction est le degré maximal de ses monômes. La valuation d'une fonction est le degré minimal de ses mônomes.
 On note $\BST{s}{t}{m}$ l'ensemble des fonctions en $m$ variables de valuation au moins $s$ et de degré au plus $t$.
 $$
-\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 \mid \mathrm{val}(f) \geq s \; \text{et} \; \deg(f) \leq t\}
+\BST{s}{t}{m} := \{f: \mathbb{F}_2^m \to \FF_2 \mid \mathrm{val}(f) \geq s \ \text{et} \, \deg(f) \leq t\}
 $$
 
 \subsection{Code de Reed-Muller}
@@ -175,15 +175,15 @@ $$\mathrm{wt}(t+f) \geq 96 \equiv \WT{h+u}+\WT{h+u+g+v} \geq 96$$
 Soit un code $C$ de dimension $k$ et de longueur $n$ sur $\FF_2$. On peut estimer une borne inférieure de son rayon de recouvrement $R$, grâce à la borne de recouvrement des sphères.
 Le nombre d'éléments dans une sphère de rayon $r$ est
 $$
-\#B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
+\sharp B(0, r) = 1 + n + \binom{n}{2} + \dots + \binom{n}{r} = \sum_{i=0}^r \binom{n}{i}
 $$
 En prenant l'union des sphères de rayon $R$ centrées en chaque mot $c \in C$ on couvre tout l'espace $\FF_2^n$. Ce qui nous donne le résultat
 $$
-2^k \times \#B(0,R) \geq 2^n.
+2^k \times \sharp B(0,R) \geq 2^n.
 $$
 Pour trouver une borne inférieure au rayon de recouvrement il suffit donc de trouver le plus petit $r$ tel que
 $$
-2^k \times \#B(0, r) \geq 2^n.
+2^k \times \sharp B(0, r) \geq 2^n.
 $$
 Ceci nous a permis de trouver des bornes inférieures jusque là inexistante au tableau et de meilleure borne inférieur pour $m = 10$ et $m=11$
 \begin{table}
@@ -291,7 +291,7 @@ $$
 $$
 $\text{stab}(f)$ est un sous groupe de $AGL(\FF_2^m)$ de plus la formule des classes affirme que :
 $$
-\#\text{stab}(f) \times \#\text{classe}(f) = \#AGL(\FF_2^m)
+\sharp \text{stab}(f) \times \sharp \text{classe}(f) = \sharp AGL(\FF_2^m)
 $$
 
 \section{calcul de distance}
