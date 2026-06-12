@@ -56,9 +56,9 @@ uchar* load_boole(FILE *src, int *num, int ffsize) {
 	 * num récupère la vanleur de la non linéarité de la fonction si elle est présente, -1 sinon
 	 */
 	uchar *res;
-	char buffer[1024], *ptr;
+	char buffer[1024], *ptr=NULL;
 	*num = -1;
-	int n;
+	int n=0;
 	while (fgets(buffer, 1024, src)) {
 		ptr = &buffer[0];
 		if (sscanf(ptr, "%d%n", num, &n) != 0) {
