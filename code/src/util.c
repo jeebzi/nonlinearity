@@ -28,3 +28,11 @@ int max_tab_int(int *tab, int n) {
 	}
 	return maxi;
 }
+
+int abs(int x) {
+	/*
+	 * revoie la valeur absolu de x
+	 */
+	if (x < 0) return x * -1;
+	else return x;
+}

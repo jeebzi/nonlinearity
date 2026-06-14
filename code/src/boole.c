@@ -50,6 +50,18 @@ uchar* random_boole(int ffdimen, int degre) {
 	return res;
 }
 
+uint64_t* random_boole_int(int ffsize) {
+	/* creer une fonction booléenne aléatoire en contruisant prenant un entier aléatoire qui représentera
+	 * la table de vérité
+	 */
+	int int_par_ligne = (ffsize+63)/64;
+	int byte_number = ffsize/8;
+	uint64_t *res = calloc(int_par_ligne, sizeof(uint64_t));
+	arc4random_buf(res, byte_number);
+	return res;
+}
+
+
 uchar* load_boole(FILE *src, int *num, int ffsize) {
 	/*
 	 * charge depuis un pointeur vers fichier une fonction booléenne représenter par un tableau de u char
