@@ -343,3 +343,24 @@ int ftl(uint64_t *f, int ffdimen, int ffsize, int target) {
 	if (over == 1) return -1;
 	return wt;
 }
+
+int non_linearite_walsh(int *signe, int ffsize) {
+	/*
+	 * prend une fonction booléenne en représentation signe et renvoie ça non linéarité
+	 * d'ordre 1 en calculant son rayon spectral
+	 */
+	fourier_transform(signe, ffsize);
+	// parcourir le tableau signe qui est mainenant les coef de walsh pour trouver le max
+	int spec= abs(signe[0]);
+	int i = 1;
+	while (i < ffsize) {
+		if (abs(signe[i] > spec))
+			spec = abs(signe[i]);
+		i += 1;
+	}
+	/* valeur non linéarité d'ordre 1
+	 * NL(f) = 2^(m-1) - 1/2 * R(f)
+	 */
+	return (ffsize >> 1) - (spec >> 1);
+}
+

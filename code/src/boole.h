@@ -17,6 +17,7 @@ int correlation(uint64_t *f1, uint64_t *f2, int ffsize);
 int rang(uint64_t *f, int ffdimen, int ffsize);
 int is_homogene(unsigned char *mot, int degree, int ffsize);
 uchar* random_boole(int ffdimen, int degre);
+uint64_t* random_boole_int(int ffsize);
 uint64_t* indice_to_boole(uint64_t indice, code64 c);
 uint64_t *merge(uint64_t *h, uint64_t *g, int ffsize);
 
