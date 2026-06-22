@@ -55,9 +55,9 @@ uint64_t* random_boole_int(int ffsize) {
 	 * la table de vérité
 	 */
 	int int_par_ligne = (ffsize+63)/64;
-	int byte_number = ffsize/8;
+	size_t byte_number = int_par_ligne * sizeof(uint64_t);
 	uint64_t *res = calloc(int_par_ligne, sizeof(uint64_t));
-	arc4random_buf(res, byte_number);
+	getrandom(res, byte_number, 0);
 	return res;
 }
 

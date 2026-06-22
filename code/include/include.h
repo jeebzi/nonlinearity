@@ -11,5 +11,6 @@ typedef unsigned char uchar;
 #include <stdint.h>
 #include <ctype.h>
 #include <assert.h>
+#include <sys/random.h>
 
 #endif

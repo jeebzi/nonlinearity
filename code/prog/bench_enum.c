@@ -34,7 +34,9 @@ int main(int argc, char *argv[]) {
 
 		}
 	}
-	code c = RM(k, ffdimen);
+	code c;
+	if (k == 1) c = RMH(k, ffdimen);
+	else c = RM(k, ffdimen);
 	struct timespec start, end;
 	unsigned int iteration, cpt = 0;
 	double time_moyen = 0, iter_moyen = 0, tim;

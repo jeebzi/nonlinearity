@@ -31,7 +31,7 @@ int distance_mot_code_zip(uint64_t *mot, uint64_t *base, int ffsize, int nb_lign
 
 int distance_mot_code_min(uint64_t *mot, uint64_t *base, uint64_t ffsize, int nb_ligne, int target) {
 	/*
-	 * calcule la distance entre un mot et un code, renvoie la valeur de la distance si elle st supérieure ou égale
+	 * calcule la distance entre un mot et un code, renvoie la valeur de la distance si elle et supérieure ou égale
 	 * à la target -1 sinon
 	 */
 	int int_par_ligne = (ffsize+63) / 64;
@@ -50,7 +50,7 @@ int distance_mot_code_min(uint64_t *mot, uint64_t *base, uint64_t ffsize, int nb
 			wt += __builtin_popcountl(mot[j]);
 			j += 1;
 		}
-		if (wt < target) return -1;
+		if (wt < target || (ffsize - wt) < target) return -1;
 		if (wt < score) score = wt;
 		cpt += 1;
 	}
